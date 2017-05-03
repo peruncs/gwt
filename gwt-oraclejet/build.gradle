@@ -9,11 +9,11 @@ dependencies {
     compile "com.google.jsinterop:base:${gwt_jsinterop_base_version}"
     
     compile "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
-    compile "com.google.elemental2:elemental2-promise:${gwt_elemental2_version}"
+//    compile "com.google.elemental2:elemental2-promise:${gwt_elemental2_version}"
     compile "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
-    compile "com.google.elemental2:elemental2-svg:${gwt_elemental2_version}"
-    compile "com.google.elemental2:elemental2-webgl:${gwt_elemental2_version}"
-    compile "com.google.elemental2:elemental2-media:${gwt_elemental2_version}"
-    compile "com.google.elemental2:elemental2-indexeddb:${gwt_elemental2_version}"
-    compile "com.google.elemental2:elemental2-webstorage:${gwt_elemental2_version}"
+//    compile "com.google.elemental2:elemental2-svg:${gwt_elemental2_version}"
+//    compile "com.google.elemental2:elemental2-webgl:${gwt_elemental2_version}"
+//    compile "com.google.elemental2:elemental2-media:${gwt_elemental2_version}"
+//    compile "com.google.elemental2:elemental2-indexeddb:${gwt_elemental2_version}"
+//    compile "com.google.elemental2:elemental2-webstorage:${gwt_elemental2_version}"
 }

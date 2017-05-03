@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
-	<source path="oraclejet"/>
-	<entry-point class="gwt.oraclejet.OracleJetMain" />
+    <source path="oraclejet"/>
+    <!--<inherits name="elemental2.core.Core"/>-->
+    <!--<inherits name="elemental2.dom.Dom"/>-->
+    <entry-point class="gwt.oraclejet.OracleJetMain" />
 </module>
