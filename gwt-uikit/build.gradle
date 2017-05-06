@@ -1,0 +1,10 @@
+
+group = 'com.peruncs.gwt'
+version = gwt_uikit_version
+
+dependencies {
+    compile ("org.jboss.errai:errai-common:${errai_version}")
+    compile ("com.peruncs.gwt:gwt-errai:${gwt_errai_version}") 
+    //Java EE
+//    compileOnly ("javax:javaee-api:${java_ee_version}") 
+}
