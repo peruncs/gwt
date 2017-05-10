@@ -3,8 +3,9 @@ group = 'com.peruncs.gwt'
 version = gwt_uikit_version
 
 dependencies {
+    compile ("com.google.jsinterop:base:${gwt_base_version}")
     compile ("org.jboss.errai:errai-common:${errai_version}")
-    compile ("com.peruncs.gwt:gwt-errai:${gwt_errai_version}") 
-    //Java EE
-//    compileOnly ("javax:javaee-api:${java_ee_version}") 
+    compile ("com.peruncs.gwt:gwt-errai:${gwt_errai_version}")
+    
+    compileOnly ("javax:javaee-api:${java_ee_version}") 
 }
