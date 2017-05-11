@@ -21,6 +21,7 @@ public abstract class JQueryProducer {
 
   @JsType(isNative = true)
   public static interface JQueryElement extends HTMLElement {
+    void on ();
     void after(HTMLElement element);
     void before(HTMLElement element);
     JQueryArray children();

@@ -1,0 +1,4 @@
+//apply plugin: 'fr.putnami.gwt-lib'
+
+group = 'com.peruncs.gwt'
+version = gwt_utils_version

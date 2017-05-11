@@ -5,5 +5,10 @@ import jsinterop.annotations.JsType;
 @JsType(isNative = true)
 public interface UIKitNavbar {
     
-   UIKitNavbar beforeShow();
+   
+//   @JsOverlay
+//    public final SUICheckbox setUnchecked() {
+//        checkbox("set unchecked");
+//        return this;
+//    }
 }

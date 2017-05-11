@@ -1,0 +1,9 @@
+group =  'com.peruncs.gwt'
+version = "${gwt_jquery_version}"
+
+dependencies {
+    compile ("com.peruncs.gwt:gwt-utils:${gwt_utils_version}")
+    compile ("com.google.jsinterop:base:${gwt_base_version}")
+    compile ("com.google.elemental2:elemental2-core:${gwt_elemental2_version}")
+    compile ("com.google.elemental2:elemental2-dom:${gwt_elemental2_version}")
+}

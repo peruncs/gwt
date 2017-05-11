@@ -1,2 +1,4 @@
 include "gwt-errai"
 include "gwt-uikit"
+include "gwt-utils"
+include "gwt-jquery"
