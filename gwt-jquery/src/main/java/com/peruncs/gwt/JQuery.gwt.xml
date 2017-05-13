@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
     <source path="jquery"/>
-    <entry-point class="com.peruncs.gwt.jquery.JQueryEntryPoint" />
+    <entry-point class="com.peruncs.gwt.jquery.JQEntryPoint" />
     
     <inherits name="com.peruncs.gwt.Utils"/>    
     <inherits name="jsinterop.base.Base"/>
