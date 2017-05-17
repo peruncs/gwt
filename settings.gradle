@@ -1,6 +1,3 @@
-include "gwt-utils"
-include "gwt-jquery"
-include "gwt-uikit"
-include "gwt-errai"
+include "gwt-utils", "gwt-jquery", "gwt-uikit", "gwt-errai"
 
 
