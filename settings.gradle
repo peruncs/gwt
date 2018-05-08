@@ -1,3 +1,4 @@
-include "gwt-utils", "gwt-jquery", "gwt-uikit", "gwt-errai"
+include "gwt-utils", "gwt-jwt", "gwt-uikit", "gwt-stripe"
+//include "gwt-jquery"
 
 

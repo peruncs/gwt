@@ -1,2 +1,0 @@
-##GWT Errai utils.
-

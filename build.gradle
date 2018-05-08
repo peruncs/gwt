@@ -1,74 +1,46 @@
-allprojects {
-    tasks.withType(JavaCompile) {
-        options.incremental = true
-    }
-}
-
-
 subprojects {
     
     apply plugin: 'java'
-    apply plugin: 'maven'
     apply plugin: 'maven-publish'
-    
+
+    tasks.withType(JavaCompile) {
+        options.incremental = true
+    }
+
     compileJava {
         options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xlint:deprecation"
     }
     
     sourceCompatibility = "${java_lang_level}"
     targetCompatibility = "${java_lang_level}"
-    buildscript {
-        
-        repositories {
-            jcenter()
-            mavenCentral()
-            maven {url 'http://oss.sonatype.org/content/repositories/snapshots/'}
-        }
-        
-        dependencies {
-            classpath "fr.putnami.gwt:putnami-gradle-plugin:${gradle_gwt_version}"
-            classpath "ch.raffael.pegdown-doclet:pegdown-doclet:${gradle_markdown_version}"
-        }
-        
-    }
+
     
     repositories {
         mavenCentral()
-        jcenter()
-        maven {url 'http://oss.sonatype.org/content/repositories/snapshots/'}
-        maven {url 'https://oss.sonatype.org/content/repositories/google-snapshots'}
-        maven {url 'https://repository.jboss.org/nexus/content/groups/public'}
         mavenLocal()
     }
-    
-    dependencies {
-        compileOnly "com.google.gwt:gwt-user:${gwt_version}"
-    }
-    
-    task sourcesJar(type: Jar, dependsOn: classes) {
-        classifier = 'sources'
-        extension = 'zip'
-        from sourceSets.main.allSource
-    }
 
-    task javadocJar(type: Jar, dependsOn: javadoc) {
-        classifier = 'javadoc'
-        extension = 'zip'
-        from javadoc.destinationDir
-    }
+}
 
-    jar {
-        from sourceSets.main.allSource
-    }
+//Publishing
+task publishUtils {
+    dependsOn ":gwt-utils:publishToMavenLocal"
+}
 
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                artifact sourcesJar
-                //artifact javadocJar
-                from components.java
-            }
-        }
-    }
-    
+task  publishStripe {
+    dependsOn ":gwt-stripe:publishToMavenLocal"
+}
+
+task  publishJwt {
+    dependsOn ":gwt-jwt:publishToMavenLocal"
+}
+
+task  publishUikit {
+    dependsOn ":gwt-uikit:publishToMavenLocal"
+}
+
+publishStripe.mustRunAfter  publishUtils
+
+task  publishToMavenLocal {
+    dependsOn  publishUtils,  publishStripe,  publishJwt,  publishUikit
 }

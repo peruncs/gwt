@@ -1,9 +1,0 @@
-
-group = 'com.peruncs.gwt'
-version = gwt_errai_version
-
-dependencies {
-    compileOnly ("org.jboss.errai:errai-common:${errai_version}") {transitive = false}
-    //Java EE
-    compileOnly ("javax:javaee-api:${java_ee_version}") 
-}
