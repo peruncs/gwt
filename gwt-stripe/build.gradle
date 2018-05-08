@@ -1,0 +1,48 @@
+group = 'com.peruncs.gwt'
+version = gwt_stripe_version
+
+dependencies {
+    implementation "com.google.jsinterop:base:${gwt_base_version}"
+    implementation "com.peruncs.gwt:gwt-utils:${gwt_utils_version}"
+//    implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
+//    implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
+//    implementation "com.google.elemental2:elemental2-webstorage:${elemental2_version}"
+}
+
+
+
+task stripeJar(type: Jar, dependsOn: classes) {
+    from(sourceSets.main.output) {
+        include('com/peruncs/gwt/**')
+    }
+    from(sourceSets.main.allSource) {
+        include('com/peruncs/gwt/**')
+    }
+}
+
+
+publishing {
+    publications {
+        publication(MavenPublication) {
+            artifact stripeJar
+            artifactId 'gwt-stripe'
+            pom.withXml {
+                asNode().with {
+                    appendNode('description', 'GWT Stripe wrapper')
+                    appendNode('name', 'GWT Stripe')
+                    appendNode('url', 'https://github.com/peruncs/gwt')
+                    appendNode('organization').with {
+                        appendNode('name', 'Perun Consulting Services, Inc')
+                        appendNode('url', 'www.peruncs.com')
+                    }
+                    appendNode('licenses').with {
+                        appendNode('license').with {
+                            appendNode('name', 'Apache 2.0')
+                            appendNode('url', 'https://www.apache.org/licenses/LICENSE-2.0')
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

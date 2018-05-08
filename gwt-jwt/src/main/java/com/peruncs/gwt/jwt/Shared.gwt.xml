@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <!--<inherits name="elemental2.core.Core" />-->
+    <!--<inherits name="elemental2.core.Dom" />-->
+    <!--<inherits name="elemental2.core.Promise" />-->
+    <!--<inherits name="elemental2.core.WebStotage" />-->
+    <inherits name="jsinterop.base.Base"/>
+    <source path="shared"/>
+</module>
