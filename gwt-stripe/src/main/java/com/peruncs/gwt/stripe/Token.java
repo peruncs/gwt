@@ -37,8 +37,7 @@ public class Token {
     public boolean livemode;
 
     /**
-     * Whether or not this token has already been used (tokens can be used only
-     * once)
+     * Whether or not this token has already been used (tokens can be used only once)
      */
     @JsProperty
     public boolean used;
