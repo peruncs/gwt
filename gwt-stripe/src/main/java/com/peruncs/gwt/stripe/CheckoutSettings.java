@@ -1,30 +1,29 @@
 package com.peruncs.gwt.stripe;
 
 import com.peruncs.gwt.utils.Callback;
-import com.peruncs.gwt.utils.Callback1;
-import jsinterop.annotations.JsOverlay;
+import com.peruncs.gwt.utils.Callback2;
+import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
-
-import static jsinterop.annotations.JsPackage.GLOBAL;
+import jsinterop.base.JsPropertyMap;
 
 /**
  * Stripe configuration settings.
  */
-@JsType(isNative = true, name = "Object", namespace = GLOBAL)
-public class Settings {
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+public class CheckoutSettings {
 
-    /**
-     * We set some defaults this way as we can not have true constructor.
-     * @return this settings
-     */
-    @JsOverlay
-    final public Settings init() {
-        allowRememberMe = true;
-        locale = "auto";
-        currency = "USD";
-        return this;
-    }
+//    /**
+//     * We set some defaults this way as we can not have true constructor.
+//     * @return this settings
+//     */
+//    @JsOverlay
+//    public CheckoutSettings() {
+//        allowRememberMe = true;
+//        locale = "auto";
+//        currency = "USD";
+////        return this;
+//    }
 
     /**
      * Your publishable key (test or live)
@@ -36,7 +35,7 @@ public class Settings {
      * The callback to invoke when the Checkout process is complete
      */
     @JsProperty
-    public Callback1<Token> token;
+    public Callback2<Token,JsPropertyMap<String>> token;
 
     /**
      * The callback to invoke when Checkout is opened (not supported in IE6 and
@@ -78,7 +77,7 @@ public class Settings {
      * API
      */
     @JsProperty
-    public long amount;
+    public int amount;
 
     /**
      * The currency of the amount (3-letter ISO code). The default is USD.
@@ -140,25 +139,25 @@ public class Settings {
     @JsProperty
     public boolean allowRememberMe;
 
-    /**
-     * Specify whether to accept Bitcoin (true or false). The default is false.
-     */
-    @JsProperty
-    public boolean bitcoin;
+//    /**
+//     * Specify whether to accept Bitcoin (true or false). The default is false.
+//     */
+//    @JsProperty
+//    public boolean bitcoin;
 
-    /**
-     * Specify whether to accept Alipay ("auto", true, or false). The default is
-     * false.
-     */
-    @JsProperty
-    public boolean alipay;
+//    /**
+//     * Specify whether to accept Alipay ("auto", true, or false). The default is
+//     * false.
+//     */
+//    @JsProperty
+//    public boolean alipay;
 
-    /**
-     * Specify if you need reusable access to the customer's Alipay account
-     * (true or false). The default is false.
-     */
-    @JsProperty
-    public boolean alipayReusable;
+//    /**
+//     * Specify if you need reusable access to the customer's Alipay account
+//     * (true or false). The default is false.
+//     */
+//    @JsProperty
+//    public boolean alipayReusable;
 
     /**
      * Specify auto to display Checkout in the user's preferred language, if

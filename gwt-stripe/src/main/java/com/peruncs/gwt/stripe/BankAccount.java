@@ -43,8 +43,7 @@ public class BankAccount {
     @JsProperty
     public String status;
 
-    @JsOverlay
-    @Override
+    @Override @JsOverlay
     final public String toString() {
         return "BankAccount{" + "id=" + id + ", account_holder_name=" + account_holder_name + ", account_holder_type=" + account_holder_type + ", bank_name=" + bank_name + ", country=" + country + ", currency=" + currency + ", fingerprint=" + fingerprint + ", last4=" + last4 + ", routing_number=" + routing_number + ", status=" + status + '}';
     }
