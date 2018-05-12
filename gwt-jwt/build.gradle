@@ -12,7 +12,7 @@ task sharedJar(type: Jar, dependsOn: classes){
     baseName group
     appendix 'shared'
     from(sourceSets.main.output) {
-        include('com/peruncs/gwt/shared/**')
+        include('com/peruncs/gwt/jwt/shared/**')
     }
     from(sourceSets.main.allSource) {
         include('com/peruncs/gwt/jwt/shared/**')
