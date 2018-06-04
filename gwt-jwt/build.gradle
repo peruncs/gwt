@@ -41,42 +41,44 @@ publishing {
         oauthPublication(MavenPublication) {
             artifact auth0Jar
             artifactId 'gwt-jwt-auth0'
-            pom.withXml {
-                asNode().with {
-                    appendNode('description', 'GWT Auth0.js JsInterop wrapper')
-                    appendNode('name', 'GWT Auth0.js')
-                    appendNode('url', 'https://github.com/peruncs/gwt')
-                    appendNode('organization').with {
-                        appendNode('name', 'Perun Consulting Services, Inc')
-                        appendNode('url', 'www.peruncs.com')
+            pom {
+                name = "GWT Auth0.js"
+                description = "AWT Auth0.js JsInterop wrapper"
+                url = "https://github.com/peruncs/gwt"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
                     }
-                    appendNode('licenses').with {
-                        appendNode('license').with {
-                            appendNode('name', 'Apache 2.0')
-                            appendNode('url', 'https://www.apache.org/licenses/LICENSE-2.0')
-                        }
-                    }
+                }
+                scm {
+                    connection = "shttps://github.com/peruncs/gwt/tree/master"
+                    developerConnection = "https://github.com/peruncs/gwt/tree/master"
+                    url = "https://github.com/peruncs/gwt/master/"
                 }
             }
         }
         sharedPublication(MavenPublication) {
             artifact sharedJar
             artifactId 'gwt-jwt-shared'
-            pom.withXml {
-                asNode().with {
-                    appendNode('description', 'Shared GWT security JsInterop wrapper')
-                    appendNode('name', 'Shared GWT security')
-                    appendNode('url', 'https://github.com/peruncs/gwt')
-                    appendNode('organization').with {
-                        appendNode('name', 'Perun Consulting Services, Inc')
-                        appendNode('url', 'www.peruncs.com')
+            pom {
+                name = "Shared GWT security"
+                description = "Shared GWT security JsInterop wrapper'"
+                url = "https://github.com/peruncs/gwt"
+                organization{
+                    name = "Perun Consulting Services, Inc"
+                    url  = "www.peruncs.com"
+                }
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
                     }
-                    appendNode('licenses').with {
-                        appendNode('license').with {
-                            appendNode('name', 'Apache 2.0')
-                            appendNode('url', 'https://www.apache.org/licenses/LICENSE-2.0')
-                        }
-                    }
+                }
+                scm {
+                    connection = "shttps://github.com/peruncs/gwt/tree/master"
+                    developerConnection = "https://github.com/peruncs/gwt/tree/master"
+                    url = "https://github.com/peruncs/gwt"
                 }
             }
         }
