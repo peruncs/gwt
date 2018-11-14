@@ -13,7 +13,7 @@ public class WebAuth {
     public CrossOriginAuthentication crossOriginAuthentication;
 
     @JsConstructor
-    public WebAuth(AuthOptions options) {
+    public WebAuth(AuthorizeOptions options) {
     }
 
     public native void authorize();
