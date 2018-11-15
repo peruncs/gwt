@@ -14,7 +14,7 @@ public class PasswordlessAuthentication {
 
     public native String buildVerifyUrl(PasswordlessVerifyOptions options);
 
-    public native <Any> void start(PasswordlessStartOptions options, Auth0Callback<Any> callback);
+    public native void start(PasswordlessStartOptions options, Auth0Callback<Auth0Error,Any> callback);
 
-    public native <Any> void verify(PasswordlessVerifyOptions options, Auth0Callback<Any> callback);
+    public native void verify(PasswordlessVerifyOptions options, Auth0Callback<Auth0Error,Any> callback);
 }

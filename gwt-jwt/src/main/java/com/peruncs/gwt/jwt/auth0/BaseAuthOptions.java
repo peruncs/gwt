@@ -7,7 +7,7 @@ public class BaseAuthOptions {
     public String domain;
     public String clientID;
     public String responseType;
-    public ResponseMode responseMode;
+    public String responseMode;
     public String redirectUri;
     public String scope;
     public String audience;

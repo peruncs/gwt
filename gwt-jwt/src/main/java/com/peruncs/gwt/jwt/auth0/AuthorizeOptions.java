@@ -1,7 +1,6 @@
 package com.peruncs.gwt.jwt.auth0;
 
 import jsinterop.annotations.JsType;
-import jsinterop.base.Any;
 
 @JsType
 public class AuthorizeOptions extends BaseAuthOptions {
@@ -11,8 +10,10 @@ public class AuthorizeOptions extends BaseAuthOptions {
     public String nonce;
     public boolean owp;
     public int leeway;
-    public Any[] plugins;
-    public boolean _disableDeprecationWarnings;
+    public String language;
+    public String login_hint;
+    public String prompt;
+
 
     /** This is a non-standard way to pass configuration to the underlying Lock.
      *

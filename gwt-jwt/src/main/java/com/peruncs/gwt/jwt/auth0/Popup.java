@@ -14,17 +14,18 @@ public class Popup {
 
     public native Any buildPopupHandler();
 
-    public native Any preload(JsPropertyMap<?> any);
+    public native Any preload(JsPropertyMap<?> options);
 
     public native void callback(CallbackOptions options);
 
-    public native <Any> void loginWithCredentials(LoginWithCredentialsOptions options, Auth0Callback<Any> callback);
+    public native void authorize(AuthorizeOptions options, Auth0Callback<Auth0Error,Any> callback);
 
-    public native <Any> void passwordlessVerify(PasswordlessVerifyOptions options, Auth0Callback<Any> callback);
+    public native void loginWithCredentials(LoginWithCredentialsOptions options, Auth0Callback<Auth0Error,Any> callback);
 
-    public native <Any> void signupAndLogin(SignupAndLoginOptions options, Auth0Callback<Any> callback);
+    public native void passwordlessVerify(PasswordlessVerifyOptions options, Auth0Callback<Auth0Error,Any> callback);
 
-    public native <Any> void authorize(AuthOptions options, Auth0Callback<Any> callback);
+    public native void signupAndLogin(SignupAndLoginOptions options, Auth0Callback<Auth0Error,Any> callback);
+
 
     @JsType
     static public class CallbackOptions {

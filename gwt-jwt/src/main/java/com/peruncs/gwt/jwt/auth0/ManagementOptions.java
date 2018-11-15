@@ -10,6 +10,6 @@ public class ManagementOptions {
     public String clientSecret;
     public String audience;
     public String scope;
-    public String tokenProvider;
+    public TokenProvider tokenProvider;
     public boolean telemetry;
 }

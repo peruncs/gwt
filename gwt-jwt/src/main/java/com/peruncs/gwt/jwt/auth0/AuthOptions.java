@@ -8,4 +8,6 @@ public class AuthOptions extends BaseAuthOptions {
     public int leeway;
     public Any[] plugins;
     public boolean _disableDeprecationWarnings;
+    public boolean _sendTelemetry;
+    public Any _telemetryInfo;
 }

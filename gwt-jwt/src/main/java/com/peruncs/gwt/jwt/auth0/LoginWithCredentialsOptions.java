@@ -6,6 +6,6 @@ import jsinterop.annotations.JsType;
 public class LoginWithCredentialsOptions {
     public String redirectUri;
     public String responseType;
-    public ResponseMode responseMode;
-    String scope;
+    public String responseMode;
+    public String scope;
 }

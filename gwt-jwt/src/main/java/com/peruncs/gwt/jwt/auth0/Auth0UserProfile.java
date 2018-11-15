@@ -23,4 +23,14 @@ public class Auth0UserProfile {
     public String sub;
     public Any user_metadata;
     public Any app_metadata;
+
+    //MicrosoftUserProfile
+    public String[]  emails;
+
+    //Office365UserProfile
+    public String tenantid;
+    public String upn;
+
+    //AdfsUserProfile
+    public String issuer;
 }

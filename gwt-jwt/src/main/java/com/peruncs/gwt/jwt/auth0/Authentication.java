@@ -20,21 +20,21 @@ public class Authentication {
 
     public native String buildLogoutUrl(LogoutOptions logoutOptions);
 
-    public native <Any> void loginWithDefaultDirectory(DefaultDirectoryLoginOptions options, Auth0Callback<Any> callBack);
+    public native  void loginWithDefaultDirectory(DefaultDirectoryLoginOptions options, Auth0Callback<Auth0Error,Any> callBack);
 
-    public native <Any> void loginWithResourceOwner(ResourceOwnerLoginOptions options, Auth0Callback<Any> callback);
+    public native  void loginWithResourceOwner(ResourceOwnerLoginOptions options, Auth0Callback<Auth0Error,Any> callback);
 
-    public native <Any> void login(DefaultLoginOptions options, Auth0Callback<Any> callback);
+    public native  void login(DefaultLoginOptions options, Auth0Callback<Auth0Error,Any> callback);
 
-    public native <Any> void oauthToken(JsPropertyMap<?> options, Auth0Callback<Any> callback);
+    public native  void oauthToken(JsPropertyMap<?> options, Auth0Callback<Auth0Error,Any> callback);
 
-    public native <Any> void getSSOData(Auth0Callback<Any> callback);
+    public native  void getSSOData(Auth0Callback<Auth0Error,Any> callback);
 
-    public native <Any> void getSSOData(boolean withActiveDirectories, Auth0Callback<Any> callback);
+    public native  void getSSOData(boolean withActiveDirectories, Auth0Callback<Auth0Error,Any> callback);
 
-    public native void userInfo(String accessToken, Auth0Callback<Auth0UserProfile> callback);
+    public native void userInfo(String accessToken, Auth0Callback<Auth0Error,Auth0UserProfile> callback);
 
-    public native Any delegation(DelegationOptions options, Auth0Callback<Auth0DelegationToken> callback);
+    public native Any delegation(DelegationOptions options, Auth0Callback<Auth0Error,Auth0DelegationToken> callback);
 
-    public native void getUserCountry(Auth0Callback<CountryCodeOptions> callback);
+    public native void getUserCountry(Auth0Callback<Auth0Error,CountryCodeOptions> callback);
 }

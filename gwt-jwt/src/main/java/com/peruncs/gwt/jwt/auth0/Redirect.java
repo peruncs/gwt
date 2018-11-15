@@ -12,8 +12,8 @@ public class Redirect {
     public Redirect(Any client, JsPropertyMap<?> options) {
     }
 
-    public native <Any> void loginWithCredentials(LoginWithCredentialsOptions options, Auth0Callback<Any> callback);
+    public native void loginWithCredentials(LoginWithCredentialsOptions options, Auth0Callback<Auth0Error,Any> callback);
 
-    public native <Any> void signupAndLogin(SignupAndLoginOptions options, Auth0Callback<Any> callback);
+    public native void signupAndLogin(SignupAndLoginOptions options, Auth0Callback<Auth0Error,Any> callback);
 
 }

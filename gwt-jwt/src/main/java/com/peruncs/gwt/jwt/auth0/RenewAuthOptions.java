@@ -8,7 +8,7 @@ public class RenewAuthOptions {
     public String clientID;
     public String redirectUri;
     public String responseType;
-    public ResponseMode responseMode;
+    public String responseMode;
     public String state;
     public String nonce;
     public String scope;
