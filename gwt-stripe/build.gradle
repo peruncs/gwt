@@ -10,18 +10,6 @@ dependencies {
 }
 
 
-
-//task sourcesJar(type: Jar) {
-//    from sourceSets.main.allJava
-//    classifier = 'sources'
-//}
-//
-//task javadocJar(type: Jar) {
-//    from javadoc
-//    classifier = 'javadoc'
-//}
-
-
 publishing {
     publications {
         publication(MavenPublication) {
@@ -44,11 +32,11 @@ publishing {
                     developerConnection = "https://github.com/peruncs/gwt/tree/master"
                     url = "https://github.com/peruncs/gwt/master/"
                 }
-                developers{
-                    developer{
-                        id= 'hr.stoyanov'
+                developers {
+                    developer {
+                        id = 'hr.stoyanov'
                         name = 'Hristo Stoyanov'
-                        email='hr.stoyanov@peruncs.com'
+                        email = 'hr.stoyanov@peruncs.com'
                     }
                 }
             }

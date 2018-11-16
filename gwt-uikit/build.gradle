@@ -1,4 +1,3 @@
-
 group = 'com.peruncs.gwt'
 version = gwt_uikit_version
 
@@ -31,11 +30,11 @@ publishing {
                     developerConnection = "https://github.com/peruncs/gwt/tree/master"
                     url = "https://github.com/peruncs/gwt/master/"
                 }
-                developers{
-                    developer{
-                        id= 'hr.stoyanov'
+                developers {
+                    developer {
+                        id = 'hr.stoyanov'
                         name = 'Hristo Stoyanov'
-                        email='hr.stoyanov@peruncs.com'
+                        email = 'hr.stoyanov@peruncs.com'
                     }
                 }
             }

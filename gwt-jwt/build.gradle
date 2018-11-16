@@ -11,61 +11,9 @@ dependencies {
 
 
 
-//task auth0Jar(type: Jar, dependsOn: classes){
-//    baseName group
-//    appendix 'auth0'
-//    from (components.java)
-//    from(sourceSets.main.output) {
-//        include('com/peruncs/gwt/jwt/auth0/**')
-//    }
-//    from(sourceSets.main.allSource) {
-//        include('com/peruncs/gwt/jwt/auth0/**')
-//        include('com/peruncs/gwt/jwt/Auth0.gwt.xml')
-//    }
-//}
-//
-//task auth0SourcesJar(type: Jar) {
-//    baseName group
-//    appendix 'auth0-sources'
-//    classifier = 'sources'
-//    from(sourceSets.main.allSource) {
-//        include('com/peruncs/gwt/jwt/auth0/**')
-//        include('com/peruncs/gwt/jwt/Auth0.gwt.xml')
-//    }
-//}
-//
-//task auth0JavadocJar(type: Jar) {
-//    from javadoc
-//    classifier = 'javadoc'
-//    appendix 'auth0-javadoc'
-//}
-
-//task sourcesJar(type: Jar) {
-//    from sourceSets.main.allJava
-//    classifier = 'sources'
-//}
-//
-//task javadocJar(type: Jar) {
-//    from javadoc
-//    classifier = 'javadoc'
-//}
-
-
-//task theJar(type: Jar, dependsOn: classes){
-//    baseName group
-//    from components.java
-//    from sourceSets.main.output
-//}
-
-
-
 publishing {
     publications {
         publication(MavenPublication) {
-//            artifact auth0Jar
-//            from components.java
-//            artifact auth0SourcesJar
-//            artifact auth0JavadocJar
             artifactId 'gwt-jwt'
             from components.java
             artifact sourcesJar
@@ -85,11 +33,11 @@ publishing {
                     developerConnection = "https://github.com/peruncs/gwt/tree/master"
                     url = "https://github.com/peruncs/gwt/master/"
                 }
-                developers{
-                    developer{
-                        id= 'hr.stoyanov'
+                developers {
+                    developer {
+                        id = 'hr.stoyanov'
                         name = 'Hristo Stoyanov'
-                        email='hr.stoyanov@peruncs.com'
+                        email = 'hr.stoyanov@peruncs.com'
                     }
                 }
             }
