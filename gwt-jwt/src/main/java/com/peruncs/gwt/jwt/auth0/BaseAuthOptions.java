@@ -14,8 +14,7 @@ public class BaseAuthOptions {
     public String audience;
 
     /** This is a non-standard way to pass configuration to the underlying Lock.
-     *
-     * @link https://community.auth0.com/t/how-to-open-login-signup-on-the-universal-login-hosted-page/12642
+     * @see <a href="https://community.auth0.com/t/how-to-open-login-signup-on-the-universal-login-hosted-page/12642">corochannNote</a>
      *
      * */
     public String mode; //"signUp", "login" or "forgotPassword"

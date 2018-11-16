@@ -8,42 +8,71 @@ dependencies {
     implementation "com.google.elemental2:elemental2-webstorage:${gwt_elemental2_version}"
 }
 
-task sharedJar(type: Jar, dependsOn: classes){
-    baseName group
-    appendix 'shared'
-    from(sourceSets.main.output) {
-        include('com/peruncs/gwt/jwt/shared/**')
-    }
-    from(sourceSets.main.allSource) {
-        include('com/peruncs/gwt/jwt/shared/**')
-        include('com/peruncs/gwt/jwt/Shared.gwt.xml')
-    }
-}
 
-task auth0Jar(type: Jar, dependsOn: classes){
-    baseName group
-    appendix 'auth0'
-    from(sourceSets.main.output) {
-        include('com/peruncs/gwt/jwt/auth0/**')
-    }
-    from(sourceSets.main.allSource) {
-        include('com/peruncs/gwt/jwt/auth0/**')
-        include('com/peruncs/gwt/jwt/Auth0.gwt.xml')
-    }
-}
 
-//task allJars {
-//    dependsOn sharedJar, auth0Jar
+
+//task auth0Jar(type: Jar, dependsOn: classes){
+//    baseName group
+//    appendix 'auth0'
+//    from (components.java)
+//    from(sourceSets.main.output) {
+//        include('com/peruncs/gwt/jwt/auth0/**')
+//    }
+//    from(sourceSets.main.allSource) {
+//        include('com/peruncs/gwt/jwt/auth0/**')
+//        include('com/peruncs/gwt/jwt/Auth0.gwt.xml')
+//    }
 //}
+//
+//task auth0SourcesJar(type: Jar) {
+//    baseName group
+//    appendix 'auth0-sources'
+//    classifier = 'sources'
+//    from(sourceSets.main.allSource) {
+//        include('com/peruncs/gwt/jwt/auth0/**')
+//        include('com/peruncs/gwt/jwt/Auth0.gwt.xml')
+//    }
+//}
+//
+//task auth0JavadocJar(type: Jar) {
+//    from javadoc
+//    classifier = 'javadoc'
+//    appendix 'auth0-javadoc'
+//}
+
+//task sourcesJar(type: Jar) {
+//    from sourceSets.main.allJava
+//    classifier = 'sources'
+//}
+//
+//task javadocJar(type: Jar) {
+//    from javadoc
+//    classifier = 'javadoc'
+//}
+
+
+//task theJar(type: Jar, dependsOn: classes){
+//    baseName group
+//    from components.java
+//    from sourceSets.main.output
+//}
+
+
 
 publishing {
     publications {
-        oauthPublication(MavenPublication) {
-            artifact auth0Jar
-            artifactId 'gwt-jwt-auth0'
+        publication(MavenPublication) {
+//            artifact auth0Jar
+//            from components.java
+//            artifact auth0SourcesJar
+//            artifact auth0JavadocJar
+            artifactId 'gwt-jwt'
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
             pom {
-                name = "GWT Auth0.js"
-                description = "AWT Auth0.js JsInterop wrapper"
+                name = "GWT/JsInterop wrapper for: Auth0, OKTA, Keycloak"
+                description = "GWT/JsInterop wrapper for popular JWT authentication providers: Auth0, OKTA and Keycloak"
                 url = "https://github.com/peruncs/gwt"
                 licenses {
                     license {
@@ -56,31 +85,20 @@ publishing {
                     developerConnection = "https://github.com/peruncs/gwt/tree/master"
                     url = "https://github.com/peruncs/gwt/master/"
                 }
-            }
-        }
-        sharedPublication(MavenPublication) {
-            artifact sharedJar
-            artifactId 'gwt-jwt-shared'
-            pom {
-                name = "Shared GWT security"
-                description = "Shared GWT security JsInterop wrapper'"
-                url = "https://github.com/peruncs/gwt"
-                organization{
-                    name = "Perun Consulting Services, Inc"
-                    url  = "www.peruncs.com"
-                }
-                licenses {
-                    license {
-                        name = "The Apache License, Version 2.0"
-                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                developers{
+                    developer{
+                        id= 'hr.stoyanov'
+                        name = 'Hristo Stoyanov'
+                        email='hr.stoyanov@peruncs.com'
                     }
-                }
-                scm {
-                    connection = "shttps://github.com/peruncs/gwt/tree/master"
-                    developerConnection = "https://github.com/peruncs/gwt/tree/master"
-                    url = "https://github.com/peruncs/gwt"
                 }
             }
         }
     }
+
+}
+
+
+signing {
+    sign publishing.publications.publication
 }

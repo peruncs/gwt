@@ -11,38 +11,52 @@ dependencies {
 
 
 
-task stripeJar(type: Jar, dependsOn: classes) {
-    from(sourceSets.main.output) {
-        include('com/peruncs/gwt/**')
-    }
-    from(sourceSets.main.allSource) {
-        include('com/peruncs/gwt/**')
-    }
-}
+//task sourcesJar(type: Jar) {
+//    from sourceSets.main.allJava
+//    classifier = 'sources'
+//}
+//
+//task javadocJar(type: Jar) {
+//    from javadoc
+//    classifier = 'javadoc'
+//}
 
 
 publishing {
     publications {
         publication(MavenPublication) {
-            artifact stripeJar
             artifactId 'gwt-stripe'
-            pom.withXml {
-                asNode().with {
-                    appendNode('description', 'GWT Stripe wrapper')
-                    appendNode('name', 'GWT Stripe')
-                    appendNode('url', 'https://github.com/peruncs/gwt')
-                    appendNode('organization').with {
-                        appendNode('name', 'Perun Consulting Services, Inc')
-                        appendNode('url', 'www.peruncs.com')
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                name = "GWT/JsInterop wrapper for  Stripe.js"
+                description = "GWT/JsInterop wrapper for Stripe.js (stripe.com)"
+                url = "https://github.com/peruncs/gwt"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
                     }
-                    appendNode('licenses').with {
-                        appendNode('license').with {
-                            appendNode('name', 'Apache 2.0')
-                            appendNode('url', 'https://www.apache.org/licenses/LICENSE-2.0')
-                        }
+                }
+                scm {
+                    connection = "shttps://github.com/peruncs/gwt/tree/master"
+                    developerConnection = "https://github.com/peruncs/gwt/tree/master"
+                    url = "https://github.com/peruncs/gwt/master/"
+                }
+                developers{
+                    developer{
+                        id= 'hr.stoyanov'
+                        name = 'Hristo Stoyanov'
+                        email='hr.stoyanov@peruncs.com'
                     }
                 }
             }
+
         }
     }
+}
+
+signing {
+    sign publishing.publications.publication
 }

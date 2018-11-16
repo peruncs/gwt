@@ -8,38 +8,41 @@ dependencies {
 //    implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
 }
 
-task uikitJar(type: Jar, dependsOn: classes){
-    baseName group
-    from(sourceSets.main.output) {
-        include('com/peruncs/gwt/**')
-    }
-    from(sourceSets.main.allSource) {
-        include('com/peruncs/gwt/**')
-    }
-}
 
 publishing {
     publications {
         publication(MavenPublication) {
-            artifact uikitJar
             artifactId 'gwt-uikit'
-            pom.withXml {
-                asNode().with {
-                    appendNode('description', 'GWT UIKIT JsInterop wrapper')
-                    appendNode('name', 'GWT UIKIT')
-                    appendNode('url', 'https://github.com/peruncs/gwt')
-                    appendNode('organization').with {
-                        appendNode('name', 'Perun Consulting Services, Inc')
-                        appendNode('url', 'www.peruncs.com')
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                name = "GWT/JsInterop wrapper for UIKit.Com"
+                description = "GWT/JsInterop wrapper for UIKit.Com"
+                url = "https://github.com/peruncs/gwt"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
                     }
-                    appendNode('licenses').with {
-                        appendNode('license').with {
-                            appendNode('name', 'Apache 2.0')
-                            appendNode('url', 'https://www.apache.org/licenses/LICENSE-2.0')
-                        }
+                }
+                scm {
+                    connection = "shttps://github.com/peruncs/gwt/tree/master"
+                    developerConnection = "https://github.com/peruncs/gwt/tree/master"
+                    url = "https://github.com/peruncs/gwt/master/"
+                }
+                developers{
+                    developer{
+                        id= 'hr.stoyanov'
+                        name = 'Hristo Stoyanov'
+                        email='hr.stoyanov@peruncs.com'
                     }
                 }
             }
         }
     }
+}
+
+signing {
+    sign publishing.publications.publication
 }

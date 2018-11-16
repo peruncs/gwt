@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
-    <inherits name='com.peruncs.gwt.jwt.Shared'/>
+    <!--<inherits name='com.peruncs.gwt.jwt.Shared'/>-->
     <inherits name='elemental2.core.Core'/>
     <inherits name='elemental2.dom.Dom'/>
     <inherits name='elemental2.webstorage.WebStorage'/>

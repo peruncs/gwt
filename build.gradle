@@ -1,7 +1,9 @@
 subprojects {
     
     apply plugin: 'java'
+    //apply plugin: 'maven'
     apply plugin: 'maven-publish'
+    apply plugin: 'signing'
 
     tasks.withType(JavaCompile) {
         options.incremental = true
@@ -20,27 +22,64 @@ subprojects {
         mavenLocal()
     }
 
+    javadoc {
+        if(JavaVersion.current().isJava9Compatible()) {
+            options.addBooleanOption('html4', true)
+        }
+        failOnError false
+    }
+
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.allJava
+        classifier = 'sources'
+    }
+
+    task javadocJar(type: Jar) {
+        from javadoc
+        classifier = 'javadoc'
+    }
+    
+    //Include the sources into the jar
+    jar {
+        from sourceSets.main.allSource
+    }
+
+    publishing {
+        repositories {
+            maven {
+                url = version.endsWith('SNAPSHOT') ?
+                        "https://oss.sonatype.org/content/repositories/snapshots/"
+                        : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                credentials {
+                    username sonatypeUsername
+                    password sonatypePassword
+                }
+            }
+        }
+    }
+
 }
 
+
 //Publishing
-task publishUtils {
+task publishUtilsToMavenLocal {
     dependsOn ":gwt-utils:publishToMavenLocal"
 }
 
-task  publishStripe {
+task  publishStripeToMavenLocal {
     dependsOn ":gwt-stripe:publishToMavenLocal"
 }
 
-task  publishJwt {
+task  publishJwtToMavenLocal {
     dependsOn ":gwt-jwt:publishToMavenLocal"
 }
 
-task  publishUikit {
+task  publishUikitToMavenLocal {
     dependsOn ":gwt-uikit:publishToMavenLocal"
 }
 
-publishStripe.mustRunAfter  publishUtils
+publishStripeToMavenLocal.mustRunAfter  publishUtilsToMavenLocal
 
-task  publishToMavenLocal {
-    dependsOn  publishUtils,  publishStripe,  publishJwt,  publishUikit
+task  publishAllToMavenLocal {
+    dependsOn  publishUtilsToMavenLocal,  publishStripeToMavenLocal,  publishJwtToMavenLocal,  publishUikitToMavenLocal
 }

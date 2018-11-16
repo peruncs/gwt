@@ -9,6 +9,5 @@ public class DelegationOptions extends LoginOptions {
     public String id_token;
     public String refresh_token;
     public String target;
-    public String scope;
     public String api_type;
 }

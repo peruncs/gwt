@@ -9,38 +9,41 @@ dependencies {
 }
 
 
-task utilsJar(type: Jar, dependsOn: classes) {
-    from(sourceSets.main.output) {
-        include('com/peruncs/gwt/**')
-    }
-    from(sourceSets.main.allSource) {
-        include('com/peruncs/gwt/**')
-    }
-}
-
 
 publishing {
     publications {
         publication(MavenPublication) {
-            artifact utilsJar
             artifactId 'gwt-utils'
-            pom.withXml {
-                asNode().with {
-                    appendNode('description', 'GWT utils')
-                    appendNode('name', 'GWT utils')
-                    appendNode('url', 'https://github.com/peruncs/gwt')
-                    appendNode('organization').with {
-                        appendNode('name', 'Perun Consulting Services, Inc')
-                        appendNode('url', 'www.peruncs.com')
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                name = "GWT/JsInterop Utils"
+                description = "GWT/JsInterop Utils"
+                url = "https://github.com/peruncs/gwt"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
                     }
-                    appendNode('licenses').with {
-                        appendNode('license').with {
-                            appendNode('name', 'Apache 2.0')
-                            appendNode('url', 'https://www.apache.org/licenses/LICENSE-2.0')
-                        }
+                }
+                scm {
+                    connection = "shttps://github.com/peruncs/gwt/tree/master"
+                    developerConnection = "https://github.com/peruncs/gwt/tree/master"
+                    url = "https://github.com/peruncs/gwt/master/"
+                }
+                developers {
+                    developer {
+                        id = 'hr.stoyanov'
+                        name = 'Hristo Stoyanov'
+                        email = 'hr.stoyanov@peruncs.com'
                     }
                 }
             }
         }
     }
+}
+
+signing {
+    sign publishing.publications.publication
 }
