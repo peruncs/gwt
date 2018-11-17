@@ -1,5 +1,5 @@
 subprojects {
-    
+
     apply plugin: 'java'
     apply plugin: 'maven-publish'
     apply plugin: 'signing'
@@ -11,11 +11,11 @@ subprojects {
     compileJava {
         options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xlint:deprecation"
     }
-    
+
     sourceCompatibility = "${java_lang_level}"
     targetCompatibility = "${java_lang_level}"
 
-    
+
     repositories {
         mavenCentral()
         mavenLocal()
@@ -37,7 +37,7 @@ subprojects {
         from javadoc
         classifier = 'javadoc'
     }
-    
+
     //Include the sources into the jar
     jar {
         from sourceSets.main.allSource
@@ -60,7 +60,7 @@ subprojects {
 }
 
 
-//Publishing
+//Publishing to Maven Local repo
 task publishUtilsToMavenLocal {
     dependsOn ":gwt-utils:publishToMavenLocal"
 }
@@ -81,4 +81,28 @@ publishStripeToMavenLocal.mustRunAfter  publishUtilsToMavenLocal
 
 task  publishAllToMavenLocal {
     dependsOn  publishUtilsToMavenLocal,  publishStripeToMavenLocal,  publishJwtToMavenLocal,  publishUikitToMavenLocal
+}
+
+
+//Publishing to Maven Central
+task publishUtils {
+    dependsOn ":gwt-utils:publish"
+}
+
+task  publishStripe{
+    dependsOn ":gwt-stripe:publish"
+}
+
+task  publishJwt{
+    dependsOn ":gwt-jwt:publish"
+}
+
+task  publishUikit{
+    dependsOn ":gwt-uikit:publish"
+}
+
+publishStripe.mustRunAfter  publishUtils
+
+task  publishAll {
+    dependsOn  publishUtils,  publishStripe,  publishJwt,  publishUikit
 }
