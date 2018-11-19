@@ -10,6 +10,14 @@ dependencies {
 }
 
 
+jar {
+    manifest.attributes['Automatic-Module-Name'] = 'com.peruncs.gwt.stripe'
+    manifest.attributes['Specification-Title'] = 'GWT Stripe.Com wrapper'
+    manifest.attributes['Implementation-Title'] = 'GWT Stripe.Com wrapper'
+//    manifest.attributes['Specification-Version'] = "${gwt_stripe_version}"
+//    manifest.attributes['Implementation-Version'] = "${gwt_stripe_version}"
+}
+
 publishing {
     publications {
         publication(MavenPublication) {

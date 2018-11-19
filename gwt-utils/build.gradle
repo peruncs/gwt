@@ -9,6 +9,13 @@ dependencies {
 }
 
 
+jar {
+    manifest.attributes['Automatic-Module-Name'] = 'com.peruncs.gwt.utils'
+    manifest.attributes['Specification-Title'] = 'GWT utils'
+    manifest.attributes['Implementation-Title'] = 'GWT utils'
+//    manifest.attributes['Specification-Version'] = "${gwt_utils_version}"
+//    manifest.attributes['Implementation-Version'] = "${gwt_utils_version}"
+}
 
 publishing {
     publications {

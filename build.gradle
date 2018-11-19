@@ -1,5 +1,5 @@
 subprojects {
-    
+
     apply plugin: 'java'
     apply plugin: 'maven-publish'
     apply plugin: 'signing'
@@ -11,18 +11,18 @@ subprojects {
     compileJava {
         options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xlint:deprecation"
     }
-    
+
     sourceCompatibility = "${java_lang_level}"
     targetCompatibility = "${java_lang_level}"
 
-    
+
     repositories {
         mavenCentral()
         mavenLocal()
     }
 
     javadoc {
-        if(JavaVersion.current().isJava9Compatible()) {
+        if (JavaVersion.current().isJava9Compatible()) {
             options.addBooleanOption('html4', true)
         }
         failOnError false
@@ -37,9 +37,18 @@ subprojects {
         from javadoc
         classifier = 'javadoc'
     }
-    
-    //Include the sources into the jar
+
+    //Include sources and soem manifest attributes into the default jar
     jar {
+        manifest {
+            attributes(
+                    'Build-Timestamp': java.time.Instant.now().toString(),
+                    'Specification-Vendor': 'peruncs.com',
+                    'Implementation-Vendor': 'peruncs.com',
+                    'Build-Jdk': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
+                    'Build-With': "Gradle ${gradle.gradleVersion}",
+            )
+        }
         from sourceSets.main.allSource
     }
 
@@ -59,26 +68,25 @@ subprojects {
 
 }
 
-
 //Publishing
 task publishUtilsToMavenLocal {
     dependsOn ":gwt-utils:publishToMavenLocal"
 }
 
-task  publishStripeToMavenLocal {
+task publishStripeToMavenLocal {
     dependsOn ":gwt-stripe:publishToMavenLocal"
 }
 
-task  publishJwtToMavenLocal {
+task publishJwtToMavenLocal {
     dependsOn ":gwt-jwt:publishToMavenLocal"
 }
 
-task  publishUikitToMavenLocal {
+task publishUikitToMavenLocal {
     dependsOn ":gwt-uikit:publishToMavenLocal"
 }
 
-publishStripeToMavenLocal.mustRunAfter  publishUtilsToMavenLocal
+publishStripeToMavenLocal.mustRunAfter publishUtilsToMavenLocal
 
-task  publishAllToMavenLocal {
-    dependsOn  publishUtilsToMavenLocal,  publishStripeToMavenLocal,  publishJwtToMavenLocal,  publishUikitToMavenLocal
+task publishAllToMavenLocal {
+    dependsOn publishUtilsToMavenLocal, publishStripeToMavenLocal, publishJwtToMavenLocal, publishUikitToMavenLocal
 }

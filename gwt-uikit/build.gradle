@@ -8,6 +8,14 @@ dependencies {
 }
 
 
+jar {
+    manifest.attributes['Automatic-Module-Name'] = 'com.peruncs.gwt.uikit'
+    manifest.attributes['Specification-Title'] = 'GWT UIKit.Com wrapper'
+    manifest.attributes['Implementation-Title'] = 'GWT UIKit.Com wrapper'
+//    manifest.attributes['Specification-Version'] = "${gwt_uikit_version}"
+//    manifest.attributes['Implementation-Version'] = "${gwt_uikit_version}"
+}
+
 publishing {
     publications {
         publication(MavenPublication) {

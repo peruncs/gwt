@@ -8,8 +8,13 @@ dependencies {
     implementation "com.google.elemental2:elemental2-webstorage:${gwt_elemental2_version}"
 }
 
-
-
+jar {
+    manifest.attributes['Automatic-Module-Name'] = 'com.peruncs.gwt.jwt'
+    manifest.attributes['Specification-Title'] = 'GWT JWT vendors wrappers'
+    manifest.attributes['Implementation-Title'] = 'GWT JWT vendors wrappers'
+//    manifest.attributes['Specification-Version'] = "${gwt_jwt_version}"
+//    manifest.attributes['Implementation-Version'] = "${gwt_jwt_version}"
+}
 
 publishing {
     publications {
