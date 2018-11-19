@@ -4,6 +4,15 @@ subprojects {
     apply plugin: 'maven-publish'
     apply plugin: 'signing'
 
+    dependencies {
+        implementation "com.google.jsinterop:base:${gwt_base_version}"
+//    implementation "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
+//    implementation "com.google.jsinterop:jsinterop-annotations:${gwt_jsinterop_annotation_version}"
+//    implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
+//    implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
+//    implementation "com.google.elemental2:elemental2-webstorage:${elemental2_version}"
+    }
+
     tasks.withType(JavaCompile) {
         options.incremental = true
     }
@@ -68,7 +77,7 @@ subprojects {
 
 }
 
-//Publishing
+//Publishing to Maven local repo
 task publishUtilsToMavenLocal {
     dependsOn ":gwt-utils:publishToMavenLocal"
 }
@@ -81,12 +90,35 @@ task publishJwtToMavenLocal {
     dependsOn ":gwt-jwt:publishToMavenLocal"
 }
 
-task publishUikitToMavenLocal {
-    dependsOn ":gwt-uikit:publishToMavenLocal"
-}
+//task publishUikitToMavenLocal {
+//    dependsOn ":gwt-uikit:publishToMavenLocal"
+//}
 
 publishStripeToMavenLocal.mustRunAfter publishUtilsToMavenLocal
 
 task publishAllToMavenLocal {
-    dependsOn publishUtilsToMavenLocal, publishStripeToMavenLocal, publishJwtToMavenLocal, publishUikitToMavenLocal
+    dependsOn publishUtilsToMavenLocal, publishStripeToMavenLocal, publishJwtToMavenLocal/*, publishUikitToMavenLocal*/
+}
+
+//Publishing to Maven central repo
+task publishUtils {
+    dependsOn ":gwt-utils:publish"
+}
+
+task publishStripe {
+    dependsOn ":gwt-stripe:publish"
+}
+
+task publishJwt {
+    dependsOn ":gwt-jwt:publish"
+}
+
+//task publishUikit {
+//    dependsOn ":gwt-uikit:publish"
+//}
+
+publishStripe.mustRunAfter publishUtils
+
+task publishAll{
+    dependsOn publishUtils, publishStripe, publishJwt/*, publishUikit*/
 }

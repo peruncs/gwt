@@ -2,7 +2,6 @@ group = 'com.peruncs.gwt'
 version = "${gwt_jwt_version}"
 
 dependencies {
-    implementation "com.google.jsinterop:base:${gwt_base_version}"
     implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
     implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
     implementation "com.google.elemental2:elemental2-webstorage:${gwt_elemental2_version}"
