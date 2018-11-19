@@ -19,7 +19,7 @@ public class Token {
     public String type;
 
     /**
-     * String representing the object’s type. Objects of the same type share the same value.
+     * String representing the object's type. Objects of the same type share the same value.
      */
     @JsProperty
     public String object;
