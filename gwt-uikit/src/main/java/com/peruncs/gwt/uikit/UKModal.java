@@ -4,7 +4,6 @@ import elemental2.dom.Element;
 import elemental2.promise.Promise;
 import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsMethod;
-import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
 @JsType(isNative = true)
@@ -113,12 +112,8 @@ public class UKModal {
     public native static <T> Promise<T> dialog(String html);
 
 
-    //    @JsMethod(name = "show", namespace = "UIkit.modal")
-    public native static void show();
+    public native void show();
 
-
-    //    @JsMethod(name = "hide", namespace = "UIkit.modal")
-    public native static void hide();
-
+    public native void hide();
 
 }
