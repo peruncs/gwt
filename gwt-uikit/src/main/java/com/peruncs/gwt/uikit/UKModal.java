@@ -6,6 +6,9 @@ import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsType;
 
+/**
+ * UIKit Modal dialog wrapper.
+ */
 @JsType(isNative = true)
 public abstract class UKModal {
 
@@ -79,7 +82,7 @@ public abstract class UKModal {
 
 
     /**
-     * Initialization.
+     * Modal creation.
      *
      * @param element - the element for the dialog component.
      * @param options - the initialization options for the dialog component.
@@ -89,7 +92,7 @@ public abstract class UKModal {
     public native static UKModal modal(String element, UKModal.Options options);
 
     /**
-     * Initialization.
+     * Modal creation.
      *
      * @param element - the element for the dialog component.
      * @param options - the initialization options for the dialog component.
@@ -134,7 +137,7 @@ public abstract class UKModal {
 
 
     /**
-     * Show dialog with any HTML content.
+     * Show a dialog with HTML content.
      *
      * @param html - the html content.
      * @param <T>  - the promise type.
@@ -145,18 +148,18 @@ public abstract class UKModal {
 
 
     /**
-     * Show the modal.
+     * Show this modal.
      */
     public native void show();
 
     /**
-     * Hide the modal.
+     * Hide this modal.
      */
     public native void hide();
 
 
     /**
-     * Toggle the modal.
+     * Toggle this modal.
      */
 
     public native void toggle();

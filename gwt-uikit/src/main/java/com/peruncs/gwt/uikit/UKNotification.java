@@ -4,6 +4,10 @@ import elemental2.dom.Element;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsType;
 
+
+/**
+ * UIKit Notification wrapper.
+ */
 @JsType(isNative = true)
 public abstract class UKNotification {
 
@@ -64,7 +68,7 @@ public abstract class UKNotification {
     }
 
     /**
-     * Create notification component.
+     * Create a notification component.
      *
      * @param message - the notification message.
      * @return a notification component.
@@ -74,7 +78,7 @@ public abstract class UKNotification {
 
 
     /**
-     * Create notification component.
+     * Create a notification component.
      *
      * @param message - the notification message.
      * @param style   - the notification message style. @see UKNotificationOptions.Style
@@ -84,7 +88,7 @@ public abstract class UKNotification {
     public native static UKNotification notification(String message, String style);
 
     /**
-     * Create notification component.
+     * Create a notification component.
      *
      * @param message - the notification message.
      * @param options - the notification options. @see #UKNotificationOptions
@@ -95,7 +99,7 @@ public abstract class UKNotification {
 
 
     /**
-     * Create notification component.
+     * Create a notification component.
      *
      * @param options - the notification options. @see #UKNotificationOptions.
      * @return a notification component.
@@ -104,6 +108,13 @@ public abstract class UKNotification {
     public native static UKNotification notification(Options options);
 
 
+    /**
+     * Create a notification component.
+     *
+     * @param node    - a CSS selector or an HTML element.
+     * @param options - the notification options. @see #UKNotificationOptions.
+     * @return a notification component.
+     */
     @JsMethod(namespace = "UIkit")
     public native static UKNotification notification(Element node, Options options);
 
@@ -116,6 +127,7 @@ public abstract class UKNotification {
 
     /**
      * Close this notification.
+     *
      * @param immediate - to close immediately.
      */
     public static native void close(boolean immediate);
