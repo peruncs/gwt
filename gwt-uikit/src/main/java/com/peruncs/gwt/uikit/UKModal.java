@@ -7,7 +7,39 @@ import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsType;
 
 @JsType(isNative = true)
-public class UKModal {
+public abstract class UKModal {
+
+
+    public interface SelCloseOptions {
+        String UK_MODAL_CLOSE = "uk-modal-close";
+        String UK_MODAL_CLOSE_DEFAULT = "uk-modal-close-default";
+        String UK_MODAL_CLOSE_OUTSIDE = "uk-modal-close-outside";
+        String UK_MODAL_CLOSE_FULL = "uk-modal-close-full";
+    }
+
+
+    @JsType
+    public static class Options {
+
+        /**
+         * Class to add to <body> when modal is active.
+         */
+        String clsPage = "uk-modal-page";
+
+
+        /**
+         * Class of the element to be considered the panel of the modal.
+         */
+
+        String clsPanel = "uk-modal-dialog";
+
+
+        /**
+         * CSS selector for all elements that should trigger the closing of the modal.
+         */
+        String selClose = com.peruncs.gwt.uikit.UKModal.SelCloseOptions.UK_MODAL_CLOSE;
+    }
+
 
     /**
      * The following events will be triggered on elements with this component attached.
@@ -54,7 +86,7 @@ public class UKModal {
      * @return a modal component
      */
     @JsMethod(name = "modal", namespace = "UIkit")
-    public native static UKModal modal(String element, UKModalOptions options);
+    public native static UKModal modal(String element, UKModal.Options options);
 
     /**
      * Initialization.
@@ -64,7 +96,7 @@ public class UKModal {
      * @return a modal component.
      */
     @JsMethod(name = "modal", namespace = "UIkit")
-    public native static UKModal modal(Element element, UKModalOptions options);
+    public native static UKModal modal(Element element, UKModal.Options options);
 
 
     /**
@@ -112,8 +144,21 @@ public class UKModal {
     public native static <T> Promise<T> dialog(String html);
 
 
+    /**
+     * Show the modal.
+     */
     public native void show();
 
+    /**
+     * Hid ethe model.
+     */
     public native void hide();
+
+
+    /**
+     * Toggle the model.
+     */
+
+    public native void toggle();
 
 }
