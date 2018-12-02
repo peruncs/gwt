@@ -150,13 +150,13 @@ public abstract class UKModal {
     public native void show();
 
     /**
-     * Hid ethe model.
+     * Hide the modal.
      */
     public native void hide();
 
 
     /**
-     * Toggle the model.
+     * Toggle the modal.
      */
 
     public native void toggle();
