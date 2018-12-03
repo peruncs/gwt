@@ -2,7 +2,6 @@ package com.peruncs.gwt.uikit;
 
 import elemental2.dom.Element;
 import elemental2.promise.Promise;
-import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsType;
 
@@ -11,7 +10,6 @@ import jsinterop.annotations.JsType;
  */
 @JsType(isNative = true)
 public abstract class UKModal {
-
 
     public interface SelCloseOptions {
         String UK_MODAL_CLOSE = "uk-modal-close";
@@ -27,20 +25,20 @@ public abstract class UKModal {
         /**
          * Class to add to <body> when modal is active.
          */
-        String clsPage = "uk-modal-page";
+        public String clsPage = "uk-modal-page";
 
 
         /**
          * Class of the element to be considered the panel of the modal.
          */
 
-        String clsPanel = "uk-modal-dialog";
+        public String clsPanel = "uk-modal-dialog";
 
 
         /**
          * CSS selector for all elements that should trigger the closing of the modal.
          */
-        String selClose = com.peruncs.gwt.uikit.UKModal.SelCloseOptions.UK_MODAL_CLOSE;
+        public String selClose = com.peruncs.gwt.uikit.UKModal.SelCloseOptions.UK_MODAL_CLOSE;
     }
 
 
@@ -51,33 +49,32 @@ public abstract class UKModal {
         /**
          * Fires before an item is shown.
          */
-        public static final String BEFORE_SHOW_EVENT = "beforeshow";
+        String BEFORE_SHOW_EVENT = "beforeshow";
 
         /**
          * Fires after an item is shown.
          */
-        public static final String SHOW_EVENT = "show";
+        String SHOW_EVENT = "show";
 
         /**
          * Fires after the item's show animation has completed.
          */
-        public static final String SHOWN_EVENT = "shown";
+        String SHOWN_EVENT = "shown";
 
         /**
          * Fires before an item is hidden.
          */
-        public static final String BEFORE_HIDE = "beforehide";
+        String BEFORE_HIDE = "beforehide";
 
         /**
          * Fires after an item's hide animation has started.
          */
-        public static final String HIDE_EVENT = "hide";
+        String HIDE_EVENT = "hide";
 
         /**
          * Fires after an item is hidden.
          */
-        @JsIgnore
-        public static final String HIDDEN_EVENT = "hidden";
+        String HIDDEN_EVENT = "hidden";
     }
 
 
