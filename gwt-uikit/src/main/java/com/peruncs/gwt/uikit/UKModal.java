@@ -23,7 +23,7 @@ public abstract class UKModal {
     public static class Options {
 
         /**
-         * Class to add to <body> when modal is active.
+         * Class to add to body when modal is active.
          */
         public String clsPage = "uk-modal-page";
 
