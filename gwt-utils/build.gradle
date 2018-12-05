@@ -12,10 +12,12 @@ jar {
 publishing {
     publications {
         publication(MavenPublication) {
-            artifactId 'gwt-utils'
+            afterEvaluate {
+                artifactId 'gwt-utils'
+                artifact sourcesJar
+                artifact javadocJar
+            }
             from components.java
-            artifact sourcesJar
-            artifact javadocJar
             pom {
                 name = "GWT/JsInterop Utils"
                 description = "GWT/JsInterop Utils"
