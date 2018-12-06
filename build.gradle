@@ -62,14 +62,16 @@ subprojects {
     }
 
     publishing {
-        repositories {
-            maven {
-                url = version.endsWith('SNAPSHOT') ?
-                        "https://oss.sonatype.org/content/repositories/snapshots/"
-                        : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-                credentials {
-                    username sonatypeUsername
-                    password sonatypePassword
+        afterEvaluate {
+            repositories {
+                maven {
+                    url = version.endsWith('SNAPSHOT') ?
+                            "https://oss.sonatype.org/content/repositories/snapshots/"
+                            : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                    credentials {
+                        username sonatypeUsername
+                        password sonatypePassword
+                    }
                 }
             }
         }

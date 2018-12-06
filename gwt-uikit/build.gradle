@@ -13,11 +13,9 @@ jar {
 publishing {
     publications {
         publication(MavenPublication) {
-            afterEvaluate {
-                artifactId 'gwt-uikit'
-                artifact sourcesJar
-                artifact javadocJar
-            }
+            artifactId 'gwt-uikit'
+            artifact sourcesJar
+            artifact javadocJar
             from components.java
             pom {
                 name = "GWT/JsInterop wrapper for UIKit.Com"

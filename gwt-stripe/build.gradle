@@ -17,11 +17,9 @@ jar {
 publishing {
     publications {
         publication(MavenPublication) {
-            afterEvaluate {
                 artifactId 'gwt-stripe'
                 artifact sourcesJar
                 artifact javadocJar
-            }
             from components.java
             pom {
                 name = "GWT/JsInterop wrapper for  Stripe.js"

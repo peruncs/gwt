@@ -18,11 +18,9 @@ jar {
 publishing {
     publications {
         publication(MavenPublication) {
-            afterEvaluate {
-                artifactId 'gwt-jwt'
-                artifact sourcesJar
-                artifact javadocJar
-            }
+            artifactId 'gwt-jwt'
+            artifact sourcesJar
+            artifact javadocJar
             from components.java
             pom {
                 name = "GWT/JsInterop wrapper for: Auth0, OKTA, Keycloak"
