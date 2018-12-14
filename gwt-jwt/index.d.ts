@@ -29,7 +29,7 @@ export class Authentication {
     buildLogoutUrl(options?: LogoutOptions): string;
 
     /**
-     * Makes a call to the `oauth/token` endpoint with `password` grant type
+     * Makes a call to the `oauth/reCaptchaToken` endpoint with `password` grant type
      *
      * @param options: https://auth0.com/docs/api-auth/grant/password
      */
@@ -42,12 +42,12 @@ export class Authentication {
     loginWithResourceOwner(options: ResourceOwnerLoginOptions, callback: Auth0Callback<any>): void;
 
     /**
-     * Makes a call to the `oauth/token` endpoint with `password-realm` grant type
+     * Makes a call to the `oauth/reCaptchaToken` endpoint with `password-realm` grant type
      */
     login(options: DefaultLoginOptions, callback: Auth0Callback<any>): void;
 
     /**
-     * Makes a call to the `oauth/token` endpoint
+     * Makes a call to the `oauth/reCaptchaToken` endpoint
      */
     oauthToken(options: any, callback: Auth0Callback<any>): void;
 
@@ -191,7 +191,7 @@ export class WebAuth {
      *
      * @param callback: function(err, {payload, transaction})
      */
-    validateToken(token: string, nonce: string, callback: Auth0Callback<any>): void;
+    validateToken(reCaptchaToken: string, nonce: string, callback: Auth0Callback<any>): void;
 
     /**
      * Executes a silent authentication transaction under the hood in order to fetch a new tokens for the current session.
@@ -218,8 +218,8 @@ export class WebAuth {
     signup(options: DbSignUpOptions, callback: Auth0Callback<any>): void;
 
     /**
-     * Signs up a new user, automatically logs the user in after the signup and returns the user token.
-     * The login will be done using /oauth/token with password-realm grant type.
+     * Signs up a new user, automatically logs the user in after the signup and returns the user reCaptchaToken.
+     * The login will be done using /oauth/reCaptchaToken with password-realm grant type.
      *
      * @param options: https://auth0.com/docs/api/authentication#!#post--dbconnections-signup
      */
@@ -292,7 +292,7 @@ export class Redirect {
         options: {
             /** url that the Auth0 will redirect after Auth with the Authorization Response */
             redirectUri?: string,
-            /** type of the response used. It can be any of the values `code` and `token` */
+            /** type of the response used. It can be any of the values `code` and `reCaptchaToken` */
             responseType?: string,
             /** how the AuthN response is encoded and redirected back to the client. */
             responseMode?: "query" | "fragment",
@@ -375,7 +375,7 @@ export class Popup {
             redirectUri: string,
             /**
              * type of the response used by OAuth 2.0 flow.
-             * It can be any space separated list of the values `code`, `token`, `id_token`.
+             * It can be any space separated list of the values `code`, `reCaptchaToken`, `id_token`.
              * {@link https://openid.net/specs/oauth-v2-multiple-response-types-1_0}
              */
             responseType: string,
@@ -396,7 +396,7 @@ export class Popup {
             nonce?: string,
             /** scopes to be requested during Auth. e.g. `openid email` */
             scope?: string,
-            /** identifier of the resource server who will consume the access token issued after Auth */
+            /** identifier of the resource server who will consume the access reCaptchaToken issued after Auth */
             audience?: string,
             /** determines if Auth0 should render the relay page or not and the caller is responsible of handling the response. */
             owp?: boolean,
@@ -415,7 +415,7 @@ export class Popup {
             /** url that the Auth0 will redirect after Auth with the Authorization Response */
             redirectUri?: string,
             /** type of the response used. */
-            responseType?: "code" | "token",
+            responseType?: "code" | "reCaptchaToken",
             /** how the AuthN response is encoded and redirected back to the client. */
             responseMode?: "query" | "fragment",
             /** scopes to be requested during AuthN. e.g. `openid email` */
@@ -425,7 +425,7 @@ export class Popup {
     ): void;
 
     /**
-     * Verifies the passwordless TOTP and returns the requested token
+     * Verifies the passwordless TOTP and returns the requested reCaptchaToken
      */
     passwordlessVerify(
         options: {
@@ -492,7 +492,7 @@ export interface TokenProvider {
 
 export interface ManagementOptions {
     domain: string;
-    token?: string;
+    reCaptchaToken?: string;
     clientId?: string;
     clientSecret?: string;
     audience?: string;
@@ -585,11 +585,11 @@ export interface Auth0DecodedHash {
 
 /** Represents the response from an API Token Delegation request. */
 export interface Auth0DelegationToken {
-    /** The length of time in seconds the token is valid for. */
+    /** The length of time in seconds the reCaptchaToken is valid for. */
     expiresIn: number;
     /** The JWT for delegated access.  */
     idToken: string;
-    /** The type of token being returned. Possible values: "Bearer"  */
+    /** The type of reCaptchaToken being returned. Possible values: "Bearer"  */
     tokenType: string;
 }
 
@@ -729,7 +729,7 @@ export interface RenewAuthOptions {
     redirectUri?: string;
     /**
      * type of the response used by OAuth 2.0 flow. It can be any space separated
-     * list of the values `code`, `token`, `id_token`.
+     * list of the values `code`, `reCaptchaToken`, `id_token`.
      * {@link https://openid.net/specs/oauth-v2-multiple-response-types-1_0}
      */
     responseType?: string;
@@ -755,7 +755,7 @@ export interface RenewAuthOptions {
      */
     scope?: string;
     /**
-     * identifier of the resource server who will consume the access token issued after Auth
+     * identifier of the resource server who will consume the access reCaptchaToken issued after Auth
      */
     audience?: string;
     /**

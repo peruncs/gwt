@@ -1,5 +1,5 @@
 //include "gwt-utils", "gwt-jwt",  "gwt-stripe"
-include "gwt-utils", "gwt-jwt", "gwt-uikit", "gwt-stripe"
+include "gwt-utils", "gwt-jwt", "gwt-uikit", "gwt-stripe", "gwt-recaptcha"
 //include "gwt-jquery"
 
 

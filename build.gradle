@@ -96,10 +96,14 @@ task publishUikitToMavenLocal {
     dependsOn ":gwt-uikit:publishToMavenLocal"
 }
 
+task publishReCaptchaToMavenLocal {
+    dependsOn ":gwt-recaptcha:publishToMavenLocal"
+}
 publishStripeToMavenLocal.mustRunAfter publishUtilsToMavenLocal
+publishReCaptchaToMavenLocal.mustRunAfter publishUtilsToMavenLocal
 
 task publishAllToMavenLocal {
-    dependsOn publishUtilsToMavenLocal, publishStripeToMavenLocal, publishJwtToMavenLocal, publishUikitToMavenLocal
+    dependsOn publishUtilsToMavenLocal, publishStripeToMavenLocal, publishJwtToMavenLocal, publishUikitToMavenLocal, publishReCaptchaToMavenLocal
 }
 
 //Publishing to Maven central repo
@@ -119,8 +123,13 @@ task publishUikit {
     dependsOn ":gwt-uikit:publish"
 }
 
+task publishRecaptcha {
+    dependsOn ":gwt-recaptcha:publish"
+}
+
 publishStripe.mustRunAfter publishUtils
+publishRecaptcha.mustRunAfter publishUtils
 
 task publishAll {
-    dependsOn publishUtils, publishStripe, publishJwt, publishUikit
+    dependsOn publishUtils, publishStripe, publishJwt, publishUikit, publishRecaptcha
 }

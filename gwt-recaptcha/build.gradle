@@ -1,28 +1,27 @@
 group = 'com.peruncs.gwt'
-version = "${gwt_jwt_version}"
+version = gwt_recaptcha_version
 
 dependencies {
-    implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
-    implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
-    implementation "com.google.elemental2:elemental2-webstorage:${gwt_elemental2_version}"
+    implementation "com.peruncs.gwt:gwt-utils:${gwt_utils_version}"
 }
 
+
 jar {
-    manifest.attributes['Automatic-Module-Name'] = 'com.peruncs.gwt.jwt'
-    manifest.attributes['Specification-Title'] = 'GWT JWT vendors wrappers'
-    manifest.attributes['Implementation-Title'] = 'GWT JWT vendors wrappers'
+    manifest.attributes['Automatic-Module-Name'] = 'com.peruncs.gwt.stripe'
+    manifest.attributes['Specification-Title'] = 'GWT reCaptcha v3  wrapper'
+    manifest.attributes['Implementation-Title'] = 'GWT reCaptcha v3 wrapper'
 }
 
 publishing {
     publications {
         publication(MavenPublication) {
-            artifactId 'gwt-jwt'
-            artifact sourcesJar
-            artifact javadocJar
+                artifactId 'gwt-recaptcha'
+                artifact sourcesJar
+                artifact javadocJar
             from components.java
             pom {
-                name = "GWT/JsInterop wrapper for: Auth0, OKTA, Keycloak"
-                description = "GWT/JsInterop wrapper for popular JWT authentication providers: Auth0, OKTA and Keycloak"
+                name = "GWT/JsInterop wrapper for Google reCaptcha v3"
+                description = "GWT/JsInterop wrapper for for Google reCaptcha v3"
                 url = "https://github.com/peruncs/gwt"
                 licenses {
                     license {
@@ -43,11 +42,10 @@ publishing {
                     }
                 }
             }
+
         }
     }
-
 }
-
 
 signing {
     sign publishing.publications.publication
