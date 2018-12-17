@@ -1,13 +1,12 @@
 package com.peruncs.gwt.recaptcha;
 
 import com.peruncs.gwt.utils.Callback;
+import com.peruncs.gwt.utils.Callback1;
 import elemental2.promise.Promise;
-import jsinterop.annotations.JsConstructor;
-import jsinterop.annotations.JsProperty;
-import jsinterop.annotations.JsType;
+import jsinterop.annotations.*;
 
-@JsType(namespace = "grecapcha")
-public abstract class GRecaptcha {
+@JsType(isNative = true)
+public class GRecaptcha {
 
     @JsType
     public static class Action {
@@ -22,10 +21,18 @@ public abstract class GRecaptcha {
 
     }
 
+    private GRecaptcha() {
+    }
+
+    @JsMethod(namespace = "grecaptcha")
     public static native void ready(Callback c);
+
+    @JsMethod(namespace = "grecaptcha")
     public static native <T> Promise<T> execute(String siteKey, Action action);
-    public static <T> Promise<T> execute(String siteKey, String action){
-        return execute(siteKey,new Action(action));
+
+    @JsOverlay
+    public static <T> Promise<T> execute(String siteKey, String action) {
+        return execute(siteKey, new Action(action));
     }
 
 }
