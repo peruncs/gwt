@@ -28,10 +28,10 @@ public class GRecaptcha {
     public static native void ready(Callback c);
 
     @JsMethod(namespace = "grecaptcha")
-    public static native <T> Promise<T> execute(String siteKey, Action action);
+    public static native  Promise<String> execute(String siteKey, Action action);
 
     @JsOverlay
-    public static <T> Promise<T> execute(String siteKey, String action) {
+    public static Promise<String> execute(String siteKey, String action) {
         return execute(siteKey, new Action(action));
     }
 
