@@ -11,8 +11,8 @@ A Stripe wrapper.
 ### UIKIT
 A UIKIT wrapper.
 
-### JQuery
-A JQuery wrapper.
+### reCaptcha
+A Google reCaptcha wrapper.
 
 ## How to build
 You can deploy these project into local Maven repository with:
