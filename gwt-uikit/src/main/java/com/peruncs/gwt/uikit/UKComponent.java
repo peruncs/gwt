@@ -1,7 +1,7 @@
 package com.peruncs.gwt.uikit;
 
 
-import elemental2.dom.HTMLElement;
+import elemental2.dom.Element;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsType;
 
@@ -25,7 +25,7 @@ public abstract class UKComponent {
      * @param event   - the event
      */
     @JsMethod(namespace = UIKitNamespace.value)
-    public native static void update(HTMLElement element, String event);
+    public native static void update(Element element, String event);
 
 
     /**

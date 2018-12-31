@@ -138,6 +138,9 @@ public abstract class UKModal extends UKComponent {
         String HIDDEN_EVENT = "hidden";
     }
 
+    /**
+     * Initialization options.
+     */
     @JsType
     public static class Options {
 
