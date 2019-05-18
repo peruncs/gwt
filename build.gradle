@@ -5,12 +5,41 @@ subprojects {
     apply plugin: 'signing'
 
     dependencies {
-        implementation "com.google.jsinterop:base:${gwt_base_version}"
-        implementation "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
-        implementation "com.google.jsinterop:jsinterop-annotations:${gwt_jsinterop_annotation_version}"
-        implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
-        implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
-//    implementation "com.google.elemental2:elemental2-webstorage:${elemental2_version}"
+
+//        implementation "com.google.jsinterop:base:${gwt_base_version}"
+//        implementation "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
+//        implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
+//        implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
+
+          //Newer, alternative Elemental2/Jsinterop, Provided by Peter Donald.
+//        implementation "com.google.jsinterop:base:${gwt_base_version}"
+//        implementation "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
+//        implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
+//        implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
+
+        compileOnly "com.google.jsinterop:base:${gwt_base_version}"
+        compileOnly "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
+        compileOnly "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
+        compileOnly "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
+
+    }
+
+    def dependencyOverrides = { DependencyResolveDetails details ->
+        //Override elemental2 and jsinterop
+        if (details.requested.module.group == 'com.google.jsinterop' && details.requested.module.name == 'jsinterop'){
+            details.useTarget group: 'org.realityforge.com.google.jsinterop', name: 'jsinterop', version: gwt_jsinterop_version
+        }else if (details.requested.module.group == 'com.google.jsinterop' && details.requested.module.name == 'jsinterop-annotations'){
+            details.useTarget group: 'org.realityforge.com.google.jsinterop', name: 'jsinterop-annotations', version: gwt_jsinterop_version
+        }else if (details.requested.module.group == 'com.google.jsinterop' && details.requested.module.name == 'base'){
+            details.useTarget group: 'org.realityforge.com.google.jsinterop', name: 'base', version: gwt_base_version
+        }else if (details.requested.module.group == 'com.google.elemental2' ){
+            details.useTarget group: 'org.realityforge.com.google.elemental2', name: details.requested.name, version: gwt_elemental2_version
+        }
+    }
+    configurations.all {
+        resolutionStrategy {
+            eachDependency(dependencyOverrides)
+        }
     }
 
     tasks.withType(JavaCompile) {
@@ -23,7 +52,6 @@ subprojects {
 
     sourceCompatibility = "${java_lang_level}"
     targetCompatibility = "${java_lang_level}"
-
 
     repositories {
         mavenCentral()
@@ -99,11 +127,17 @@ task publishUikitToMavenLocal {
 task publishReCaptchaToMavenLocal {
     dependsOn ":gwt-recaptcha:publishToMavenLocal"
 }
+
+
+task publishCookiesToMavenLocal {
+    dependsOn ":gwt-cookies:publishToMavenLocal"
+} 
+
 publishStripeToMavenLocal.mustRunAfter publishUtilsToMavenLocal
 publishReCaptchaToMavenLocal.mustRunAfter publishUtilsToMavenLocal
 
 task publishAllToMavenLocal {
-    dependsOn publishUtilsToMavenLocal, publishStripeToMavenLocal, publishJwtToMavenLocal, publishUikitToMavenLocal, publishReCaptchaToMavenLocal
+    dependsOn publishUtilsToMavenLocal, publishStripeToMavenLocal, publishJwtToMavenLocal, publishUikitToMavenLocal, publishReCaptchaToMavenLocal, publishCookiesToMavenLocal
 }
 
 //Publishing to Maven central repo
@@ -127,9 +161,13 @@ task publishRecaptcha {
     dependsOn ":gwt-recaptcha:publish"
 }
 
+task publishCookies {
+    dependsOn ":gwt-cookies:publish"
+}
+
 publishStripe.mustRunAfter publishUtils
 publishRecaptcha.mustRunAfter publishUtils
 
 task publishAll {
-    dependsOn publishUtils, publishStripe, publishJwt, publishUikit, publishRecaptcha
+    dependsOn publishUtils, publishStripe, publishJwt, publishUikit, publishRecaptcha, publishCookies
 }
