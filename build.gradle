@@ -131,13 +131,17 @@ task publishReCaptchaToMavenLocal {
 
 task publishCookiesToMavenLocal {
     dependsOn ":gwt-cookies:publishToMavenLocal"
-} 
+}
+
+task publishTabulatorToMavenLocal {
+    dependsOn ":gwt-tabulator:publishToMavenLocal"
+}
 
 publishStripeToMavenLocal.mustRunAfter publishUtilsToMavenLocal
 publishReCaptchaToMavenLocal.mustRunAfter publishUtilsToMavenLocal
 
 task publishAllToMavenLocal {
-    dependsOn publishUtilsToMavenLocal, publishStripeToMavenLocal, publishJwtToMavenLocal, publishUikitToMavenLocal, publishReCaptchaToMavenLocal, publishCookiesToMavenLocal
+    dependsOn publishUtilsToMavenLocal, publishStripeToMavenLocal, publishJwtToMavenLocal, publishUikitToMavenLocal, publishReCaptchaToMavenLocal, publishCookiesToMavenLocal, publishCookiesToMavenLocal
 }
 
 //Publishing to Maven central repo
@@ -165,9 +169,13 @@ task publishCookies {
     dependsOn ":gwt-cookies:publish"
 }
 
+task publishTabulator {
+    dependsOn ":gwt-tabulator:publish"
+}
+
 publishStripe.mustRunAfter publishUtils
 publishRecaptcha.mustRunAfter publishUtils
 
 task publishAll {
-    dependsOn publishUtils, publishStripe, publishJwt, publishUikit, publishRecaptcha, publishCookies
+    dependsOn publishUtils, publishStripe, publishJwt, publishUikit, publishRecaptcha, publishCookies, publishTabulator
 }

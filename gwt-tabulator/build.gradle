@@ -1,0 +1,47 @@
+group = 'com.peruncs.gwt'
+version = gwt_tabulator_version
+
+jar {
+    manifest.attributes['Automatic-Module-Name'] = 'com.peruncs.gwt.tabulator'
+    manifest.attributes['Specification-Title'] = 'GWT github.com/olifolkerd/tabulator wrapper'
+    manifest.attributes['Implementation-Title'] = 'GWT github.com/olifolkerd/tabulator wrapper'
+}
+
+publishing {
+    publications {
+        publication(MavenPublication) {
+                artifactId 'gwt-tabulator'
+                artifact sourcesJar
+                artifact javadocJar
+            from components.java
+            pom {
+                name = "GWT/JsInterop wrapper for  github.com/olifolkerd/tabulator"
+                description = "GWT/JsInterop wrapper for github.com/olifolkerd/tabulator"
+                url = "https://github.com/peruncs/gwt"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                scm {
+                    connection = "shttps://github.com/peruncs/gwt/tree/master"
+                    developerConnection = "https://github.com/peruncs/gwt/tree/master"
+                    url = "https://github.com/peruncs/gwt/master/"
+                }
+                developers {
+                    developer {
+                        id = 'hr.stoyanov'
+                        name = 'Hristo Stoyanov'
+                        email = 'hr.stoyanov@peruncs.com'
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.publication
+}
