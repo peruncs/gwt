@@ -6,11 +6,7 @@ import jsinterop.annotations.JsType;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
 public class Tabulator {
-
-    public Tabulator(Element element, TabulatorOptions options) {
-    }
-
-    public Tabulator(String element, TabulatorOptions options) {
-    }
+    public Tabulator(Element element, TabulatorOptions options) {/* no body!*/}
+    public Tabulator(String element, TabulatorOptions options) {/* no body!*/}
 
 }
