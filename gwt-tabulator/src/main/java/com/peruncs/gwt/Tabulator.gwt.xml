@@ -2,4 +2,5 @@
 <module>
     <source path="tabulator"/>
     <inherits name="jsinterop.base.Base"/>
+    <inherits name="com.peruncs.gwt.Utils"/>
 </module>
