@@ -28,4 +28,15 @@ public class Tabulator {
      * You can toggle the visibility of a column at any point using the toggleColumn function. Pass the field name of the column you wish to toggle as the first parameter of the function.
      */
     native public void toggleColumn(String name);
+
+
+    /** Define sort order */
+    native public void setSort(SortOrder[] sortOrder);
+    native public void setSort(String column, String dir);
+    native public Sorter getSorters();
+
+    /** To remove all sorting from the table.*/
+    native public void clearSort();
+
+
 }
