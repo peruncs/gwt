@@ -1,18 +1,15 @@
 package com.peruncs.gwt.tabulator;
 
-
-import elemental2.core.JsArray;
-import elemental2.dom.Node;
 import elemental2.promise.Promise;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
-import jsinterop.base.JsArrayLike;
 
-import java.util.stream.BaseStream;
-
+/**
+ * The row component provides access to a specific row.
+ */
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
-public interface RowComponent extends BaseStream {
+public interface RowComponent extends BaseComponent {
 
 
     /**
@@ -20,26 +17,17 @@ public interface RowComponent extends BaseStream {
      */
     Any getData();
 
-    /**
-     * Returns the DOM node for the row.
-     */
-    Node getElement();
-
-    /**
-     * Returns the Tabulator object for the table containing the row.
-     */
-    Tabulator getTable();
 
     /**
      * Returns the Row Component for the next visible row in the table, if there is no next row it will return a value of false.
      */
-    RowComponentOrBoolean getNextRow();
+    ComponentOrBoolean<RowComponent> getNextRow();
 
 
     /**
      * Returns the Row Component for the previous visible row in the table, if there is no previous row it will return a value of false.
      */
-    RowComponentOrBoolean getPrevRow();
+    ComponentOrBoolean<RowComponent> getPrevRow();
 
 
     /**
@@ -147,6 +135,11 @@ public interface RowComponent extends BaseStream {
     void treeExpand();
 
     /**
+     * When the tree structure is enabled the treeToggle function will toggle the collapsed state of the current row.
+     */
+    void treeToggle();
+
+    /**
      * When the tree structure is enabled the treeCollapse function will collapse current row and hide its children.
      */
     void treeCollapse();
@@ -157,11 +150,18 @@ public interface RowComponent extends BaseStream {
      */
     RowComponent getTreeParent();
 
-    JsArray<RowComponent> getTreeChildren();
+    RowComponent[] getTreeChildren();
 
+    /**
+     * Any function that takes a component as an argument will also attempt to find that component based on the value provided if it is not a component itself. The following values can be used for each copmonent type:
+     * Row
+     * <p>
+     * A RowComponent
+     * The index value of the row
+     * DOM node of the row
+     */
     @JsType
-    class RowComponentOrBoolean {
-        //TODO
+    interface Lookup {
     }
 
 }
