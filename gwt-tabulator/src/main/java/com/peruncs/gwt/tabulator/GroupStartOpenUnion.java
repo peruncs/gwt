@@ -3,8 +3,12 @@ package com.peruncs.gwt.tabulator;
 import jsinterop.annotations.JsType;
 
 @JsType
-public class GroupStratOpenUnion {
-//    groupStartOpen:true,
+public class GroupStartOpenUnion {
+//    groupStartOpen:
+//      This can take one of three possible values:
+//      true - all groups start open (default value)
+//      false - all groups start closed
+//    function() - a callback to decide if a group should start open or closed
 //    groupStartOpen:function(value, count, data, group){
 //        //value - the value all members of this group share
 //        //count - the number of rows in this group

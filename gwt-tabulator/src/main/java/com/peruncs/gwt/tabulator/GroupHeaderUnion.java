@@ -5,7 +5,7 @@ import jsinterop.annotations.JsType;
 @JsType
 public class GroupHeaderUnion {
 
-
+    //  CallbackRet4<GroupComponent[],JsObject,Integer,JsObject[],GroupComponent> callBack
 //    groupHeader:function(value, count, data, group){
 //        //value - the value all members of this group share
 //        //count - the number of rows in this group
