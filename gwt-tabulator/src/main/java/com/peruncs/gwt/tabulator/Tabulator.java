@@ -1,9 +1,12 @@
 package com.peruncs.gwt.tabulator;
 
+import com.peruncs.gwt.utils.CallbackRet4;
+import elemental2.core.JsObject;
 import elemental2.dom.Element;
 import elemental2.promise.Promise;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
+import jsinterop.base.Any;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
 public class Tabulator {
@@ -102,10 +105,42 @@ public class Tabulator {
     native public BooleanOrInt getPageMax();
 
 
-    //Grouping
+    /**
+     * You can use the setGroupBy function to change the fields that rows are grouped by. This function has one argument and takes the same values as passed to the groupBy setup option.
+     * @param groupByUnion
+     */
     native public void setGroupBy(GroupByUnion groupByUnion);
 
-    native public void setGroupStartOpen(GroupStratOpenUnion groupStratOpenUnion);
+    /**
+     * You can use the setGroupStartOpen function to change the default open state of groups. This function has one argument and takes the same values as passed to the groupStartOpen setup option.
+     *
+     * @param groupStartOpenUnion
+     */
+    native public void setGroupStartOpen(GroupStartOpenUnion groupStartOpenUnion);
+
+    /**
+     * You can use the getGroups function to retrieve an array of all the first level Group Components in the table.
+     *
+     *  Note: If you use the setGroupStartOpen or setGroupHeader before you have set any groups on the table, the table will not update until the setGroupBy function is called.
+     * @param ghu
+     */
+    native public void  setGroupHeader(GroupHeaderUnion ghu);
 
     native public GroupComponent[] getGroups();
+
+    //Localization
+
+    /**
+     * Set locale.
+     * @param locale
+     */
+    native public void setLocale(StringOrBoolean locale);
+    native public String getLocale();
+
+    native public Any getLangs();
+
+    //Altering Data - TODO
+    //Retrieving Data - TODO
+    //Row Manipulation - TODO
+
 }
