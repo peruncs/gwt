@@ -154,17 +154,11 @@ public class Tabulator {
 
     /**
      * Replace data from ajax request
-     *
-     * @param ajaxRequest
-     * @return
      */
     native public Promise<Void> replaceData(String ajaxRequest);
 
     /**
      * Replace data from ajax request property
-     *
-     * @param <T>
-     * @return
      */
     native public Promise<Void> replaceData();
 
@@ -182,9 +176,6 @@ public class Tabulator {
      * <p>
      * The function will not replace the rows with the provided data, it will only update any of the provided parameters.
      *
-     * @param newdata
-     * @param <T>
-     * @return
      */
     native public Promise<Void> updateData(Any[] newdata);
 
