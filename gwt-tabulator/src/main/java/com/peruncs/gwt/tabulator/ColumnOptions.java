@@ -156,4 +156,5 @@ public class ColumnOptions {
     /** setting a headerTooltip value on a column will override the global setting*/
     public HeaderTooltipUnion headerTooltip;
 
+
 }

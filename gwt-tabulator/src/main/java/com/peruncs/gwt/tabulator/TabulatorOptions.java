@@ -319,4 +319,11 @@ public class TabulatorOptions {
      * You can store as many languages as you like, creating an object inside the langs object with a property of the locale code for that language. A list of locale codes can be found here.  if Tabulator cant find a match, it will try and find the next best thing
      */
     public Any langs;
+
+
+    /**
+     * By default any new rows will be added to the bottom of the table, to change this to the top set the addRowPos option to "top";
+     */
+    public String addRowPos;
+
 }
