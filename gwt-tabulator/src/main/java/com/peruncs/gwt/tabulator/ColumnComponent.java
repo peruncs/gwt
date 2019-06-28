@@ -83,6 +83,8 @@ public interface ColumnComponent extends BaseComponent, Showable {
     void reloadHeaderFilter();
 
 
+
+
     /**
      * Any function that takes a component as an argument will also attempt to find that component based on the value provided if it is not a component itself. The following values can be used for each copmonent type:
      * Row
