@@ -1,6 +1,10 @@
 package com.peruncs.gwt.tabulator;
 
+import com.peruncs.gwt.utils.CallbackRet1;
+import com.peruncs.gwt.utils.CallbackRet4;
+import com.peruncs.gwt.utils.CallbackRet5;
 import jsinterop.annotations.JsType;
+import jsinterop.base.Any;
 
 @JsType
 public class ColumnOptions {
@@ -153,8 +157,106 @@ public class ColumnOptions {
      */
     public TooltipUnion tooltip;
 
-    /** setting a headerTooltip value on a column will override the global setting*/
+    /**
+     * setting a headerTooltip value on a column will override the global setting
+     */
     public HeaderTooltipUnion headerTooltip;
 
+    //Mutators
+
+    //
+    //      Mutators are used to alter data as it is parsed into Tabulator. For example if you wanted to convert a numeric column into a boolean based on its value, before the data is used to build the table.
+    //      <p>
+    //      You can set mutators on a per column basis using the mutator option in the column definition object.
+    //      <p>
+    //      You can pass an optional additional parameter with mutator, mutatorParams that should contain an object with additional information for configuring the mutator.
+    //
+    //       //value - original value of the cell
+    //      	//data - the data for the row
+    //      	//type - the type of mutation occurring  (data|edit)
+    //      	//params - the mutatorParams object from the column definition
+    //      	//component - when the "type" argument is "edit", this contains the cell component for the edited cell, otherwise it is the column component for the column
+    //
+    //      Data can be mutated whenever it enters the table, either through a command or through a user editing the table. To allow you to have more control over how your data is mutated, there are a variety of different mutation options you can pass your callback to instead of just the mutator callback.
+    //
+    //      There are four options for mutator callbacks
+    //
+    //      mutatorData - only called when data is loaded via a command {eg. setData).
+    //      mutatorEdit - only called when data is changed via a user editing a cell.
+    //      mutatorClipboard - only called when data is pasted into the table.
+    //      mutator - called if the matching mutator from the above list is not set.
+    //
+
+    public CallbackRet5<Any, Any[], String, MutatorAccessorUnionType, BaseComponent, Any> mutator;
+    public MutatorAccessorUnionType mutatorParams;
+
+    public CallbackRet5<Any, Any[], String, MutatorAccessorUnionType, BaseComponent, Any> mutatorData;
+    public MutatorAccessorUnionType mutatorDataParams;
+
+    public CallbackRet5<Any, Any[], String, MutatorAccessorUnionType, BaseComponent, Any> mutatorEdit;
+    public MutatorAccessorUnionType mutatorEditParams;
+
+    public CallbackRet5<Any, Any[], String, MutatorAccessorUnionType, BaseComponent, Any> mutatorClipboard;
+    public MutatorAccessorUnionType mutatorClipboardParams;
+
+    //Accessors
+    //
+    //  Accessors are used to alter data as it is extracted from the table, through commands, the clipboard, or download.
+    //
+    //  You can set accessors on a per column basis using the accessor option in the column definition object.
+    //
+    //  You can pass an optional additional parameter with accessor, accessorParams that should contain an object with additional information for configuring the accessor.
+    //
+    //
+    //    Data can be altered whenever it enters the table, either through a command or through a clipboard copy event or through a download of the table. To allow you to have more control over how your data is altered, there are a variety of different accessor options you can pass your callback to instead of just the accessor callback.
+    //
+    //    There are four options for accessor callbacks
+    //
+    //    accessorData - only called when data is extracted via a command {eg. getData).
+    //        accessorDownload - only called when data is being converted into a downloadable file.
+    //        accessorClipboard - only called when data is being copied into the clipboard.
+    //                accessor - called if the matching accessor from the above list is not set.
+    //        Each accessor function has its own matching params option, for example accessorDownload has accessorDownloadParams.
+
+    public CallbackRet5<Integer, Any[], String, MutatorAccessorUnionType, ColumnComponent, Any> accessor;
+    public MutatorAccessorUnionType accessorParams;
+
+    public CallbackRet5<Integer, Any[], String, MutatorAccessorUnionType, ColumnComponent, Any> accessorData;
+    public MutatorAccessorUnionType accessorDataParams;
+
+    public CallbackRet5<Integer, Any[], String, MutatorAccessorUnionType, ColumnComponent, Any> accessorDownload;
+    public MutatorAccessorUnionType accessorDownloadParams;
+
+    public CallbackRet5<Integer, Any[], String, MutatorAccessorUnionType, ColumnComponent, Any> accessorClipboard;
+    public MutatorAccessorUnionType accessorClipboardParams;
+
+    //Editing
+
+    /**
+     * set the editor to be used when editing the data. (see Manipulating Data for more details)
+     * <p>
+     * Columns of the table can be set as editable using the editor property in the column definition. (see Define Columns for more details).
+     * <p>
+     * When a user clicks on an editable column the will be able to edit the value for that cell.
+     * <p>
+     * By default Tabulator will use an editor that matches the current formatter for that cell. if you wish to specify a specific editor, you can set them per column using the editor option in the column definition. Passing a value of true to this option will result in Tabulator applying the editor that best matches the columns formatter, if present.
+     * <p>
+     * You can pass an optional additional parameter with the editor, editorParams that should contain an object with additional information for configuring the editor.
+     * <p>
+     * Tabulator comes with a number of built-in editors:
+     * - "input"    - allows entering of a single line of plain text
+     * - "textarea" - allows entering of multiple lines of plain text
+     * - "number"   - allows for numeric entry with a number type input element with increment and decrement buttons
+     * - "range"    - allows for numeric entry with a range type input element
+     * - "autocomplete" - allows users to search a list of predefined options passed into the values property of the editorParams option.
+     */
+
+    public EditorUnionType editor;
+    public EditorParamsUnionType editorParams;
+
+    /**
+     * There are some circumstances where you may want to block editibility of a cell for one reason or another. To meet this need you can use the editable option. This lets you set a callback that is executed before the editor is built, if this callback returns true the editor is added, if it returns false the edit is aborted and the cell remains a non editable cell. The function is passed one parameter, the CellComponent of the cell about to be edited. You can also pass a boolean value instead of a function to this property.
+     */
+    public CallbackRet1<CellComponent, Boolean> editable;
 
 }
