@@ -10,6 +10,7 @@ import elemental2.dom.Event;
 import elemental2.dom.Node;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
+import jsinterop.base.JsPropertyMap;
 
 
 /**
@@ -325,5 +326,106 @@ public class TabulatorOptions {
      * By default any new rows will be added to the bottom of the table, to change this to the top set the addRowPos option to "top";
      */
     public String addRowPos;
+
+    /**
+     * When the table is first created it can be defined with an initial set of filters. These can be set using the initialFilter option. This will take the same filter array as the setFilter function.
+     */
+    public Filter[][] initialFilter;
+
+    //Header filtering
+
+    /**
+     * When the table is first created it can be defined with an initial set of header filter values. These can be set using the initialHeaderFilter option. This will take an array of objects with the value for the filter and the column header it should be set on.
+     */
+    public HeaderFilter[] initialHeaderFilter;
+
+
+    /**
+     * If an input element is used as the filter element, the table will be filtered in real time as the user types in the input element. To prevent exessive redrawing of the table Tabulator will wait 300 miliseconds after the user has finished typing before tirggering the filter, this ensures that the table is not redrawn for every character typed by the user.
+     * <p>
+     * Note: If the input has a type attribute value of text it will be automatically changed to search to give the user the option to clear the input text.
+     * <p>
+     * If you would prefer that the input element behave like a standard editor without live updating the table, you can set the headerFilterLiveFilter column definition property to false
+     */
+    public boolean headerFilterLiveFilter;
+
+
+    /**
+     * By default Tabulator will clear the filter when it considers the header filter value to be empty, in the case of most filters that is if the value is undefined, null, or "", or in the case of check boxes that is if the value is not either true or false.
+     * <p>
+     * If you are using a custom filter or want to alter what an existing filter considers empty, you can pass a function to the headerFilterEmptyCheck column definition property. This function will be passed in the value of the filter as an argument and should return a boolean where true represents an empty filter
+     */
+    public CallbackRet1<Any, Boolean> headerFilterEmptyCheck;
+
+
+    /**
+     * By default Tabulator will try and match the comparison type to the type of element used for the header filter.
+     * <p>
+     * Standard input elements will use the "like" filter, this allows for the matches to be displayed as the user types.
+     * <p>
+     * For all other element types (select boxes, check boxes, input elements of type number) an "=" filter type is used.
+     * <p>
+     * If you want to specify the type of filter used you can pass it to the headerFilterFunc option in the column definition object. This will take any of the standard filters outlined above or a custom function:
+     */
+    public HeaderFilterFunc headerFIlterFunct;
+
+    /**
+     * It is possible to pass additional parameters to the custom filter function by passing an object to the headerFilterFuncParams option in the column definition.
+     */
+    public JsPropertyMap<String> headerFilterFuncParams;
+
+    /**
+     * The default placeholder text used for input elements can be set using the headerFilterPlaceholder option in the table definition
+     */
+    public String headerFilterPlaceholder;
+
+
+    /**
+     * If you would prefer to filter your data server side rather than in Tabulator, you can use the ajaxFiltering option to send the filter data to the server instead of processing it client side
+     * An array of filters objects will then be passed in the filters parameter of the request, the name of this parameter can be set in the paginationDataSent option, in the pagination module.
+     * <p>
+     * The array of filter objects will take the same form as those returned from the getFilters function:
+     * <p>
+     * [
+     * {field:"age", type:">", value:52}, //filter by age greater than 52
+     * {field:"height", type:"<", value:142}, //and by height less than 142
+     * ]
+     * <p>
+     * If a custom filter function is being used then the type parameter will have a value of "function".
+     * If the table is not currently filtered then the array will be empty.
+     */
+    public boolean ajaxFiltering;
+
+    //Calculation Functions
+
+    public Calculator topCalc;
+    public CalculatorParams topCalcParams;
+    public Calculator bottomCalc;
+    public CalculatorParams bottomCalcParams;
+
+    /**
+     * By default column calculations are shown at the top and bottom of the table, unless row grouping is enabled, in which case they are shown at the top and bottom of each group.
+     * The columnCalcs option lets you decided where the calculations should be displayed, it can take one of four values:
+     * true - show calcs at top and bottom of the table, unless grouped, then show in groups (boolean, default)
+     * both - show calcs at top and bottom of the table and show in groups
+     * table - show calcs at top and bottom of the table only
+     * group - show calcs in groups only
+     */
+    public StringOrBoolean columnCalcs;
+
+
+    /**
+     * By default Tabulator will hide column calculations in groups when the group is toggled closed. If you would like column calculations to display when a group is closed, set the groupClosedShowCalcs option to true.
+     */
+    public boolean groupClosedShowCalcs;
+
+    /**
+     * You can apply formatters (see Formatting Data for more information) to any calculation cells, using the topCalcFormatter and bottomCalcFormatter options in a columns definition object. you can also pass in additional parameters to the formatter functions using the topCalcFormatterParams and bottomCalcFormatterParams options:
+     */
+    public FormatterUnion topCalcFormatter;
+    public FormatterUnion bottomCalcFormatter;
+    public FormatterParamsUnion topCalcFormatterParams;
+    public FormatterParamsUnion bottomCalcFormatterParams;
+
 
 }

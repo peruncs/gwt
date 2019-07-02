@@ -5,6 +5,7 @@ import com.peruncs.gwt.utils.CallbackRet4;
 import com.peruncs.gwt.utils.CallbackRet5;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
+import jsinterop.base.JsPropertyMap;
 
 @JsType
 public class ColumnOptions {
@@ -75,6 +76,7 @@ public class ColumnOptions {
     public boolean hideInHtml;
 
     /**
+     * Additional parameters you can pass to the sorter.
      * Additional parameters you can pass to the sorter.
      */
     public SorterParamsUnion sorterParams;
@@ -258,5 +260,23 @@ public class ColumnOptions {
      * There are some circumstances where you may want to block editibility of a cell for one reason or another. To meet this need you can use the editable option. This lets you set a callback that is executed before the editor is built, if this callback returns true the editor is added, if it returns false the edit is aborted and the cell remains a non editable cell. The function is passed one parameter, the CellComponent of the cell about to be edited. You can also pass a boolean value instead of a function to this property.
      */
     public CallbackRet1<CellComponent, Boolean> editable;
+
+
+    public Validator validator;
+
+    /**
+     * Setting this parameter to true will cause an editor element matching the columns editor type to be displayed in the header below the column title, and will allow the user to filter data in the table by values in that column. The editor will be chosen using the same rules as the editor parameter, for more information on this see the Manipulating Data section.
+     * <p>
+     * Alternatively you can pass a string to this parameter containing any of the standard editors listed in the Manipulating Data section
+     */
+    public StringOrBoolean headerFilter;
+
+    /**
+     * You can pass an optional additional parameter with the header filter, headerFilterParams that should contain an object with additional information for configuring the header filter element. This will be passed to the editor in the column header instead of the editorParams property.
+     * If you want to dynamically generate the headerFilterParams at the time the header filter is created, you can pass a function into the property that should return the params object.
+     */
+
+    public EditorParamsUnionType headerFilterParams;
+
 
 }

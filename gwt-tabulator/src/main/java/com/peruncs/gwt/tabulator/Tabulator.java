@@ -1,6 +1,7 @@
 package com.peruncs.gwt.tabulator;
 
 import com.peruncs.gwt.utils.CallbackRet1;
+import com.peruncs.gwt.utils.CallbackRet2;
 import elemental2.dom.Element;
 import elemental2.promise.Promise;
 import jsinterop.annotations.JsPackage;
@@ -175,7 +176,6 @@ public class Tabulator {
      * This function takes an array of row objects and will update each row based on its index value. (the index defaults to the "id" parameter, this can be set using the index option in the tabulator constructor). Options without an index will be ignored, as will items with an index that is not already in the table data. The addRow function should be used to add new data to the table.
      * <p>
      * The function will not replace the rows with the provided data, it will only update any of the provided parameters.
-     *
      */
     native public Promise<Void> updateData(Any[] newdata);
 
@@ -344,5 +344,106 @@ public class Tabulator {
      * If you don't know whether a row already exists you can use the updateOrAddRow function. This will check if a row with a matching index exists, if it does it will update it, if not it will add a new row with that data. This takes the same arguments as the updateRow function.
      */
     native public Promise<RowComponent> updateOrAddRow(RowComponent.Lookup row, Any data);
+
+    //Filters
+    native public void setFilter(String field, String operator, Any values);
+
+    native public void setFilter(String field, String operator, Any[] values);
+
+    native public void setFilter(Filter... filters);
+
+    native public void setFilter(Filter[][] filters);//Or filters
+
+    native public void setFilter(CallbackRet2<Any, Any, Boolean> customFilter, Any filterParam);
+
+    native public void addFilter(String field, String operator, Any values);
+
+    native public void addFilter(Filter filter);
+
+    native public void removeFilter(String field, String operator, Any values);
+
+    native public void removeFilter(Filter filter);
+
+    /**
+     * To include header filters in the returend array pass an option argument of true to the getFilters function
+     *
+     * @return
+     */
+    native public Filter[][] getFilters(boolean includeHeaderFilters);
+
+    /**
+     * To remove all filters from the table, use the clearFilter function.
+     */
+    native public void clearFilter();
+
+    /**
+     * This will clear all programatically set filters, if you wisht to clear all header filters as well pass an argument of true to this function.
+     */
+    native public void clearFilter(boolean includeHeaderFilters);
+
+    /**
+     * To remove just the header filters, leaving the programatic filters in place, use the clearHeaderFilter function.
+     */
+    native public void clearHeaderFilter();
+
+
+    /**
+     * You can programatically set the header filter value of a column by calling the setHeaderFilterValue function, This function takes any of the standard column component look up options as its first parameter, with the value for the header filter as the second option
+     */
+    native public void setHeaderFilterValue(String columnName, Any value);
+
+    /**
+     * You can programatically set the focus on a header filter element by calling the setHeaderFilterFocus function, This function takes any of the standard column component look up options as its first parameter
+     */
+    native public void setHeaderFilterFocus(String column);
+
+
+    /**You can retrieve the results of the column calculations at any point using the getCalcResults function.
+     *
+     * For a table without grouped rows, this will return an object with top and bottom properties, that contain a row data object for all the columns in the table for the top calculations and bottom calculations respectively.
+     *
+     * {
+     *     top:{
+     *         age:53,
+     *         score:73
+     *     },
+     *     bottom:{
+     *         age:27,
+     *         score:66
+     *     },
+     * }
+     * For tables with grouped rows, this will return an object, where each group is represented by a property in the object, with the key for the group being the key for the property. As above each of the grouped objects contains a top and bottom property as well as a groups property that contains the data for any sub groups.
+     *
+     * {
+     *     old:{
+     *         top:{
+     *             age:53,
+     *             score:73
+     *         },
+     *         bottom:{
+     *             age:95,
+     *             score:66
+     *         },
+     *         groups:{
+     *             //data for any sub groups
+     *         }
+     *     }
+     *     young:{
+     *         top:{
+     *             age:18,
+     *             score:73
+     *         },
+     *         bottom:{
+     *             age:12,
+     *             score:66
+     *         },
+     *         groups:{
+     *             //data for any sub groups
+     *         }
+     *     }
+     * }
+     * */
+
+    native public Any getCalcResults();
 
 }
