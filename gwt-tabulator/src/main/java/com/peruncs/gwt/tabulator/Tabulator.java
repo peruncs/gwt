@@ -398,52 +398,127 @@ public class Tabulator {
     native public void setHeaderFilterFocus(String column);
 
 
-    /**You can retrieve the results of the column calculations at any point using the getCalcResults function.
-     *
+    /**
+     * You can retrieve the results of the column calculations at any point using the getCalcResults function.
+     * <p>
      * For a table without grouped rows, this will return an object with top and bottom properties, that contain a row data object for all the columns in the table for the top calculations and bottom calculations respectively.
-     *
+     * <p>
      * {
-     *     top:{
-     *         age:53,
-     *         score:73
-     *     },
-     *     bottom:{
-     *         age:27,
-     *         score:66
-     *     },
+     * top:{
+     * age:53,
+     * score:73
+     * },
+     * bottom:{
+     * age:27,
+     * score:66
+     * },
      * }
      * For tables with grouped rows, this will return an object, where each group is represented by a property in the object, with the key for the group being the key for the property. As above each of the grouped objects contains a top and bottom property as well as a groups property that contains the data for any sub groups.
-     *
+     * <p>
      * {
-     *     old:{
-     *         top:{
-     *             age:53,
-     *             score:73
-     *         },
-     *         bottom:{
-     *             age:95,
-     *             score:66
-     *         },
-     *         groups:{
-     *             //data for any sub groups
-     *         }
-     *     }
-     *     young:{
-     *         top:{
-     *             age:18,
-     *             score:73
-     *         },
-     *         bottom:{
-     *             age:12,
-     *             score:66
-     *         },
-     *         groups:{
-     *             //data for any sub groups
-     *         }
-     *     }
+     * old:{
+     * top:{
+     * age:53,
+     * score:73
+     * },
+     * bottom:{
+     * age:95,
+     * score:66
+     * },
+     * groups:{
+     * //data for any sub groups
      * }
-     * */
+     * }
+     * young:{
+     * top:{
+     * age:18,
+     * score:73
+     * },
+     * bottom:{
+     * age:12,
+     * score:66
+     * },
+     * groups:{
+     * //data for any sub groups
+     * }
+     * }
+     * }
+     */
 
     native public Any getCalcResults();
+
+    //Cell Navigation
+
+    /**
+     * Use the navigatePrev function to shift focus to the next editable cell on the left, if none available move to the right most editable cell on the row above.
+     * <p>
+     * If the keybindings module is installed, this action can also be triggered with the shift + tab key combination.
+     */
+    native public void navigatePrev();
+
+
+    /**
+     * Use the navigateNext function to shift focus to the next editable cell on the right, if none available move to left most editable cell on the row below.
+     * <p>
+     * If the keybindings module is installed, this action can also be triggered with the tab key combination.
+     */
+    native public void navigateNext();
+
+    /**
+     * Use the navigateLeft function to shift focus to next editable cell on the left, return false if none available on row.
+     */
+    native public boolean navigateLeft();
+
+
+    /**
+     * Use the navigateRight function to shift focus to next editable cell on the right, return false if none available on row.
+     */
+    native public boolean navigateRight();
+
+
+    /**
+     * Use the navigateUp function to shift focus to the same cell in the row above.
+     * If the keybindings module is installed, this action can also be triggered with the up arrow key combination.
+     */
+    native public void navigateUp();
+
+    /**
+     * Use the navigateDown function to shift focus to the same cell in the row below.
+     * If the keybindings module is installed, this action can also be triggered with the down arrow key combination.
+     */
+    native public void navigateDown();
+
+
+    //Scrolling
+
+    /**
+     * If you want to trigger an animated scroll to a column then you can use the scrollToColumn function. The first argument should be any of the standard column component look up options for the column you want to scroll to.
+     * <p>
+     * The second argument is optional, and is used to set the position of the column, it should be a string with a value of either left, middle or right, if omitted it will be set to the value of the scrollToColumnPosition option which has a default value of left.
+     * <p>
+     * The third argument is optional, and is a boolean used to set if the table should scroll if the column is already visible, true to scroll, false to not, if omitted it will be set to the value of the scrollToColumnIfVisible option, which defaults to true
+     * <p>
+     * The function will return a promise, this can be used to run any other commands that have to be run after the column has been scrolled to
+     */
+    native public Promise<Void> scrollToColumn(ColumnComponent.Lookup column, String columnPosition, boolean scrollToColumnIfVisible);
+
+    native public Promise<Void> scrollToColumn(ColumnComponent.Lookup column, String columnPosition);
+
+    native public Promise<Void> scrollToColumn(ColumnComponent.Lookup column);
+
+    /**
+     * If you want to trigger an animated scroll to a row then you can use the scrollToRow function.
+     * The first argument should be any of the standard row component look up options for the row you want to scroll to.
+     * The second argument is optional, and is used to set the position of the row, it should be a string with a value of either top, center, bottom or nearest, if omitted it will be set to the value of the scrollToRowPosition option which has a default value of top.
+     * The third argument is optional, and is a boolean used to set if the table should scroll if the row is already visible, true to scroll, false to not, if omitted it will be set to the value of the scrollToRowIfVisible option, which defaults to true.
+     * The function will return a promise, this can be used to run any other commands that have to be run after the row has been scrolled to
+     */
+    native public Promise<Void> scrollToRow(RowComponent.Lookup row, String rowPosition, boolean scrollToRowIfVisible);
+
+    native public Promise<Void> scrollToRow(RowComponent.Lookup row, String rowPosition);
+
+    native public Promise<Void> scrollToRow(RowComponent.Lookup row);
+
+
 
 }

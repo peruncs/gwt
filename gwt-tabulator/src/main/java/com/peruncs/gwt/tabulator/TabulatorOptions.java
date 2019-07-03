@@ -428,4 +428,57 @@ public class TabulatorOptions {
     public FormatterParamsUnion bottomCalcFormatterParams;
 
 
+    /**
+     * The default ScrollTo position can be set using the scrollToColumnPosition option. It can take one of three possible values:
+     * <p>
+     * left - position column with its left edge at the left of the table (default)
+     * center - position column with its left edge in the center of the table
+     * right - position column with its right edge at the right of the table
+     */
+    public String scrollToColumnPosition;
+
+    /**
+     * The default option for triggering a ScrollTo on a visible element can be set using the scrollToColumnIfVisible option. It can take a boolean value:
+     * <p>
+     * true - scroll to column, even if it is visible (default)
+     * false - scroll to column, unless it is currently visible, then don't move
+     */
+    public boolean scrollToColumnIfVisible;
+
+
+    /**
+     * The default ScrollTo position can be set using the scrollToRowPosition option. It can take one of four possible values:
+     * <p>
+     * top - position row with its top edge at the top of the table (default)
+     * center - position row with its top edge in the center of the table
+     * bottom - position row with its bottom edge at the bottom of the table
+     * nearest - position row on the edge of the table it is closest to
+     */
+    public String scrollToRowPosition;
+
+    /**
+     * The default option for triggering a ScrollTo on a visible element can be set using the scrollToRowIfVisible option. It can take a boolean value:
+     * true - scroll to row, even if it is visible (default)
+     * false - scroll to row, unless it is currently visible, then don't move
+     */
+    public boolean scrollToRowIfVisible;
+
+    //Key Bindings
+
+
+    /**
+     * If you would prefer to use different key combinations then that is no problem, you can use the keybindings option to change any of the above bindings.
+     * <p>
+     * The keybindings option takes an object that should consist of properties with the name of the action you wish to bind and a value of the key code string.
+     * <p>
+     * The key code should consist of the keycodes for the keys to be pressed, separated by the + symbol. The exceptions to this are ctrl and shift which should be used to check that the ctrl or shift keys are pressed as well.
+     */
+    public BooleanOrJsPropertyMap<String> keybindings;
+
+
+
+
+
+
+
 }
