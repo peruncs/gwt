@@ -8,7 +8,7 @@ import elemental2.webstorage.WebStorageWindow;
 
 final public class Auth0Session {
 
-    private Storage storage;
+    final private Storage storage;
     private double timeoutID;
 
 
@@ -42,8 +42,7 @@ final public class Auth0Session {
 
     final public double expiresIn() {
         double expiresAt = getExpiresAt();
-        double expiresIn = expiresAt - JsDate.now();
-        return expiresIn;
+        return expiresAt - JsDate.now();
     }
 
     final public String getAccessToken() {

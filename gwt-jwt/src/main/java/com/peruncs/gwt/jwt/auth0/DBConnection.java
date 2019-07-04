@@ -12,7 +12,7 @@ public class DBConnection {
     public DBConnection(Any request, JsPropertyMap<?> option) {
     }
 
-    public native <Any> void signup(DbSignUpOptions options, Auth0Callback<Auth0Error,Any> callback);
+    public native void signup(DbSignUpOptions options, Auth0Callback<Auth0Error, Any> callback);
 
-    public native <Any> void changePassword(ChangePasswordOptions options, Auth0Callback<Auth0Error,Any> callback);
+    public native void changePassword(ChangePasswordOptions options, Auth0Callback<Auth0Error, Any> callback);
 }
