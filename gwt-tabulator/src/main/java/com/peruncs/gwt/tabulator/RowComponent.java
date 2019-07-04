@@ -83,7 +83,7 @@ public interface RowComponent extends BaseComponent {
      * @param target
      * @param aboveTarget
      */
-    void move(BaseComponentOrInteger target, boolean aboveTarget);
+    void move(RowComponent.Lookup target, boolean aboveTarget);
 
 
     /**

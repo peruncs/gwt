@@ -519,6 +519,15 @@ public class Tabulator {
 
     native public Promise<Void> scrollToRow(RowComponent.Lookup row);
 
-
+    /**
+     * If you want to programmatically move a row to a new position you can use the moveRow function.
+     * <p>
+     * The first argument should be the row you want to move, and can be any of the standard row component look up options.
+     * <p>
+     * The second argument should be the target row that you want to move to, and can be any of the standard row component look up options.
+     * <p>
+     * The third argument determines whether the row is moved to above or below the target row. A value of false will cause to the row to be placed below the target row, a value of true will result in the row being placed above the target
+     */
+    native public void moveRow(RowComponent.Lookup rowToMove, RowComponent.Lookup targetRow, boolean placeAboveTarget);
 
 }

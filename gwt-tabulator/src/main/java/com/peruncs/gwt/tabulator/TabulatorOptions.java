@@ -476,9 +476,54 @@ public class TabulatorOptions {
     public BooleanOrJsPropertyMap<String> keybindings;
 
 
+    //Movable Rows and Columns
+
+    /**
+     * Enable user movable rows.
+     */
+    public boolean movableRows;
+
+    /**
+     * The rowMoved callback will be triggered when a row has been successfuly moved.
+     */
+    public Callback1<RowComponent> rowMoved;
+
+    /**
+     * Tabulator also allows you to move rows between tables. To enable this you should supply either a valid CSS selector string a DOM node for the table or the Tabuator object for the table to the movableRowsConnectedTables option. if you want to connect to multple tables then you can pass in an array of values to this option.
+     */
+    public StringOrNodeOrArray movableRowsConnectedTables;
+
+    /**
+     * The movableRowsReceiver option should be set on the receiving tables, and sets the action that should be taken when the row is dropped into the table.
+     * <p>
+     * There are several inbuilt receiver functions:
+     * <p>
+     * insert - inserts row next to the row it was dropped on, if not dropped on a row it is added to the table (default)
+     * add - adds row to the table
+     * update - updates the row it is dropped on with the sent rows data
+     * replace - replaces the row it is dropped on with the sent row
+     * <p>
+     * You can also pass a callback to the movableRowsReceiver option for custom receiver functionality. the callback must return a boolean to indicate whether the drop should be considered successful or not (eg. you may want to reject a drop if it was not on a row)
+     */
+
+    public MovablerowsReceiver movableRowsReceiver;
 
 
+    /**
+     * The movableRowsSender option should be set on the sending table, and sets the action that should be taken after the row has been successfuly dropped into the receiving table.
+     * There are several inbuilt sender functions:
+     * <p>
+     * false - do nothing(default).
+     * "delete" - deletes the row from the table.
+     * <p>
+     * You can also pass a callback to the movableRowsSender option for custom sender functionality.
+     */
+    public MovableRowsSender movableRowsSender;
 
 
+    /**
+     * To allow the user to move columns along the table, set the movableColumns parameter in the options.
+     */
+    public boolean movableColumns;
 
 }

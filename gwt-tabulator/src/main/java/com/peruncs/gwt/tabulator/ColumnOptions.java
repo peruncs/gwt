@@ -1,11 +1,9 @@
 package com.peruncs.gwt.tabulator;
 
 import com.peruncs.gwt.utils.CallbackRet1;
-import com.peruncs.gwt.utils.CallbackRet4;
 import com.peruncs.gwt.utils.CallbackRet5;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
-import jsinterop.base.JsPropertyMap;
 
 @JsType
 public class ColumnOptions {
