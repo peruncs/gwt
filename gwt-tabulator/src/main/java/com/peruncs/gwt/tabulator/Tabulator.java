@@ -1,5 +1,6 @@
 package com.peruncs.gwt.tabulator;
 
+import com.peruncs.gwt.utils.CallbackRet;
 import com.peruncs.gwt.utils.CallbackRet1;
 import com.peruncs.gwt.utils.CallbackRet2;
 import elemental2.dom.Element;
@@ -529,5 +530,105 @@ public class Tabulator {
      * The third argument determines whether the row is moved to above or below the target row. A value of false will cause to the row to be placed below the target row, a value of true will result in the row being placed above the target
      */
     native public void moveRow(RowComponent.Lookup rowToMove, RowComponent.Lookup targetRow, boolean placeAboveTarget);
+
+    //Select Row
+
+    /**
+     * To programmatically select a row you can use the selectRow function.
+     * To select a specific row you can pass the any of the standard row component look up options into the first argument of the function. If you leave the argument blank you will select all rows (if you have set the selectable option to a numeric value, it will be ignored when selecting all rows).
+     * If you want to select multiple rows you can pass an array of row component look up options into the first parameter
+     * If you do not pass any arguments to the selectRow function, all rows will be selected. To select only rows that have been filtered pass true as the first argument.
+     */
+
+    native public void selectRow(RowComponent.Lookup row);
+
+    native public void selectRow(RowComponent.Lookup[] rows);
+
+    native public void selectRow();
+
+
+    //Deselect Row
+
+    /**
+     * To programmatically deselect a row you can use the deselectRow function.
+     * <p>
+     * To deselect a specific row you can pass any of the standard row component look up options into the first argument of the function. If you leave the argument blank you will deselect all rows.
+     * <p>
+     * If you want to deselect multiple rows you can pass an array of row component look up options into the first parameter
+     */
+
+    native public void deselectRow(RowComponent.Lookup row);
+
+    native public void deselectRow(RowComponent.Lookup[] rows);
+
+    native public void deselectRow();
+
+
+    //Get Selected Data
+
+    /**
+     * To get the data objects for the selected rows you can use the getSelectedData function.
+     * <p>
+     * This will return an array of the selected rows data objects in the order in which they were selected.
+     */
+    native public Any[] getSelectedData();
+
+
+    //Get Selected Row Components
+
+    /**
+     * To get the RowComponent's for the selected rows at any time you can use the getSelectedRows function.
+     * <p>
+     * This will return an array of RowComponent's for the selected rows in the order in which they were selected.
+     */
+    native public RowComponent[] getSelectedRows();
+
+
+    /**
+     * With history enabled you can use the undo function to automatically undo a user action, the more times you call the function, the further up the history log you go.
+     * If the keybindings module is installed, this action can also be triggered with the ctrl + z key combination.
+     */
+    native public void undo();
+
+    /**
+     * You can use the getHistoryUndoSize function to get a count of the number of history undo actions available.
+     */
+    native public int getHistoryUndoSize();
+
+    /**
+     * With history enabled you can use the redo function to automatically redo user action that has been undone, the more times you call the function, the further up the history log you go. once a user interacts with the table then can no longer redo any further actions until an undo is performed.
+     */
+    native public void redo();
+
+    /**
+     * You can use the getHistoryRedoSize function to get a count of the number of history redo actions available.
+     */
+    native public int getHistoryRedoSize();
+
+
+    /**
+     * If you want to handle column layout persistence manually, for example storing it in a database to use elsewhere, you can use the getColumnLayout function to retrieve a layout object for the current table.
+     */
+    native public Any getColumnLayout();
+
+    /**
+     * If you have previously used the getColumnLayout function to retrieve a tables layout, you can use the setColumnLayout function to apply it to a table.
+     */
+    native void setColumnLayout(Any columnLayout);
+
+
+    // Trigger Copy Programmaticallyf
+
+    /**
+     * Copy the currently selected rows to the clipboard - The copyToClipboard function allows you to copy the current table data to the clipboard.
+     * <p>
+     * The first argument is the copy selector, you can choose from any of the built in options ("selection","table","active") or pass a function in to the argument, that must return the selected row components.
+     * <p>
+     * If you leave this argument undefined, Tabulator will use the value of the clipboardCopySelector property, which has a default value of table.
+     */
+
+    native void copyToClipboard(ClipboardCopySelector copySelector);
+
+    native void copyToClipboard(CallbackRet<RowComponent> copySelector);
 
 }

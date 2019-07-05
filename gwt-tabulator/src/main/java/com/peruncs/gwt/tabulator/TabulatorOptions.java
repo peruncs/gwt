@@ -526,4 +526,169 @@ public class TabulatorOptions {
      */
     public boolean movableColumns;
 
+
+    //Row Selection
+
+    /**
+     * To enable row selection, set the selectable option to true
+     * <p>
+     * The selectable option can take one of a several values:
+     * <p>
+     * false - selectable rows are disabled
+     * true - selectable rows are enabled, and you can select as many as you want
+     * integer - any integer value, this sets the maximum number of rows that can be selected (when the maximum number of selected rows is exeded, the first selected row will be deselected to allow the next row to be selected).
+     * "highlight" (default) - rows have the same hover stylings as selectable rows but do not change state when clicked. This is great for when you want to show that a row is clickable but don't want it to be selectable.
+     * <p>
+     * Note: using the setData function will clear the currently selected rows.
+     */
+    public Selectable selectable;
+
+    //Range Selection
+    /**
+     * By default you can select a range of rows by holding down the shift key and click dragging over a number of rows to toggle the selected state state of all rows the cursor passes over.
+     * <p>
+     * If you would prefere to select a range of row by clicking on the first row then holding down shift and clicking on the end row then you can acheive this by setting the selectableRangeMode to click
+     * In this mode, in order to select multiple non-continuous rows, you need to hold down the ctrl key and click on each row in turn.
+     */
+    public String selectableRangeMode;
+
+    //Rolling Selection
+    /**
+     * By default, row selection works on a rolling basis,
+     * if you set the selectable option to a numeric value then
+     * when you select past this number of rows, the first row
+     * to be selected will be deselected. If you want to disable
+     * this behaviour and instead prevent selection of new rows
+     * once the limit is reached you can set the selectableRollingSelection option to false.
+     */
+    public boolean selectableRollingSelection;
+
+
+    //Persistent Selection
+
+    /**
+     * By default Tabulator will maintain selected rows when the table is filtered, sorted or paginated (but NOT when the setData function is used). If you want the selected rows to be cleared whenever the table view is updated then set the selectablePersistence option to false.
+     */
+    public boolean selectablePersistence;
+
+
+    //Selection Eligibility
+
+    /**
+     * You many want to exclude certain rows from being selected. The selectableCheck options allows you to pass a function to check if the current row should be selectable, returning true will allow row selection, false will result in nothing happening. The function should accept a RowComponent as its first argument.
+     * Note: Any selectable rows will be assigned the tabulator-selectable class, any unselectable rows will be assigned the tabulator-unselectable class.
+     */
+    public Callback1<RowComponent> selectableCheck;
+
+    //Interaction History
+    /**
+     * To enable the history functionality, set the history option to true, in the table constructor object.
+     * <p>
+     * The history module tracks the following actions:
+     * <p>
+     * Cell Edits
+     * Row Added
+     * Row Deleted
+     * Row Moved
+     */
+    public boolean history;
+
+    //Persistence Mode
+
+    /**
+     * Persistence information can either be stored in a cookie or in the localSotrage object, you can use the persistenceMode to choose which. It can take three possible values:
+     * <p>
+     * local - (string) Store the persistence information in the localStorage object
+     * cookie - (string) Store the persistence information in a cookie
+     * true - (boolean) check if localStorage is available and store persistence information, otherwise store in cookie (Default option)
+     */
+    public StringOrBoolean persistenceMode;
+
+
+    /**
+     * Persistence ID - id string, can only be numbers, letters, hyphens and underscores.
+     * <p>
+     * ou are planning on having multiple tables on the same page using persistence then Tabulator needs a way to uniquely identify each table. There are two ways to do this either set the id attribute on the element that will hold the table, Tabulator will automatically use this id as a reference for the persistence id.
+     *
+     * <div id="example-table"></div>
+     * <p>
+     * Alternatively if you do not want to give an id to the table holding element you can set the tabulator options parameter persistenceID to a unique persistence id for that table.
+     */
+    public String persistenceID;
+
+
+    /**
+     * Enable column layout persistence - You can ensure the layout of columns is stored for the next page load by setting the persistentLayout option to true
+     * <p>
+     * Note: If you update the column definition array after the the column layout has been stored, Tabulator will attempt to match the stored columns against the new definition. If you have any issues with column definitions updating then you will have to change the persistenceID or delete your cookies/local storage to clear out the old column layout information.
+     */
+    public boolean persistentLayout;
+
+
+    //Persistent Sort
+    /**
+     * Enable sort persistence - You can ensure the data sorting is stored for the next page load by setting the persistentSort option to true.
+     */
+    public boolean persistentSort;
+
+
+    //Persistent Filter
+    /**
+     * Enable filter persistence - You can ensure the data filtering is stored for the next page load by setting the persistentFilter option to true
+     * <p>
+     * Note: Only built-in filters can be stored (including module), custom filter functions cannot be persistently stored.
+     * <p>
+     * Note: Header filters are not currently stored persistently, this feature will be coming in a future release.
+     */
+    public boolean persistentFilter;
+
+
+    //Clipboard
+    /**
+     * Enable clipboard functionality - You can enable clipboard functionality using the clipboard config option. It can take one of four possible values:
+     * <p>
+     * true - enable clipboard copy and paste
+     * "copy" - enable only copy functionality
+     * "paste" - enable only paste functionality
+     * false - disable all clipboard functionality (default)
+     */
+    public StringOrBoolean clipboard;
+
+
+    /**
+     * Default copy selector
+     */
+    public ClipboardCopySelector clipboardCopySelector;
+
+    /**
+     * Default copy configuration.
+     */
+    public ClipboardCopyConfig clipboardCopyConfig;
+
+    /**
+     * By default Tabulator will include the column header titles in any clipboard data, this can be turned off by passing a value of false to the clipboardCopyHeader property:
+     */
+    public boolean clipboardCopyHeader;
+
+    /**
+     * Default clipboard copy formatter
+     */
+    public ClipboardCopyFormatter clipboardCopyFormatter;
+
+    /**
+     * Copy Style.
+     * By default Tabulator will copy some of the tables styling along with the data to give a better visual appearance when pasted into other documents.
+     * <p>
+     * If you want to only copy the unstyled data then you should set the clipboardCopyStyled option to false in the table options object:
+     */
+    public boolean clipboardCopyStyled;
+
+
+    /**
+     * Custom paste parser
+     */
+    public ClipboardPasteParser clipboardPasteParser;
+
+    public ClipboardPasteAction clipboardPasteAction;
+
 }

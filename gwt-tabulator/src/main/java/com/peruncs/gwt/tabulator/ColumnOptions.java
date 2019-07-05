@@ -196,6 +196,11 @@ public class ColumnOptions {
     public CallbackRet5<Any, Any[], String, MutatorAccessorUnionType, BaseComponent, Any> mutatorEdit;
     public MutatorAccessorUnionType mutatorEditParams;
 
+    /**
+     * Clipboard Mutators
+     * You can use the mutatorClipboard and mutatorClipboardParams options on a column definition to alter the value of data in a column as it is pasted into the table.
+     * Note: The mutateClipboard is called before the paste action is triggered, which may result in a different mutator being triggered after mutateClipboard.
+     */
     public CallbackRet5<Any, Any[], String, MutatorAccessorUnionType, BaseComponent, Any> mutatorClipboard;
     public MutatorAccessorUnionType mutatorClipboardParams;
 
@@ -227,8 +232,13 @@ public class ColumnOptions {
     public CallbackRet5<Integer, Any[], String, MutatorAccessorUnionType, ColumnComponent, Any> accessorDownload;
     public MutatorAccessorUnionType accessorDownloadParams;
 
+    /**
+     * Clipboard Accessors.
+     * You can use the accessorClipboard and accessorClipboardParams options on a column definition to alter the value of data in a column before it is added to the clipboard.
+     */
     public CallbackRet5<Integer, Any[], String, MutatorAccessorUnionType, ColumnComponent, Any> accessorClipboard;
     public MutatorAccessorUnionType accessorClipboardParams;
+
 
     //Editing
 

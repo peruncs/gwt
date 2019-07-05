@@ -155,7 +155,8 @@ public interface RowComponent extends BaseComponent {
     /**
      * update the row's data
      */
-    <T> Promise update(Any data);
+    <T> Promise<T> update(Any data);
+
 
     /**
      * Any function that takes a component as an argument will also attempt to find that component based on the value provided if it is not a component itself. The following values can be used for each component type:
