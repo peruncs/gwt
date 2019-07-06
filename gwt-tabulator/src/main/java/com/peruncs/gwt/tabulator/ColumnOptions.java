@@ -286,5 +286,26 @@ public class ColumnOptions {
 
     public EditorParamsUnionType headerFilterParams;
 
+    /**
+     * force (true) or hide(false) data in download.
+     */
+    public boolean download;
+
+    /**
+     * Override column title  in download, instead of using title.
+     */
+    public String downloadTitle;
+
+    /**
+     * If you want to make any bulk changes to the table data before it is parsed into the download file you can pass a mutator function to the downloadDataFormatter option in the table definition.
+     */
+    public DownloadDataFormatter downloadDataFormatter;
+
+    /**
+     * The downloadReady callback allows you to intercept the download file data before the users is prompted to save the file.
+     * In order for the download to proceed the downloadReady callback is expected to return a blob of file to be downloaded.
+     * If you would prefer to abort the download you can return false from this callback. This could be useful for example if you want to send the created file to a server via ajax rather than allowing the user to download the file.
+     */
+    public DownloadReady downloadReady;
 
 }

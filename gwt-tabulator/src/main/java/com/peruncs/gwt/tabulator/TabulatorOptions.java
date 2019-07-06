@@ -691,4 +691,14 @@ public class TabulatorOptions {
 
     public ClipboardPasteAction clipboardPasteAction;
 
+    /**
+     * By default Tabulator includes column headers, row groups and column calculations in the download output.
+     * <p>
+     * You can choose to remove column headers groups, row groups or column calculations from the output data by setting the values in the downloadConfig option in the table definition.
+     *
+     * Availabilitity.
+     * Not all downloaders support column header groups, row groups and column calculations, see the documentation for each downloader for full information.
+     */
+    public DownloadConfig downloadConfig;
+
 }

@@ -5,6 +5,7 @@ import com.peruncs.gwt.utils.CallbackRet1;
 import com.peruncs.gwt.utils.CallbackRet2;
 import elemental2.dom.Element;
 import elemental2.promise.Promise;
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
@@ -630,5 +631,99 @@ public class Tabulator {
     native void copyToClipboard(ClipboardCopySelector copySelector);
 
     native void copyToClipboard(CallbackRet<RowComponent> copySelector);
+
+    /**
+     * You have a choice of four file types to choose from:
+     * <p>
+     * csv - Comma separated value file
+     * json - JSON formatted text file
+     * xlsx - Excel File (Requires the SheetJS Library)
+     * pdf - PDF File (Requires the jsPDF Library and jsPDF-AutoTable Plugin)
+     * To trigger a download, call the download function, passing the file type (from the above list) as the first argument, and an optional second argument of the file name for the download (if this is left out it will be "Tabulator.ext"). The optional third argument is an object containing any setup options for the formatter, such as the delimiter choice for CSV's).
+     */
+    native <C> void download(String fileType, String fileName, C config);
+
+    native <C> void download(String fileType, String fileName);
+
+    native <C> void download(String fileType);
+
+    /**
+     * If you want to create a custom file type from the table data then you can pass a function to the type argument, instead of a string value. At the end of this function you must call the setFileContents function, passing the formatted data and the mime type.
+     */
+    native  void download(CustomFileFormatter<?> customFileFormatter);
+
+    native  void download(CustomFileFormatter<?> customFileFormatter, String fileNames);
+
+    native <O> void download(CustomFileFormatter<O> customFileFormatter, String fileName, O options);
+
+    /**
+     * If you want to open the generated file in a new browser tab rather than downloading it straight away, you can use the downloadToTab function. This is particularly useful with the PDF downloader, as it allows you to preview the resulting PDF in a new browser tab
+     */
+    native void downloadToTab(String fileType);
+
+
+
+    //CSV
+    @JsOverlay
+    public void downloadCSV(String fileName, CSVDownloadConfig csvDownloadConfig) {
+        download("csv", fileName, csvDownloadConfig);
+    }
+
+    @JsOverlay
+    public void downloadCSV(String fileName) {
+        download("csv", fileName);
+    }
+
+    @JsOverlay
+    public void downloadCSV() {
+        download("csv");
+    }
+
+    @JsOverlay
+    public void downloadToTabCSV() {
+        downloadToTab("csv");
+    }
+
+    //XLSX - Excel
+    @JsOverlay
+    public void downloadXLSX(String fileName, XLSXDownloadConfig xlsxDownloadConfig) {
+        download("xlsx", fileName, xlsxDownloadConfig);
+    }
+
+    @JsOverlay
+    public void downloadXLSX(String fileName) {
+        download("xlsx", fileName);
+    }
+
+    @JsOverlay
+    public void downloadXLSX() {
+        download("xlsx");
+    }
+
+    @JsOverlay
+    public void downloadToTabXLSX() {
+        downloadToTab("xlsx");
+    }
+
+    //PDF
+    @JsOverlay
+    public void downloadPDF(String fileName, PDFDownloadConfig pdfDownloadConfig) {
+        download("pdf", fileName, pdfDownloadConfig);
+    }
+
+    @JsOverlay
+    public void downloadPDF(String fileName) {
+        download("pdf", fileName);
+    }
+
+    @JsOverlay
+    public void downloadPDF() {
+        download("pdf");
+    }
+
+    @JsOverlay
+    public void downloadToTabPDF() {
+        downloadToTab("pdf");
+    }
 
 }
