@@ -95,5 +95,6 @@ public interface ColumnComponent extends BaseComponent, Showable {
      */
     @JsType
     interface Lookup {
+        //todo
     }
 }

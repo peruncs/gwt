@@ -1,5 +1,8 @@
 package com.peruncs.gwt.tabulator;
 
+import jsinterop.annotations.JsType;
+
+@JsType
 public interface Showable {
 
     /**
@@ -21,6 +24,5 @@ public interface Showable {
      * returns a boolean to show if the group is visible, a value of true means it is visible.
      */
     boolean getVisibility();
-
 
 }

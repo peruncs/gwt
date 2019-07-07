@@ -17,6 +17,8 @@ public interface RowComponent extends BaseComponent {
      */
     Any getData();
 
+    Tabulator getTable();
+
 
     /**
      * Returns the Row Component for the next visible row in the table, if there is no next row it will return a value of false.
@@ -38,7 +40,7 @@ public interface RowComponent extends BaseComponent {
     /**
      * Returns the CellComponent for the specified column from this row.
      */
-    CellComponent getCell(String column);
+    CellComponent getCell(ColumnComponent.Lookup column);
 
     /**
      * Returns the index value for the row. (this is the value from the defined index column, NOT the row's position in the table)
@@ -62,18 +64,17 @@ public interface RowComponent extends BaseComponent {
     /**
      * Deletes the row, removing its data from the table.  By running them in the promise you ensure they are only run after the row has been deleted.
      */
-    <T> Promise<T> delete();
+    Promise<Void> delete();
 
     /**
      * Will scroll the table to the row if it passes the current filters.By running them in the promise you ensure they are only run after the row has been scrolled to.
      */
-    <T> Promise<T> scrollTo();
-
+    Promise<Void> scrollTo();
 
     /**
      * Will load the page for the row if it passes the current filters. By running them in the promise you ensure they are only run after the page has been loaded. This functionality is only available on local pagination. when using remote pagination Tabulator has ow way to lookup which page the requested row is on.
      */
-    <T> Promise<T> pageTo();
+    Promise<Void> pageTo();
 
     /**
      * You can move a row next to another row using the move function.
@@ -91,7 +92,7 @@ public interface RowComponent extends BaseComponent {
      * This object will not replace the row data, only the fields included in the object will be updated.
      * By running them in the promise you ensure they are only run after the row has been updated.
      */
-    <T> Promise<T> update(String[] fields);
+    Promise<Void> update(String[] fields);
 
     /**
      * select the current row.
@@ -107,6 +108,11 @@ public interface RowComponent extends BaseComponent {
      * will toggle the selected state the current row.
      */
     void toggleSelect();
+
+    /**
+     * return a boolean representing the current selected state of the row
+     */
+    boolean isSelected();
 
     /**
      * If you are making manual adjustments to elements contained within the row, it may sometimes be necessary to recalculate the height of all the cells in the row to make sure they remain aligned. Call the normalizeHeight function to do this.
@@ -155,7 +161,7 @@ public interface RowComponent extends BaseComponent {
     /**
      * update the row's data
      */
-    <T> Promise<T> update(Any data);
+    Promise<Void> update(Any data);
 
 
     /**
@@ -168,6 +174,7 @@ public interface RowComponent extends BaseComponent {
      */
     @JsType
     interface Lookup {
+        //todo
     }
 
 }

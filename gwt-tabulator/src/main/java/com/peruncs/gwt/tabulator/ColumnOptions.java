@@ -1,7 +1,11 @@
 package com.peruncs.gwt.tabulator;
 
+import com.peruncs.gwt.utils.Callback1;
+import com.peruncs.gwt.utils.Callback2;
 import com.peruncs.gwt.utils.CallbackRet1;
 import com.peruncs.gwt.utils.CallbackRet5;
+import elemental2.dom.MouseEvent;
+import elemental2.dom.TouchEvent;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 
@@ -308,4 +312,81 @@ public class ColumnOptions {
      */
     public DownloadReady downloadReady;
 
+    //Callbacks
+
+    /**
+     * Column Header Click.
+     * <p>
+     * The headerClick callback is triggered when a user left clicks on a column or group header, it can be set on a per column basis using the option in the columns definition object
+     */
+    public Callback2<MouseEvent, ColumnComponent> headerClick;
+
+    /**
+     * Column Header Double Click.
+     * <p>
+     * The headerDblClick callback is triggered when a user double clicks on a column or group header, it can be set on a per column basis using the option in the columns definition object
+     */
+    public Callback2<MouseEvent, ColumnComponent> headerDblClick;
+
+
+    /**
+     * Column Header Right Click.
+     * <p>
+     * The headerContext callback is triggered when a user right clicks on a column or group header, it can be set on a per column basis using the option in the columns definition object.
+     */
+    public Callback2<MouseEvent, ColumnComponent> headerContext;
+
+
+    /**
+     * Column Header Tap.
+     * <p>
+     * The headerTap callback is triggered when a user taps on the column header on a touch display, it can be set on a per column basis using the option in the columns definition object.
+     */
+    public Callback2<TouchEvent, ColumnComponent> headerTap;
+
+    /**
+     * Column Header Double Tap
+     * <p>
+     * The headerDblTap callback is triggered when a user taps on the column header on a touch display twice in under 300ms, it can be set on a per column basis using the option in the columns definition object.
+     */
+    public Callback2<TouchEvent, ColumnComponent> headerDblTap;
+
+
+    /**
+     * Column Header Tap Hold
+     * <p>
+     * The headerTapHold callback is triggered when a user taps on the column header on a touch display and holds their finger down for over 1 second, it can be set on a per column basis using the option in the columns definition object.
+     */
+    public Callback2<TouchEvent, ColumnComponent> headerTapHold;
+
+
+    /**
+     * Column Moved.
+     * <p>
+     * column - column component of the moved column.
+     * columns- array of columns in new order.
+     * The columnMoved callback will be triggered when a column has been successfuly moved.
+     */
+    public Callback2<ColumnComponent, ColumnComponent[]> columnMoved;
+
+    /**
+     * Column Resized.
+     * <p>
+     * The columnResized callback will be triggered when a column has been resized by the user.
+     */
+    public Callback1<ColumnComponent> columnResized;
+
+    /**
+     * Column Visibility Changed.
+     * <p>
+     * The columnVisibilityChanged callback is triggered whenever a column changes between hidden and visible states.
+     */
+    public Callback1<ColumnComponent, boolean> columnVisibilityChanged;
+
+    /**
+     * Column Title Changed
+     * <p>
+     * The columnTitleChanged callback is triggered whenever a user edits a column title when the editableTitle parameter has been enabled in the column definition array.
+     */
+    public Callback1<ColumnComponent> columnTitleChanged;
 }

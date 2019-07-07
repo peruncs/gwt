@@ -1,9 +1,6 @@
 package com.peruncs.gwt.tabulator;
 
-import com.peruncs.gwt.utils.Callback1;
-import com.peruncs.gwt.utils.Callback2;
-import com.peruncs.gwt.utils.CallbackRet1;
-import com.peruncs.gwt.utils.CallbackRet3;
+import com.peruncs.gwt.utils.*;
 import elemental2.core.JsMap;
 import elemental2.core.JsObject;
 import elemental2.dom.Event;
@@ -695,10 +692,25 @@ public class TabulatorOptions {
      * By default Tabulator includes column headers, row groups and column calculations in the download output.
      * <p>
      * You can choose to remove column headers groups, row groups or column calculations from the output data by setting the values in the downloadConfig option in the table definition.
-     *
+     * <p>
      * Availabilitity.
      * Not all downloaders support column header groups, row groups and column calculations, see the documentation for each downloader for full information.
      */
     public DownloadConfig downloadConfig;
+
+    //Callback
+
+    /**
+     * Table Building
+     * <p>
+     * When a the tabulator constructor is called, the tableBuilding callback will triggered
+     */
+    public Callback tableBuilding;
+
+    /**
+     * Table Built
+     * When a the tabulator constructor is called and the table has finished being rendered, the tableBuilt callback will triggered
+     */
+    public Callback tableBuilt;
 
 }

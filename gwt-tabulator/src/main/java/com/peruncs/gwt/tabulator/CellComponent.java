@@ -22,6 +22,11 @@ public interface CellComponent extends BaseComponent {
     Any getOldValue();
 
     /**
+     * The restoreOldValue reverts the value of the cell back to its previous value, without triggering any of the cell edit callbacks.
+     */
+    void restoreOldValue();
+
+    /**
      * returns the DOM node for the cell.
      */
     Node getElement();
@@ -32,10 +37,12 @@ public interface CellComponent extends BaseComponent {
      */
     Tabulator getTable();
 
+
     /**
      * returns the RowComponent for the row that contains the cell.
      */
     RowComponent getRow();
+
 
     /**
      * returns the ColumnComponent for the column that contains the cell.
@@ -72,7 +79,7 @@ public interface CellComponent extends BaseComponent {
     void edit();
 
     /**
-     * force the editor to open even if editable is set to false
+     * force the editor to open even if editable is set to false.
      */
     void edit(boolean forceEditor);
 
@@ -93,22 +100,22 @@ public interface CellComponent extends BaseComponent {
         /**
          * next editable cell on the left, if none available move to the right most editable cell on the row above.
          */
-        void prev();
+        boolean prev();
 
         /**
          * next editable cell on the right, if none available move to left most editable cell on the row below
          */
-        void next();
+        boolean next();
 
         /**
          * next editable cell on the left, return false if none available on row)
          */
-        void left();
+        boolean left();
 
         /**
          * next editable cell on the right, return false if none available on row
          */
-        void right();
+        boolean right();
 
         /**
          * move to the same cell in the row above
