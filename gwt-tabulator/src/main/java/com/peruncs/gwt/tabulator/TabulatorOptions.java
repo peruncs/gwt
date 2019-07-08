@@ -1,10 +1,13 @@
 package com.peruncs.gwt.tabulator;
 
 import com.peruncs.gwt.utils.*;
+import elemental2.core.JSONType;
 import elemental2.core.JsMap;
 import elemental2.core.JsObject;
-import elemental2.dom.Event;
+import elemental2.dom.MouseEvent;
 import elemental2.dom.Node;
+import elemental2.dom.TouchEvent;
+import elemental2.dom.XMLHttpRequest;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 import jsinterop.base.JsPropertyMap;
@@ -14,7 +17,7 @@ import jsinterop.base.JsPropertyMap;
  * Tabulator options.
  */
 @JsType
-public class TabulatorOptions {
+public class TabulatorOptions extends CellEventHandler {
 
     /**
      * See Table Layout documentation. Possible values:
@@ -102,18 +105,6 @@ public class TabulatorOptions {
      * Send sort data to the server instead of processing locally.
      */
     public boolean ajaxSorting;
-
-    /**
-     * The dataSorting callback is triggered whenever a sort event occurs, before sorting happens.
-     */
-    public Callback1<Sorter[]> dataSorting;
-
-
-    /**
-     * The dataSorted callback is triggered after the table dataset is sorted.
-     */
-    public Callback2<Sorter[], RowComponent[]> dataSorted;
-
 
     /**
      * Tabulator also allows you to define a row level formatter using the rowFormatter option. this lets you alter each row of the table based on the data it contains.
@@ -304,7 +295,7 @@ public class TabulatorOptions {
     /**
      * You can use the row component passed into any of Tabulator's callbacks to trigger tree events on that row.
      */
-    public Callback2<Event, RowComponent.Lookup> rowClick;
+    //public Callback2<MouseEvent, RowComponent.Lookup> rowClick;
 
     //Localization
 
@@ -713,4 +704,469 @@ public class TabulatorOptions {
      */
     public Callback tableBuilt;
 
+    /**
+     * Row Click.
+     * <p>
+     * The rowClick callback is triggered when a user clicks on a row.
+     */
+    public Callback2<MouseEvent, RowComponent> rowClick;
+
+
+    /**
+     * Row Double Click.
+     * <p>
+     * The rowDblClick callback is triggered when a user double clicks on a row.
+     */
+    public Callback2<MouseEvent, RowComponent> rowDblClick;
+
+
+    /**
+     * Row Context Menu.
+     * <p>
+     * The rowContext callback is triggered when a user right clicks on a row.
+     * <p>
+     * If you want to prevent the browsers context menu being triggered in this event you will need to include the preventDefault() function in your callback.
+     */
+    public Callback2<MouseEvent, RowComponent> rowContext;
+
+
+    /**
+     * Row Tap.
+     * <p>
+     * The rowTap callback is triggered when a user taps on a row on a touch display.
+     */
+    public Callback2<TouchEvent, RowComponent> rowTap;
+
+    /**
+     * Row Double Tap
+     * <p>
+     * The rowDblTap callback is triggered when a user taps on a row on a touch display twice in under 300ms.
+     */
+    public Callback2<TouchEvent, RowComponent> rowDblTap;
+
+    /**
+     * Row Tap Hold
+     * <p>
+     * The rowTapHold callback is triggered when a user taps on a row on a touch display and holds their finger down for over 1 second.
+     */
+    public Callback2<TouchEvent, RowComponent> rowTapHold;
+
+    /**
+     * Row Mouse Enter.
+     * <p>
+     * The rowMouseEnter callback is triggered when the mouse pointer enters a row
+     */
+    public Callback2<MouseEvent, RowComponent> rowMouseEnter;
+
+    /**
+     * Row Mouse Leave.
+     * <p>
+     * The rowMouseLeave callback is triggered when the mouse pointer leaves a row.
+     */
+    public Callback2<MouseEvent, RowComponent> rowMouseLeave;
+
+    /**
+     * Row Mouse Over.
+     * <p>
+     * The rowMouseOver callback is triggered when the mouse pointer enters a row or any of its child elements.
+     */
+    public Callback2<MouseEvent, RowComponent> rowMouseOver;
+
+    /**
+     * Row Mouse Out.
+     * <p>
+     * The rowMouseOut callback is triggered when the mouse pointer leaves a row or any of its child elements
+     */
+    public Callback2<MouseEvent, RowComponent> rowMouseOut;
+
+    /**
+     * Row Mouse Move.
+     * <p>
+     * The rowMouseMove callback is triggered when the mouse pointer moves over a row.
+     */
+    public Callback2<MouseEvent, RowComponent> rowMouseMove;
+
+    /**
+     * Row Added
+     * <p>
+     * The rowAdded callback is triggered when a row is added to the table by the addRow and updateOrAddRow functions.
+     */
+    public Callback1<RowComponent> rowAdded;
+
+    /**
+     * Row Updated.
+     * <p>
+     * The rowUpdated callback is triggered when a row is updated by the updateRow, updateOrAddRow, updateData or updateOrAddData, functions.
+     */
+    public Callback1<RowComponent> rowUpdated;
+
+    /**
+     * Row Deleted.
+     * <p>
+     * The rowDeleted callback is triggered when a row is deleted from the table by the deleteRow function.
+     */
+    public Callback1<RowComponent> rowDeleted;
+
+    /**
+     * Row Resized.
+     * <p>
+     * The rowResized callback will be triggered when a row has been resized by the user.
+     */
+    public Callback1<RowComponent> rowResized;
+
+    //Data Callbacks
+
+    /**
+     * Data Loading.
+     * <p>
+     * The dataLoading callback is triggered whenever new data is loaded into the table.
+     */
+    public Callback1<Any> dataLoading;
+
+    /**
+     * Data Loaded.
+     * <p>
+     * The dataLoaded callback is triggered when a new set of data is loaded into the table.
+     */
+    public Callback1<Any> dataLoaded;
+
+    /**
+     * Data Edited.
+     * <p>
+     * The dataEdited callback is triggered whenever the table data is changed by the user. Triggers for this include editing any cell in the table, adding a row and deleting a row.
+     */
+    public Callback1<Any> dataEdited;
+
+    /**
+     * HTML Importing.
+     * <p>
+     * The htmlImporting callback is triggered when Tabulator starts importing data from an HTML table.
+     */
+    public Callback htmlImporting;
+
+
+    //Ajax Callbacks
+
+    /**
+     * Ajax Request.
+     * <p>
+     * url - the URL of the request
+     * params - the parameters passed with the request
+     * The ajaxRequesting callback is triggered when ever an ajax request is made.
+     * <p>
+     * Returning a value of false from this callback will abort the ajax request
+     */
+    public CallbackRet2<String, Any, boolean> ajaxRequesting;
+
+    /**
+     * Ajax Response.
+     * <p>
+     * url - the URL of the request
+     * params - the parameters passed with the request
+     * response - the JSON object returned in the body of the response.
+     * <p>
+     * The ajaxResponse callback is triggered when a successful ajax request has been made. This callback can also be used to modify the received data before it is parsed by the table. If you use this callback it must return the data to be parsed by Tabulator, otherwise no data will be rendered.
+     */
+    public CallbackRet2<String, Any, JSONType> ajaxResponse;
+
+    /**
+     * Ajax Error.
+     * <p>
+     * xhr - the XHR object
+     * textStatus - error type
+     * errorThrown - text portion of the HTTP status
+     * <p>
+     * The ajaxError callback is triggered there is an error response to an ajax request.
+     */
+    public CallbackRet2<XMLHttpRequest, String, String> ajaxError;
+
+    //Filter Callbacks
+
+    /**
+     * Data Filtering.
+     * <p>
+     * filters - array of filters currently applied.
+     * <p>
+     * The dataFiltering callback is triggered whenever a filter event occurs, before the filter happens.
+     */
+    public Callback1<Filter[]> dataFiltering;
+
+
+    /**
+     * Data Filtered.
+     * <p>
+     * filters - array of filters currently applied
+     * rows - array of row components that pass the filters
+     * <p>
+     * The dataFiltered callback is triggered after the table dataset is filtered.
+     */
+    public Callback2<Filter[], RowComponent[]> dataFiltered;
+
+    //Sorting Callbacks
+
+    /**
+     * Data Sorting
+     * sorters - an array of the sorters currently applied
+     * The dataSorting callback is triggered whenever a sort event occurs, before sorting happens.
+     */
+    public Callback1<Sorter[]> dataSorting;
+
+    /**
+     * Data Sorted
+     * <p>
+     * sorters - array of the sorters currently applied
+     * rows - array of row components in their new order
+     * <p>
+     * The dataSorted callback is triggered after the table dataset is sorted.
+     */
+    public Callback2<Sorter[], RowComponent[]> dataSorted;
+
+
+    // Layout Callbacks
+
+    /**
+     * Render Started
+     * <p>
+     * The renderStarted callback is triggered whenever all the rows in the table are about to be rendered. This can include:
+     * <p>
+     * Data is loaded into the table when setData is called
+     * A page is loaded through any form of pagination
+     * Rows are added to the table during progressive rendering
+     * Columns are changed by setColumns
+     * The data is filtered
+     * The data is sorted
+     * The redraw function is called
+     */
+    public Callback renderStarted;
+
+    /**
+     * Render Complete.
+     * <p>
+     * The renderComplete callback is triggered after the table has been rendered.
+     */
+    public Callback renderComplete;
+
+
+    //Pagination Callbacks
+
+    /**
+     * Page Loaded.
+     * <p>
+     * pageno - the number of the loaded page.
+     * <p>
+     * Whenever a page has been loaded, the pageLoaded callback is called, passing the current page number as an argument.
+     */
+    public Callback<int> pageLoaded;
+
+    //Localization
+    /**
+     * Table Localized.
+     * <p>
+     * locale - a string representing the current locale
+     * lang - the language object for the current locale
+     * <p>
+     * When a localization event has occurred , the localized callback will triggered, passing the current locale code and language object.
+     */
+    public Callback2<String, Any> localized;
+
+    //Group Callbacks
+    /**
+     * Data Grouping.
+     * <p>
+     * The dataGrouping callback is triggered whenever a data grouping event occurs, before grouping happens.
+     */
+    public Callback dataGrouping;
+
+    /**
+     * Data Grouped.
+     * <p>
+     * groups - array of top level group components
+     * <p>
+     * The dataGrouped callback is triggered whenever a data grouping event occurs, after grouping happens.
+     */
+    public Callback1<GroupComponent[]> localized;
+
+    /**
+     * Group Visibility Changed.
+     * <p>
+     * group - group component
+     * visible - is group visible (true = visible, false = hidden)
+     * <p>
+     * The groupVisibilityChanged callback is triggered whenever a group changes between hidden and visible states.
+     */
+    public Callback2<GroupComponent, boolean> groupVisibilityChanged;
+
+    /**
+     * Group Click.
+     * <p>
+     * e - the click event object
+     * group - group component
+     * <p>
+     * The groupClick callback is triggered when a user clicks on a group header.
+     */
+    public Callback2<MouseEvent, GroupComponent> groupClick;
+
+    /**
+     * Group Double Click.
+     * <p>
+     * e - the click event object
+     * group - group component
+     * <p>
+     * The groupDblClick callback is triggered when a user double clicks on a group header.
+     */
+    public Callback2<MouseEvent, GroupComponent> groupDblClick;
+
+
+    /**
+     * The groupContext callback is triggered when a user right clicks on a group header.
+     * <p>
+     * e - the click event object
+     * group - group component
+     * <p>
+     * If you want to prevent the browsers context menu being triggered in this event you will need to include the e.preventDefault() function in your callback.
+     */
+    public Callback2<MouseEvent, GroupComponent> groupContext;
+
+    /**
+     * Group Tap.
+     * <p>
+     * e - the tap event object
+     * group - group component
+     * <p>
+     * The groupTap callback is triggered when a user taps on a group header on a touch display.
+     */
+    public Callback2<TouchEvent, GroupComponent> groupTap;
+
+    /**
+     * Group Double Tap.
+     * <p>
+     * e - the tap event object
+     * group - group component
+     * <p>
+     * The groupDblTap callback is triggered when a user taps on a group header on a touch display twice in under 300ms.
+     */
+    public Callback2<TouchEvent, GroupComponent> groupDblTap;
+
+    /**
+     * Group Tap Hold.
+     * <p>
+     * e - the tap event object
+     * group - group component
+     * <p>
+     * The groupTapHold callback is triggered when a user taps on a group header on a touch display and holds their finger down for over 1 second.
+     */
+    public Callback2<TouchEvent, GroupComponent> groupTapHold;
+
+
+    // Selection Callbacks
+
+    /**
+     * Row Selected.
+     * <p>
+     * row - row component for the selected row
+     * <p>
+     * The rowSelected event is triggered when a row is selected, either by the user or programatically.
+     */
+    public Callback1<RowComponent> rowSelected;
+
+    /**
+     * Row Deselected.
+     * <p>
+     * The rowDeselected event is triggered when a row is deselected, either by the user or programatically.
+     */
+    public Callback1<RowComponent> rowDeselected;
+
+    /**
+     * Row Selection Changed.
+     * <p>
+     * rows - array of row components for the selected rows in order of selection
+     * data - array of data objects for the selected rows in order of selection
+     * <p>
+     * Whenever the number of selected rows changes, through selection or deselection, the rowSelectionChanged event is triggered. This passes an array of the data objects for each row in the order they were selected as the first argument, and an array of row components for each of the rows in order of selection as the second argument.
+     */
+    public Callback2<RowComponent[], Any[]> rowSelectionChanged;
+
+
+    // Row Movement Callbacks
+    /**
+     * Sending Start.
+     * <p>
+     * toTables - array of receiving table elements
+     * <p>
+     * The movableRowsSendingStart callback is triggered on the sending table when a row is picked up from a sending table.
+     */
+    public Callback1<Tabulator[]> movableRowsSendingStart;
+
+
+    /**
+     * Row Sent.
+     * <p>
+     * fromRow - the row component from the sending table
+     * toRow - the row component from the receiving table (if available)
+     * toTable - the Tabulator object for the receiving table
+     * <p>
+     * The movableRowsSent callback is triggered on the sending table when a row has been successfuly received by a receiving table.
+     */
+    public Callback3<RowComponent, RowComponent, Tabulator> movableRowsSent;
+
+
+    /**
+     * Row Sent Failed.
+     * <p>
+     * fromRow - the row component from the sending table
+     * toRow - the row component from the receiving table (if available)
+     * toTable - the Tabulator object for the receiving table
+     * <p>
+     * The movableRowsSentFailed callback is triggered on the sending table when a row has failed to be received by the receiving table.
+     */
+    public Callback3<RowComponent, RowComponent, Tabulator> movableRowsSentFailed;
+
+    /**
+     * Sending Stop
+     * <p>
+     * toTables - array of receiving table elements
+     * <p>
+     * The movableRowsSendingStop callback is triggered on the sending table after a row has been dropped and any senders and receivers have been handled.
+     */
+    public Callback1<Tabulator[]> movableRowsSendingStop;
+
+    /**
+     * Receiving Start.
+     * fromRow - the row component from the sending table
+     * fromTable - the Tabulator object for the sending table
+     * The movableRowsReceivingStart callback is triggered on a receiving table when a connection is established with a sending table.
+     */
+    public Callback2<RowComponent, Tabulator> movableRowsReceivingStart;
+
+    /**
+     * Row Received.
+     * <p>
+     * fromRow - the row component from the sending table
+     * toRow - the row component from the receiving table (if available)
+     * fromTable - the Tabulator object for the sending table
+     * <p>
+     * The movableRowsReceived callback is triggered on a receiving table when a row has been successfuly received.
+     */
+    public Callback3<RowComponent, RowComponent, Tabulator> movableRowsReceived;
+
+
+    /**
+     * Row Received Failed
+     * <p>
+     * fromRow - the row component from the sending table
+     * toRow - the row component from the receiving table (if available)
+     * fromTable - the Tabulator object for the sending table
+     * <p>
+     * The movableRowsReceivedFailed callback is triggered on a receiving table when a row receiver has returned false.
+     */
+    public Callback3<RowComponent, RowComponent, Tabulator> movableRowsReceivedFailed;
+
+    /**
+     * Receiving Stop.
+     * <p>
+     * fromTable - the Tabulator object for the sending table
+     * <p>
+     * The movableRowsReceivingStop callback is triggered on a receiving table after a row has been dropped and any senders and receivers have been handled.
+     */
+    public Callback1<Tabulator> movableRowsReceivingStop;
 }

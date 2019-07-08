@@ -10,7 +10,7 @@ import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 
 @JsType
-public class ColumnOptions {
+public class ColumnOptions extends CellEventHandler {
     /**
      * Required. This is the title that will be displayed in the header for this column
      */
