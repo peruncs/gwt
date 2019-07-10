@@ -11,7 +11,7 @@ import jsinterop.annotations.JsType;
  */
 @JsType
 public class ClipboardPasteAction {
-
+//todo
 //    You can also pass a custom action function into the clipboardPasteAction property, it should take one argument of the row data from the paste parse function and trigger an action on the table and where possible return the row objects that are created
 //
 //    var table = new Tabulator("#example-table", {

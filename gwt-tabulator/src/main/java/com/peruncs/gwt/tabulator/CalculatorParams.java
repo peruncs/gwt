@@ -12,7 +12,7 @@ public interface CalculatorParams {
         BooleanOrInt precision;
     }
 
-
+     //todo
     // This can be
     //    function paramLookup(values, data){
     //        //values - array of column values

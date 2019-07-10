@@ -5,6 +5,8 @@ import jsinterop.annotations.JsType;
 @JsType
 public class MutatorAccessorUnionType {
 
+    //todo
+
     //Can by Any
 // or
 

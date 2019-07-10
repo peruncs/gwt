@@ -4,6 +4,7 @@ import jsinterop.annotations.JsType;
 
 @JsType
 public interface Validator {
+   //todo
 
     //1.  can be string
     //2. can be array of validators

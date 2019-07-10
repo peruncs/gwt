@@ -4,6 +4,8 @@ import jsinterop.annotations.JsType;
 
 @JsType
 public class GroupStartOpenUnion {
+    //todo
+
 //    groupStartOpen:
 //      This can take one of three possible values:
 //      true - all groups start open (default value)

@@ -4,6 +4,7 @@ import jsinterop.annotations.JsType;
 
 @JsType
 public class MovableRowsSender {
+//todo
 
 //    Can be:
 //      "delete string"

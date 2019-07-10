@@ -4,6 +4,7 @@ import jsinterop.annotations.JsType;
 
 @JsType
 public class MovablerowsReceiver {
+//todo
 
 //    Can be a string:
 //

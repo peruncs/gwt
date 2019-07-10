@@ -8,7 +8,6 @@ import jsinterop.annotations.JsType;
 @JsType(isNative = true)
 public interface GroupComponent extends BaseComponent {
 
-
     /**
      * returns the unique key that is shared between all rows in this group.
      */

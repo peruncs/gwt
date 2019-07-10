@@ -4,6 +4,8 @@ import jsinterop.annotations.JsType;
 
 @JsType
 public class HeaderFilterFunc {
+   // todo
+
     //Can be string
     //can be Callback :
 //    function customHeaderFilter(headerValue, rowValue, rowData, filterParams){

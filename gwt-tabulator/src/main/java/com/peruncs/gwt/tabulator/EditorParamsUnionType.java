@@ -6,7 +6,7 @@ import jsinterop.base.Any;
 
 @JsType
 public class EditorParamsUnionType {
-
+//todo
 //    Can be Any
 //
 //       or

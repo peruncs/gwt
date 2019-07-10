@@ -5,7 +5,7 @@ import jsinterop.annotations.JsType;
 
 @JsType
 public class Selectable {
-
+//todo
 //    String or Boolean or Integer :
 //    The selectable option can take one of a several values:
 //

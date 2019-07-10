@@ -1,7 +1,7 @@
 package com.peruncs.gwt.tabulator;
 
 public class EditorUnionType {
-
+//todo
     // Can be string for standard editor
 
     // Can be boolean for default

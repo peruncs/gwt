@@ -17,5 +17,6 @@ import jsinterop.annotations.JsType;
  */
 @JsType
 public class ClipboardCopySelector {
+    //todo
     //Can be String or CallbackRet1<boolean showHeaders, Any[]>
 }
