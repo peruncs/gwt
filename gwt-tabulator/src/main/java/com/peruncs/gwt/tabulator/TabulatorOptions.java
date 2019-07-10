@@ -1169,4 +1169,118 @@ public class TabulatorOptions extends CellEventHandler {
      * The movableRowsReceivingStop callback is triggered on a receiving table after a row has been dropped and any senders and receivers have been handled.
      */
     public Callback1<Tabulator> movableRowsReceivingStop;
+
+    //Validation Callbacks
+
+    /**
+     * Validation Failed.
+     * <p>
+     * cell - cell component for the edited cell
+     * value - the value that failed validation
+     * validators - an array of validator objects that failed
+     * <p>
+     * The validationFailed event is triggered when the value entered into a cell during an edit fails to pass validation.
+     */
+    public Callback3<CellComponent, Any, Validator[]> validationFailed;
+
+    //History Callbacks
+
+    /**
+     * Undo Occurred.
+     * <p>
+     * action - the action that has been undone, "cellEdit", "rowAdd", "rowDelete", "rowMoved".
+     * component - the Component object afected by the action (colud be a row or cell component)
+     * data - the data being changed
+     * <p>
+     * The historyUndo event is triggered when the undo action is triggered.
+     */
+    public Callback3<String, BaseComponent, Any> historyUndo;
+
+    public Callback3<String, BaseComponent, Any> historyRedo;
+
+    //Clipboard Callbacks
+
+    /**
+     * Data Copied to Clipboard.
+     * <p>
+     * clipboard - the string that has been copied into the clipboard.
+     * <p>
+     * The clipboardCopied event is triggered whenever data is copied to the clipboard.
+     */
+    public Callback1<String> clipboardCopied;
+
+    /**
+     * Data Pasted into Table.
+     * <p>
+     * clipboard - the clipboard string
+     * rowData - the row data from the paste parser
+     * rows - the row components from the paste action (this will be empty if the "replace" action is used)
+     * <p>
+     * The clipboardPasted event is triggered whenever data is successfuly pasted into the table.
+     */
+    public Callback3<String, Any, RowComponent[]> clipboardPasted;
+
+    /**
+     * Data Paste into Table Failed.
+     * <p>
+     * clipboard - the string that has been copied into the clipboard.
+     * <p>
+     * The clipboardPasteError event is triggered whenever an attempt to paste data into the table has failed because it was rejected by the paste parser.
+     */
+    public Callback1<String> clipboardPasteError;
+
+
+    //Download Callbacks
+
+    /**
+     * Mutate Data Before Download.
+     * <p>
+     * If you want to make any changes to the table data before it is parsed into the download file you can pass a mutator function to the downloadDataFormatter callback.
+     */
+    public CallbackRet1<Any, Any> downloadDataFormatter;
+
+    /**
+     * Intercept & Manipulate Download Blob.
+     *
+     * The downloadReady callback allows you to intercept the download file data before the users is prompted to save the file.
+     *
+     * In order for the download to proceed the downloadReady callback is expected to return a blob of file to be downloaded.
+     *
+     * If you would prefer to abort the download you can return false from this callback. This could be useful for example if you want to send the created file to a server via ajax rather than allowing the user to download the file.
+     *
+     *   fileContents - the unencoded contents of the file
+     *   blob - the blob object for the download
+     */
+    public CallbackRet2<Any, Any,BooleanOrAny> downloadReady;
+
+    /**
+     * Download Complete.
+     *
+     * The downloadComplete callback is triggered when the user has been prompted to download the file.
+     */
+    public Callback downloadComplete;
+
+    //Data Tree Callbacks
+
+    /**
+     * Row Expanded.
+     *
+     *  row - the row component for the expanded row
+     *  level - the depth of the row in the tree
+     *
+     * The dataTreeRowExpanded callback is triggered when a row with child rows is expanded to reveal the children.
+     */
+    public Callback2<RowComponent, int> dataTreeRowExpanded;
+
+
+    /**
+     * Row Collapsed.
+     *
+     *  row - the row component for the expanded row.
+     *  level - the depth of the row in the tree.
+     *
+     * The dataTreeRowCollapsed callback is triggered when a row with child rows is collapsed to hide its children.
+     */
+    public Callback2<RowComponent, int> dataTreeRowCollapsed ;
+
 }
