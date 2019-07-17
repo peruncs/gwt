@@ -1,6 +1,5 @@
 package com.peruncs.gwt.tabulator;
 
-import com.peruncs.gwt.utils.*;
 import elemental2.core.JSONType;
 import elemental2.core.JsMap;
 import elemental2.core.JsObject;
@@ -17,7 +16,7 @@ import jsinterop.base.JsPropertyMap;
  * Tabulator options.
  */
 @JsType
-public class TabulatorOptions extends CellEventHandler {
+public class TabulatorOptions extends CellEvent {
 
     /**
      * See Table Layout documentation. Possible values:
@@ -384,12 +383,6 @@ public class TabulatorOptions extends CellEventHandler {
      */
     public boolean ajaxFiltering;
 
-    //Calculation Functions
-
-    public Calculator topCalc;
-    public CalculatorParams topCalcParams;
-    public Calculator bottomCalc;
-    public CalculatorParams bottomCalcParams;
 
     /**
      * By default column calculations are shown at the top and bottom of the table, unless row grouping is enabled, in which case they are shown at the top and bottom of each group.
@@ -494,7 +487,7 @@ public class TabulatorOptions extends CellEventHandler {
      * You can also pass a callback to the movableRowsReceiver option for custom receiver functionality. the callback must return a boolean to indicate whether the drop should be considered successful or not (eg. you may want to reject a drop if it was not on a row)
      */
 
-    public MovablerowsReceiver movableRowsReceiver;
+    public MovableRowsReceiver movableRowsReceiver;
 
 
     /**

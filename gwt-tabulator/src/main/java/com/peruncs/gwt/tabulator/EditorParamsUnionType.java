@@ -120,7 +120,7 @@ public class EditorParamsUnionType {
         public boolean showListOnEmpty;
         public boolean freetext;
         public boolean allowEmpty;
-
+        //todo
         //        searchFunc:function(term, values){ //search for exact matches
         //            var matches = []
         //

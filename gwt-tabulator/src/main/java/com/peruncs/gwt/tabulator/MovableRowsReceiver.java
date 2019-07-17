@@ -3,7 +3,7 @@ package com.peruncs.gwt.tabulator;
 import jsinterop.annotations.JsType;
 
 @JsType
-public class MovablerowsReceiver {
+public class MovableRowsReceiver {
 //todo
 
 //    Can be a string:

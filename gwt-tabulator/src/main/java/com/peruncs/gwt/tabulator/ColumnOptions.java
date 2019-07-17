@@ -10,7 +10,7 @@ import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 
 @JsType
-public class ColumnOptions extends CellEventHandler {
+public class ColumnOptions extends CellEvent {
     /**
      * Required. This is the title that will be displayed in the header for this column
      */
@@ -389,4 +389,12 @@ public class ColumnOptions extends CellEventHandler {
      * The columnTitleChanged callback is triggered whenever a user edits a column title when the editableTitle parameter has been enabled in the column definition array.
      */
     public Callback1<ColumnComponent> columnTitleChanged;
+
+
+    //Column calculation functions
+
+    public Calculator topCalc;
+    public CalculatorParams topCalcParams;
+    public Calculator bottomCalc;
+    public CalculatorParams bottomCalcParams;
 }
