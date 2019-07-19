@@ -2,11 +2,11 @@ package com.peruncs.gwt.tabulator;
 
 import elemental2.core.JSONType;
 import elemental2.core.JsMap;
-import elemental2.core.JsObject;
 import elemental2.dom.MouseEvent;
 import elemental2.dom.Node;
 import elemental2.dom.TouchEvent;
 import elemental2.dom.XMLHttpRequest;
+import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 import jsinterop.base.JsPropertyMap;
@@ -34,7 +34,7 @@ public class TabulatorOptions extends CellEvent {
      * "cell" - enable column resizing from cells only
      * false - disable column resizing
      */
-    public StringOrBoolean resizableColumns;
+    public BooleanOr<String> resizableColumns;
     /**
      * Minimum column width in px
      */
@@ -168,10 +168,10 @@ public class TabulatorOptions extends CellEvent {
     public int paginationButtonCount = 5;
     /**
      * Enable page size select element and generate list options.
-     * <p>
+     *
      * If you would like the user to be able to set the number of rows on each page, you can use the paginationSizeSelector option, which will add a page size selection select element to the table footer.
      */
-    public BooleanOrIntArray paginationSizeSelector;
+    public BooleanOr<Integer[]> paginationSizeSelector;
 
     //Pagination Control Element
     /**
@@ -208,7 +208,7 @@ public class TabulatorOptions extends CellEvent {
      * "header" - toggle group on click anywhere on the group header element
      * false - prevent clicking anywhere in the group toggling the group
      */
-    public StringOrBoolean groupToggleElement;
+    public BooleanOr groupToggleElement;
 
     /**
      * By default Tabulator will create groups for rows based on the values contained in the row data. if you want to explicitly define which field values groups should be created for at each level, you can use the groupValues option.
@@ -219,7 +219,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * If you want to only specify groups for some of the levels, you can pass a value of false into the levels where you want Tabulator to decide on the grouping.
      */
-    public JsObject[][] groupValues;
+    public Object[][] groupValues;
     /**
      * To keep the layout of the columns consistent, once the column widths have been set on the first data load (either from the data property in the constructor or the setData function) they will not be changed when new data is loaded.
      * If you would prefer that the column widths adjust to the data each time you load it into the table you can set the layoutColumnsOnNewData property to true.
@@ -233,7 +233,7 @@ public class TabulatorOptions extends CellEvent {
      * "collapse" - the values from hidden columns will be displayed in a title/value list under the row.
      * true - enable responsive layouts
      */
-    StringOrBoolean responsiveLayout;
+    BooleanOr<String> responsiveLayout;
     /**
      * return request url.
      * <p>
@@ -301,7 +301,7 @@ public class TabulatorOptions extends CellEvent {
     /**
      * You can either pass in a string matching one of the language options you have defined, or pass in the boolean true which will cause Tabulator to auto-detect the browsers language settings from the navigator.language object
      */
-    public StringOrBoolean locale;
+    public BooleanOr<String> locale;
 
     /**
      * You can store as many languages as you like, creating an object inside the langs object with a property of the locale code for that language. A list of locale codes can be found here.  if Tabulator cant find a match, it will try and find the next best thing
@@ -392,7 +392,7 @@ public class TabulatorOptions extends CellEvent {
      * table - show calcs at top and bottom of the table only
      * group - show calcs in groups only
      */
-    public StringOrBoolean columnCalcs;
+    public BooleanOr<String> columnCalcs;
 
 
     /**
@@ -449,12 +449,16 @@ public class TabulatorOptions extends CellEvent {
 
     /**
      * If you would prefer to use different key combinations then that is no problem, you can use the keybindings option to change any of the above bindings.
-     * <p>
+     *
      * The keybindings option takes an object that should consist of properties with the name of the action you wish to bind and a value of the key code string.
-     * <p>
+     *
      * The key code should consist of the keycodes for the keys to be pressed, separated by the + symbol. The exceptions to this are ctrl and shift which should be used to check that the ctrl or shift keys are pressed as well.
+     *
+     * To disable any of the default keybindings, pass a value of false to is property in the keybindings option.
+     *
+     * To disable all key bindings set the keybindings option to false.
      */
-    public BooleanOrJsPropertyMap<String> keybindings;
+    public BooleanOr<JsPropertyMap<String>> keybindings;
 
 
     //Movable Rows and Columns
@@ -583,7 +587,7 @@ public class TabulatorOptions extends CellEvent {
      * cookie - (string) Store the persistence information in a cookie
      * true - (boolean) check if localStorage is available and store persistence information, otherwise store in cookie (Default option)
      */
-    public StringOrBoolean persistenceMode;
+    public BooleanOr<String> persistenceMode;
 
 
     /**
@@ -633,7 +637,7 @@ public class TabulatorOptions extends CellEvent {
      * "paste" - enable only paste functionality
      * false - disable all clipboard functionality (default)
      */
-    public StringOrBoolean clipboard;
+    public BooleanOr<String> clipboard;
 
 
     /**
@@ -1233,18 +1237,22 @@ public class TabulatorOptions extends CellEvent {
     public CallbackRet1<Any, Any> downloadDataFormatter;
 
     /**
-     * Intercept & Manipulate Download Blob.
-     *
      * The downloadReady callback allows you to intercept the download file data before the users is prompted to save the file.
-     *
-     * In order for the download to proceed the downloadReady callback is expected to return a blob of file to be downloaded.
-     *
-     * If you would prefer to abort the download you can return false from this callback. This could be useful for example if you want to send the created file to a server via ajax rather than allowing the user to download the file.
-     *
-     *   fileContents - the unencoded contents of the file
-     *   blob - the blob object for the download
      */
-    public CallbackRet2<Any, Any,BooleanOrAny> downloadReady;
+    @JsFunction
+    @FunctionalInterface
+    interface DownloadReadyCallback {
+        /**
+         * callback.
+         *
+         * @param fileContents - - the unencoded contents of the file
+         * @param blob         - the blob object for the download
+         * @return In order for the download to proceed the downloadReady callback is expected to return a blob of file to be downloaded. If you would prefer to abort the download you can return false from this callback. This could be useful for example if you want to send the created file to a server via ajax rather than allowing the user to download the file.
+         */
+        BooleanOr<Any> beforeUserSaves(Any fileContents, Any blob);
+    }
+
+    public DownloadReadyCallback downloadReady;
 
     /**
      * Download Complete.

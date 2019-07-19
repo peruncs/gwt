@@ -16,7 +16,7 @@ public class FormatterParamsProgress extends FormatterParamsTraffic {
     /**
      * The text colour for the legend, has the same range of value options as the color property.
      */
-    public ColorUnion legendColor;
+    public Color legendColor;
 
 
     /**

@@ -89,7 +89,7 @@ public class Tabulator {
     /**
      * returns number of rows allowed per page
      */
-    native public BooleanOrInt getPageSize();
+    native public BooleanOr<Integer> getPageSize();
 
     /**
      * You can change the page size at any point by using the setPageSize function. (this setting will be ignored if using remote pagination with the page size set by the server)
@@ -99,12 +99,12 @@ public class Tabulator {
     /**
      * returns current page
      */
-    native public BooleanOrInt getPage();
+    native public BooleanOr<Integer> getPage();
 
     /**
      * returns maximum page
      */
-    native public BooleanOrInt getPageMax();
+    native public BooleanOr<Integer> getPageMax();
 
 
     /**
@@ -139,7 +139,7 @@ public class Tabulator {
      *
      * @param locale
      */
-    native public void setLocale(StringOrBoolean locale);
+    native public void setLocale(BooleanOr<String> locale);
 
     native public String getLocale();
 

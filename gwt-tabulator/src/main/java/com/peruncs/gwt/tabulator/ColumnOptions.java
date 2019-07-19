@@ -281,7 +281,7 @@ public class ColumnOptions extends CellEvent {
      * <p>
      * Alternatively you can pass a string to this parameter containing any of the standard editors listed in the Manipulating Data section
      */
-    public StringOrBoolean headerFilter;
+    public BooleanOr<String> headerFilter;
 
     /**
      * You can pass an optional additional parameter with the header filter, headerFilterParams that should contain an object with additional information for configuring the header filter element. This will be passed to the editor in the column header instead of the editorParams property.

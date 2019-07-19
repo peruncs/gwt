@@ -95,7 +95,7 @@ public class EditorParamsUnionType {
     public static class Select {
         public CallbackRet2<Any, String, Any> listItemFormatter;
         public String sortValuesList;
-        public BooleanOrArray<Any> values;
+        public BooleanOr<Any[]> values;
     }
 
 

@@ -12,7 +12,7 @@ public interface CalculatorParams {
     /**
      * The number of decimals to display (default is 2), setting this value to false will display however many decimals are provided with the number
      */
-    static CalculatorParams of(BooleanOrInt precision) {
+    static CalculatorParams of(BooleanOr<Integer> precision) {
         return Js.cast(JsPropertyMap.of("precision", precision));
     }
 

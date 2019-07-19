@@ -9,7 +9,7 @@ public class ClipboardCopyConfig {
      * "columns" - include only the actual column headers, ignore grouping
      * false - do not include any column headers in the clipboard output
      */
-    public StringOrBoolean columnHeaders;
+    public BooleanOr<String> columnHeaders;
 
     /**
      * Row groups will only be included in the clipboard output if the active cope selector is used.
