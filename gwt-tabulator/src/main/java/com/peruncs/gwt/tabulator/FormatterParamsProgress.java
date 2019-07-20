@@ -21,10 +21,10 @@ public class FormatterParamsProgress extends FormatterParamsTraffic {
 
     /**
      * The text alignment for the legend, this can be:
-     *  - center - center align text (default)
-     *  - left - left align text
-     *  - right - right align text
-     *  - justify - stretch out text to fit line
+     *   "center" - center align text (default)
+     *   "left" - left align text
+     *   "right" - right align text
+     *   "justify" - stretch out text to fit line
      */
     public String legendAlign;
 
