@@ -29,7 +29,7 @@ public class ColumnOptions extends CellEvent {
     /**
      * Sets the width of this column, this can be set in pixels or as a percentage of total table width (if not set the system will determine the best)
      */
-    public StringOrInteger width;
+    public StringOr<Integer> width;
 
     /**
      * sets the minimum width of this column, this should be set in pixels (this takes priority over the global option of columnMinWidth)

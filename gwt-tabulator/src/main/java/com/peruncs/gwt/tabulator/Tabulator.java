@@ -1,8 +1,6 @@
 package com.peruncs.gwt.tabulator;
 
-import com.peruncs.gwt.utils.CallbackRet;
-import com.peruncs.gwt.utils.CallbackRet1;
-import com.peruncs.gwt.utils.CallbackRet2;
+
 import elemental2.dom.Element;
 import elemental2.promise.Promise;
 import jsinterop.annotations.JsOverlay;
@@ -65,26 +63,25 @@ public class Tabulator {
      * "next" - show the next page
      * "last" - show the last page
      *
-     * @param p
-     * @param <T>
-     * @return
+     * @param p - the page number.
+     * @return a promise.
      */
-    native public <T> Promise<T> setPage(StringOrInteger p);
+    native public Promise<Void> setPage(StringOr<Integer> p);
 
     /**
      * You can change to show the next page using the nextPage function.
      */
-    native public <T> Promise<T> nextPage();
+    native public Promise<Void> nextPage();
 
     /**
      * You can change to show the previous page using the nextPage function.
      */
-    native public <T> Promise<T> previousPage();
+    native public Promise<Void> previousPage();
 
     /**
      * You can load the page for a specific row using the setPageToRow function and passing in any of the standard row component look up options for the row you want to scroll to.
      */
-    native public <T> Promise<T> setPageToRow(int row);
+    native public Promise<Void> setPageToRow(int row);
 
     /**
      * returns number of rows allowed per page
@@ -650,9 +647,9 @@ public class Tabulator {
     /**
      * If you want to create a custom file type from the table data then you can pass a function to the type argument, instead of a string value. At the end of this function you must call the setFileContents function, passing the formatted data and the mime type.
      */
-    native  void download(CustomFileFormatter<?> customFileFormatter);
+    native void download(CustomFileFormatter<?> customFileFormatter);
 
-    native  void download(CustomFileFormatter<?> customFileFormatter, String fileNames);
+    native void download(CustomFileFormatter<?> customFileFormatter, String fileNames);
 
     native <O> void download(CustomFileFormatter<O> customFileFormatter, String fileName, O options);
 
@@ -660,7 +657,6 @@ public class Tabulator {
      * If you want to open the generated file in a new browser tab rather than downloading it straight away, you can use the downloadToTab function. This is particularly useful with the PDF downloader, as it allows you to preview the resulting PDF in a new browser tab
      */
     native void downloadToTab(String fileType);
-
 
 
     //CSV

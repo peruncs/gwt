@@ -138,6 +138,7 @@ public interface CellComponent extends BaseComponent {
      */
     @JsType
     interface Lookup {
+        //todo
     }
 
 }

@@ -1,5 +1,6 @@
 package com.peruncs.gwt.tabulator;
 
+import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsType;
 
 @JsType
@@ -27,7 +28,14 @@ public class FormatterParamsLink {
     /**
      * Representing the url, or a function which must return the string for the url, the function is passed the Cell Component as its first argument.
      */
-    public StringOrCallback url;
+
+    @JsFunction
+    @FunctionalInterface
+    public interface URLProvider {
+        String provideURL(CellComponent cell);
+    }
+
+    public StringOr<URLProvider> url;
 
     /**
      * Representing the value of the anchor tags target artibute (eg. set to "_blank" to open link in new tab).

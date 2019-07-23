@@ -7,11 +7,11 @@ public class FormatterParamsImage {
     /**
      * a CSS value for the height of the image
      */
-    public StringOrInteger height;
+    public StringOr<Integer> height;
 
     /**
      * a CSS value for the width  of the image
      */
-    public StringOrInteger width;
+    public StringOr<Integer> width;
 
 }

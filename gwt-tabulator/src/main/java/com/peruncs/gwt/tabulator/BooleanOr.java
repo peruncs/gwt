@@ -7,7 +7,7 @@ import jsinterop.base.Js;
 
 
 /**
- * Boolean binary union type.
+ * Boolean union type.
  *
  * @param <T> - the alternative type.
  */
