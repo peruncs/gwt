@@ -1,6 +1,7 @@
 package com.peruncs.gwt.tabulator;
 
 import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 import jsinterop.base.Js;
@@ -9,7 +10,7 @@ import jsinterop.base.Js;
 /**
  * Column calculator.
  */
-@JsType
+@JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
 public interface Calculator {
 
     /**

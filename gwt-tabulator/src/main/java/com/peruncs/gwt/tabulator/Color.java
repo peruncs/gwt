@@ -14,7 +14,7 @@ public interface Color {
 
     @JsFunction
     @FunctionalInterface
-    interface Compute {
+    interface Custom {
         String getColor(Any cellValue);
     }
 
@@ -29,12 +29,12 @@ public interface Color {
     }
 
     /**
-     * Compute the color.
+     * Custom the color.
      *
-     * @param computeFunction - a callback that is passed the value of the cell and must return the color (eg function(value){return "red"}).
+     * @param customCustom - a callback that is passed the value of the cell and must return the color (eg function(value){return "red"}).
      * @return
      */
-    static Color of(Compute computeFunction) {
-        return Js.cast(computeFunction);
+    static Color of(Custom customCustom) {
+        return Js.cast(customCustom);
     }
 }

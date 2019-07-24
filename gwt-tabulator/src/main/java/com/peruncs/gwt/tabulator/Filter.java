@@ -1,13 +1,13 @@
 package com.peruncs.gwt.tabulator;
 
+import elemental2.core.JsObject;
 import jsinterop.annotations.JsType;
-import jsinterop.base.Any;
+
 
 @JsType
 public class Filter {
-
     public String field;
     public String type;
-    public Any value;
+    public JsObject value;
 
 }

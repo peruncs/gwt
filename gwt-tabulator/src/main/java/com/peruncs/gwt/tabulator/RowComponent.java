@@ -23,13 +23,13 @@ public interface RowComponent extends BaseComponent {
     /**
      * Returns the Row Component for the next visible row in the table, if there is no next row it will return a value of false.
      */
-    ComponentOrBoolean<RowComponent> getNextRow();
+    BooleanOr<RowComponent> getNextRow();
 
 
     /**
      * Returns the Row Component for the previous visible row in the table, if there is no previous row it will return a value of false.
      */
-    ComponentOrBoolean<RowComponent> getPrevRow();
+    BooleanOr<RowComponent> getPrevRow();
 
 
     /**

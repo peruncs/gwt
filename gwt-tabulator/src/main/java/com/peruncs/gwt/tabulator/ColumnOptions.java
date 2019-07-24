@@ -1,11 +1,9 @@
 package com.peruncs.gwt.tabulator;
 
-import com.peruncs.gwt.utils.Callback1;
-import com.peruncs.gwt.utils.Callback2;
-import com.peruncs.gwt.utils.CallbackRet1;
-import com.peruncs.gwt.utils.CallbackRet5;
+
 import elemental2.dom.MouseEvent;
 import elemental2.dom.TouchEvent;
+import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 
@@ -265,8 +263,8 @@ public class ColumnOptions extends CellEvent {
      * - "autocomplete" - allows users to search a list of predefined options passed into the values property of the editorParams option.
      */
 
-    public EditorUnionType editor;
-    public EditorParamsUnionType editorParams;
+    public Editor editor;
+    public EditorParams editorParams;
 
     /**
      * There are some circumstances where you may want to block editibility of a cell for one reason or another. To meet this need you can use the editable option. This lets you set a callback that is executed before the editor is built, if this callback returns true the editor is added, if it returns false the edit is aborted and the cell remains a non editable cell. The function is passed one parameter, the CellComponent of the cell about to be edited. You can also pass a boolean value instead of a function to this property.
@@ -288,7 +286,7 @@ public class ColumnOptions extends CellEvent {
      * If you want to dynamically generate the headerFilterParams at the time the header filter is created, you can pass a function into the property that should return the params object.
      */
 
-    public EditorParamsUnionType headerFilterParams;
+    public EditorParams headerFilterParams;
 
     /**
      * force (true) or hide(false) data in download.
@@ -303,13 +301,26 @@ public class ColumnOptions extends CellEvent {
     /**
      * If you want to make any bulk changes to the table data before it is parsed into the download file you can pass a mutator function to the downloadDataFormatter option in the table definition.
      */
-    public DownloadDataFormatter downloadDataFormatter;
+    public CallbackRet1<Any, Any[]> downloadDataFormatter;
 
     /**
      * The downloadReady callback allows you to intercept the download file data before the users is prompted to save the file.
      * In order for the download to proceed the downloadReady callback is expected to return a blob of file to be downloaded.
-     * If you would prefer to abort the download you can return false from this callback. This could be useful for example if you want to send the created file to a server via ajax rather than allowing the user to download the file.
+     * If you would prefer to abort the download you can return false from this callback. This could be useful for example
+     * if you want to send the created file to a server via ajax rather than allowing the user to download the file.
      */
+
+    @JsFunction
+    @FunctionalInterface
+    public interface DownloadReady {
+        /**
+         * @param fileContents - the unencoded contents of the file
+         * @param blob         - the blob object for the download
+         * @return - must return a blob to proceed with the download, return false to abort download
+         */
+        Any process(byte[] fileContents, Any blob);
+    }
+
     public DownloadReady downloadReady;
 
     //Callbacks
@@ -381,7 +392,18 @@ public class ColumnOptions extends CellEvent {
      * <p>
      * The columnVisibilityChanged callback is triggered whenever a column changes between hidden and visible states.
      */
-    public Callback1<ColumnComponent, boolean> columnVisibilityChanged;
+    @FunctionalInterface
+    @JsFunction
+    public interface ColumnVisibilityHandler {
+        /**
+         * @param column  -  column component
+         * @param visible - is column visible (true = visible, false = hidden)
+         */
+        void chnaged(ColumnComponent column, boolean visible);
+    }
+
+    public ColumnVisibilityHandler columnVisibilityChanged;
+
 
     /**
      * Column Title Changed

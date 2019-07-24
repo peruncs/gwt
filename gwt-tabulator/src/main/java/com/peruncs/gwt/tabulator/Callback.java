@@ -2,8 +2,11 @@ package com.peruncs.gwt.tabulator;
 
 import jsinterop.annotations.JsFunction;
 
+/**
+ * A callback that takes no arguments.
+ */
 @JsFunction
 @FunctionalInterface
-public interface ComponenCallback<C> {
-    void handleComponent(C component);
+public interface Callback {
+    void call();
 }

@@ -1,8 +1,11 @@
 package com.peruncs.gwt.tabulator;
 
+import elemental2.dom.Node;
 import elemental2.promise.Promise;
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
+import jsinterop.base.Js;
 
 /**
  * The column component provides access to a specific column.
@@ -31,13 +34,13 @@ public interface ColumnComponent extends BaseComponent, Showable {
     /**
      * returns the Column Component for the next visible column in the table, if there is no next column it will return a value of false.
      */
-    ComponentOrBoolean<ColumnComponent> getNextColumn();
+    BooleanOr<ColumnComponent> getNextColumn();
 
 
     /**
      * returns the Column Component for the previous visible column in the table, if there is no previous column it will return a value of false.
      */
-    ComponentOrBoolean<ColumnComponent> getPrevColumn();
+    BooleanOr<ColumnComponent> getPrevColumn();
 
 
     /**
@@ -83,18 +86,31 @@ public interface ColumnComponent extends BaseComponent, Showable {
     void reloadHeaderFilter();
 
 
-
-
     /**
-     * Any function that takes a component as an argument will also attempt to find that component based on the value provided if it is not a component itself. The following values can be used for each copmonent type:
-     * Row
+     * Any function that takes a component as an argument will also attempt to find that component based on the value provided if it is not a component itself.
+     * The following values can be used for column component:
      * <p>
-     * A ColumnComponent
-     * The field name of the column
-     * DOM node of the column
+     * - Column component.
+     * - The field name of the column.
+     * - DOM node of the column.
      */
-    @JsType
+    @JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
     interface Lookup {
-        //todo
+
+        @JsOverlay
+        static Lookup of(ColumnComponent columnComponent) {
+            return Js.cast(columnComponent);
+        }
+
+        @JsOverlay
+        static Lookup of(String columnFieldName) {
+            return Js.cast(columnFieldName);
+        }
+
+        @JsOverlay
+        static Lookup of(Node domNode) {
+            return Js.cast(domNode);
+        }
+
     }
 }

@@ -1,6 +1,5 @@
 package com.peruncs.gwt.tabulator;
 
-import elemental2.core.Function;
 import elemental2.core.JSONType;
 import elemental2.core.JsMap;
 import elemental2.core.JsObject;
@@ -53,13 +52,8 @@ public class TabulatorOptions extends CellEvent {
      * This function should return an empty string if there is no data to display.
      */
 
-    @JsFunction
-    @FunctionalInterface
-    public interface ResponsiveLayoutCollapseFormatter {
-        String format(ColumnTitleValue[] data);
-    }
 
-    public ResponsiveLayoutCollapseFormatter responsiveLayoutCollapseFormatter;
+    public CallbackRet1<String, ColumnTitleValue[]> responsiveLayoutCollapseFormatter;
 
 
     /**
@@ -144,16 +138,9 @@ public class TabulatorOptions extends CellEvent {
     /**
      * Tabulator also allows you to define a row level formatter using the rowFormatter option. this lets you alter each row of the table based on the data it contains.
      * The function accepts one argument, the RowComponent for the row being formatted.
-     * The example below changes the background colour of a row to blue if the col value for that row is "blue".
      */
 
-    @JsFunction
-    @FunctionalInterface
-    public interface RowFormatter {
-        void format(RowComponent row);
-    }
-
-    public RowFormatter rowFormatter;
+    public Callback1<RowComponent> rowFormatter;
 
 
     public TooltipUnion tooltips;
@@ -340,10 +327,6 @@ public class TabulatorOptions extends CellEvent {
      */
     public TreeStartExpandedUnion dataTreeStartExpanded;
 
-    /**
-     * You can use the row component passed into any of Tabulator's callbacks to trigger tree events on that row.
-     */
-    //public Callback2<MouseEvent, RowComponent.Lookup> rowClick;
 
     //Localization
 
@@ -389,7 +372,8 @@ public class TabulatorOptions extends CellEvent {
     /**
      * By default Tabulator will clear the filter when it considers the header filter value to be empty, in the case of most filters that is if the value is undefined, null, or "", or in the case of check boxes that is if the value is not either true or false.
      * <p>
-     * If you are using a custom filter or want to alter what an existing filter considers empty, you can pass a function to the headerFilterEmptyCheck column definition property. This function will be passed in the value of the filter as an argument and should return a boolean where true represents an empty filter
+     * If you are using a custom filter or want to alter what an existing filter considers empty, you can pass a function to the headerFilterEmptyCheck column definition property.
+     * This function will be passed in the value of the filter as an argument and should return a boolean where true represents an empty filter.
      */
     @JsFunction
     @FunctionalInterface
@@ -526,14 +510,7 @@ public class TabulatorOptions extends CellEvent {
     /**
      * The rowMoved callback will be triggered when a row has been successfuly moved.
      */
-
-    @JsFunction
-    @FunctionalInterface
-    public interface RowMovedHandler {
-        void rowMoved(RowComponent row);
-    }
-
-    public RowMovedHandler rowMoved;
+    public Callback1<RowComponent> rowMoved;
 
     /**
      * Tabulator also allows you to move rows between tables. To enable this you should supply either a valid CSS selector string a DOM node for the table or the Tabuator object for the table to the movableRowsConnectedTables option. if you want to connect to multple tables then you can pass in an array of values to this option.
@@ -738,9 +715,17 @@ public class TabulatorOptions extends CellEvent {
 
 
     /**
-     * Custom paste parser
+     * Custom paste parser.
+     *
+     * Tabulator has one built in paste parser, that is designed to take a table formatted text string from the clipboard and turn it into row data. it breaks the tada into rows on a newline character \n and breaks the rows down to columns on a tab character \t.
+     *
+     * It will then attempt to work out which columns in the data correspond to columns in the table. It tries three different ways to achieve this. First it checks the values of all columns in the first row of data to see if they match the titles of columns in the table. If any of the columns don't match it then tries the same approach but with the column fields. If either of those options match, Tabulator will map those columns to the incoming data and import it into rows. If there is no match then Tabulator will assume the columns in the data are in the same order as the visible columns in the table and import them that way.
+     *
+     * The inbuilt parser will reject any clipboard data that does not contain at least one row and two columns, in that case the clipboardPasteError will be triggered.
+     *
+     * You can also pass a custom parser function into the clipboardPasteParser property, it should take one argument of the string of clipboard data and return an array of row data objects that will be passed to the paste action. If the clipboard data isn't valid it should return false.
      */
-    public ClipboardPasteParser clipboardPasteParser;
+    public CallbackRet1<BooleanOr<JsObject[]>, String> clipboardPasteParser;
 
     public ClipboardPasteAction clipboardPasteAction;
 
@@ -774,7 +759,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The rowClick callback is triggered when a user clicks on a row.
      */
-    public EventHandler<MouseEvent, RowComponent> rowClick;
+    public Callback2<MouseEvent, RowComponent> rowClick;
 
 
     /**
@@ -782,7 +767,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The rowDblClick callback is triggered when a user double clicks on a row.
      */
-    public EventHandler<MouseEvent, RowComponent> rowDblClick;
+    public Callback2<MouseEvent, RowComponent> rowDblClick;
 
 
     /**
@@ -792,7 +777,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * If you want to prevent the browsers context menu being triggered in this event you will need to include the preventDefault() function in your callback.
      */
-    public EventHandler<MouseEvent, RowComponent> rowContext;
+    public Callback2<MouseEvent, RowComponent> rowContext;
 
 
     /**
@@ -800,84 +785,84 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The rowTap callback is triggered when a user taps on a row on a touch display.
      */
-    public EventHandler<TouchEvent, RowComponent> rowTap;
+    public Callback2<TouchEvent, RowComponent> rowTap;
 
     /**
      * Row Double Tap
      * <p>
      * The rowDblTap callback is triggered when a user taps on a row on a touch display twice in under 300ms.
      */
-    public EventHandler<TouchEvent, RowComponent> rowDblTap;
+    public Callback2<TouchEvent, RowComponent> rowDblTap;
 
     /**
      * Row Tap Hold
      * <p>
      * The rowTapHold callback is triggered when a user taps on a row on a touch display and holds their finger down for over 1 second.
      */
-    public EventHandler<TouchEvent, RowComponent> rowTapHold;
+    public Callback2<TouchEvent, RowComponent> rowTapHold;
 
     /**
      * Row Mouse Enter.
      * <p>
      * The rowMouseEnter callback is triggered when the mouse pointer enters a row
      */
-    public EventHandler<MouseEvent, RowComponent> rowMouseEnter;
+    public Callback2<MouseEvent, RowComponent> rowMouseEnter;
 
     /**
      * Row Mouse Leave.
      * <p>
      * The rowMouseLeave callback is triggered when the mouse pointer leaves a row.
      */
-    public EventHandler<MouseEvent, RowComponent> rowMouseLeave;
+    public Callback2<MouseEvent, RowComponent> rowMouseLeave;
 
     /**
      * Row Mouse Over.
      * <p>
      * The rowMouseOver callback is triggered when the mouse pointer enters a row or any of its child elements.
      */
-    public EventHandler<MouseEvent, RowComponent> rowMouseOver;
+    public Callback2<MouseEvent, RowComponent> rowMouseOver;
 
     /**
      * Row Mouse Out.
      * <p>
      * The rowMouseOut callback is triggered when the mouse pointer leaves a row or any of its child elements
      */
-    public EventHandler<MouseEvent, RowComponent> rowMouseOut;
+    public Callback2<MouseEvent, RowComponent> rowMouseOut;
 
     /**
      * Row Mouse Move.
      * <p>
      * The rowMouseMove callback is triggered when the mouse pointer moves over a row.
      */
-    public EventHandler<MouseEvent, RowComponent> rowMouseMove;
+    public Callback2<MouseEvent, RowComponent> rowMouseMove;
 
     /**
      * Row Added
      * <p>
      * The rowAdded callback is triggered when a row is added to the table by the addRow and updateOrAddRow functions.
      */
-    public ComponenCallback<RowComponent> rowAdded;
+    public Callback1<RowComponent> rowAdded;
 
     /**
      * Row Updated.
      * <p>
      * The rowUpdated callback is triggered when a row is updated by the updateRow, updateOrAddRow, updateData or updateOrAddData, functions.
      */
-    public ComponenCallback<RowComponent> rowUpdated;
+    public Callback1<RowComponent> rowUpdated;
 
     /**
      * Row Deleted.
      * <p>
      * The rowDeleted callback is triggered when a row is deleted from the table by the deleteRow function.
      */
-    public ComponenCallback<RowComponent> rowDeleted;
+    public Callback1<RowComponent> rowDeleted;
 
     /**
      * Row Resized.
      * <p>
      * The rowResized callback will be triggered when a row has been resized by the user.
      */
-    public ComponenCallback<RowComponent> rowResized;
+    public Callback1<RowComponent> rowResized;
 
     //Data Callbacks
 
@@ -886,28 +871,28 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The dataLoading callback is triggered whenever new data is loaded into the table.
      */
-    public DataHandler<Any> dataLoading;
+    public Callback1<Any> dataLoading;
 
     /**
      * Data Loaded.
      * <p>
      * The dataLoaded callback is triggered when a new set of data is loaded into the table.
      */
-    public DataHandler<Any> dataLoaded;
+    public Callback1<Any> dataLoaded;
 
     /**
      * Data Edited.
      * <p>
      * The dataEdited callback is triggered whenever the table data is changed by the user. Triggers for this include editing any cell in the table, adding a row and deleting a row.
      */
-    public DataHandler<Any> dataEdited;
+    public Callback1<Any> dataEdited;
 
     /**
      * HTML Importing.
      * <p>
      * The htmlImporting callback is triggered when Tabulator starts importing data from an HTML table.
      */
-    public Function htmlImporting;
+    public Callback htmlImporting;
 
 
     //Ajax Callbacks
@@ -976,7 +961,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The dataFiltering callback is triggered whenever a filter event occurs, before the filter happens.
      */
-    public DataHandler<Filter[]> dataFiltering;
+    Callback1<Filter[]> dataFiltering;
 
 
     /**
@@ -987,7 +972,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The dataFiltered callback is triggered after the table dataset is filtered.
      */
-    public DataHandler<Filter[], RowComponent[]> dataFiltered;
+    public Callback2<Filter[], RowComponent[]> dataFiltered;
 
     //Sorting Callbacks
 
@@ -996,7 +981,7 @@ public class TabulatorOptions extends CellEvent {
      * sorters - an array of the sorters currently applied
      * The dataSorting callback is triggered whenever a sort event occurs, before sorting happens.
      */
-    public DataHandler<Filter[]> dataSorting;
+    public Callback1<Sorter[]> dataSorting;
 
     /**
      * Data Sorted
@@ -1016,22 +1001,22 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The renderStarted callback is triggered whenever all the rows in the table are about to be rendered. This can include:
      * <p>
-     * Data is loaded into the table when setData is called
-     * A page is loaded through any form of pagination
-     * Rows are added to the table during progressive rendering
-     * Columns are changed by setColumns
-     * The data is filtered
-     * The data is sorted
-     * The redraw function is called
+     * - Data is loaded into the table when setData is called
+     * - A page is loaded through any form of pagination
+     * - Rows are added to the table during progressive rendering
+     * - Columns are changed by setColumns
+     * - The data is filtered
+     * - The data is sorted
+     * - The redraw function is called
      */
-    public ____ renderStarted;
+    public Callback renderStarted;
 
     /**
      * Render Complete.
      * <p>
      * The renderComplete callback is triggered after the table has been rendered.
      */
-    public ____ renderComplete;
+    public Callback renderComplete;
 
 
     //Pagination Callbacks
@@ -1043,7 +1028,13 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * Whenever a page has been loaded, the pageLoaded callback is called, passing the current page number as an argument.
      */
-    public Callback<int> pageLoaded;
+    @JsFunction
+    @FunctionalInterface
+    public interface PaginationCallback {
+        void onPage(int pageNo);
+    }
+
+    public PaginationCallback pageLoaded;
 
     //Localization
     /**
@@ -1054,14 +1045,17 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * When a localization event has occurred , the localized callback will triggered, passing the current locale code and language object.
      */
-    public Callback2<String, Any> localized;
+    public Callback2<String /*locale*/, JsObject /*lang*/> localized;
 
     //Group Callbacks
+
     /**
      * Data Grouping.
      * <p>
      * The dataGrouping callback is triggered whenever a data grouping event occurs, before grouping happens.
      */
+
+
     public Callback dataGrouping;
 
     /**
@@ -1071,7 +1065,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The dataGrouped callback is triggered whenever a data grouping event occurs, after grouping happens.
      */
-    public Callback1<GroupComponent[]> localized;
+    public Callback1<GroupComponent[]> dataGrouped;
 
     /**
      * Group Visibility Changed.
@@ -1081,66 +1075,43 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The groupVisibilityChanged callback is triggered whenever a group changes between hidden and visible states.
      */
-    public Callback2<GroupComponent, boolean> groupVisibilityChanged;
+    @JsFunction
+    @FunctionalInterface
+    public interface GroupedVisibilityChangedCallback {
+        void group(GroupComponent group, boolean visible);
+    }
+
+    public GroupedVisibilityChangedCallback groupVisibilityChanged;
 
     /**
-     * Group Click.
-     * <p>
-     * e - the click event object
-     * group - group component
-     * <p>
-     * The groupClick callback is triggered when a user clicks on a group header.
+     * Group Click is triggered when a user clicks on a group header.
      */
     public Callback2<MouseEvent, GroupComponent> groupClick;
 
     /**
-     * Group Double Click.
-     * <p>
-     * e - the click event object
-     * group - group component
-     * <p>
-     * The groupDblClick callback is triggered when a user double clicks on a group header.
+     * Group double-click is triggered when a user double clicks on a group header.
      */
     public Callback2<MouseEvent, GroupComponent> groupDblClick;
 
 
     /**
      * The groupContext callback is triggered when a user right clicks on a group header.
-     * <p>
-     * e - the click event object
-     * group - group component
-     * <p>
      * If you want to prevent the browsers context menu being triggered in this event you will need to include the e.preventDefault() function in your callback.
      */
     public Callback2<MouseEvent, GroupComponent> groupContext;
 
     /**
-     * Group Tap.
-     * <p>
-     * e - the tap event object
-     * group - group component
-     * <p>
-     * The groupTap callback is triggered when a user taps on a group header on a touch display.
+     * Group tap is triggered when a user taps on a group header on a touch display.
      */
     public Callback2<TouchEvent, GroupComponent> groupTap;
 
     /**
-     * Group Double Tap.
-     * <p>
-     * e - the tap event object
-     * group - group component
-     * <p>
-     * The groupDblTap callback is triggered when a user taps on a group header on a touch display twice in under 300ms.
+     * Group double-tap is triggered when a user taps on a group header on a touch display twice in under 300ms.
      */
     public Callback2<TouchEvent, GroupComponent> groupDblTap;
 
     /**
-     * Group Tap Hold.
-     * <p>
-     * e - the tap event object
-     * group - group component
-     * <p>
-     * The groupTapHold callback is triggered when a user taps on a group header on a touch display and holds their finger down for over 1 second.
+     * Group tap hold is triggered when a user taps on a group header on a touch display and holds their finger down for over 1 second.
      */
     public Callback2<TouchEvent, GroupComponent> groupTapHold;
 
@@ -1157,9 +1128,7 @@ public class TabulatorOptions extends CellEvent {
     public Callback1<RowComponent> rowSelected;
 
     /**
-     * Row Deselected.
-     * <p>
-     * The rowDeselected event is triggered when a row is deselected, either by the user or programatically.
+     * Row deselected is triggered when a row is deselected, either by the user or programatically.
      */
     public Callback1<RowComponent> rowDeselected;
 
@@ -1171,7 +1140,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * Whenever the number of selected rows changes, through selection or deselection, the rowSelectionChanged event is triggered. This passes an array of the data objects for each row in the order they were selected as the first argument, and an array of row components for each of the rows in order of selection as the second argument.
      */
-    public Callback2<RowComponent[], Any[]> rowSelectionChanged;
+    public Callback2<RowComponent[], JsObject[]> rowSelectionChanged;
 
 
     // Row Movement Callbacks
@@ -1194,7 +1163,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The movableRowsSent callback is triggered on the sending table when a row has been successfuly received by a receiving table.
      */
-    public Callback3<RowComponent, RowComponent, Tabulator> movableRowsSent;
+    public Callback3<RowComponent /*fromRow*/, RowComponent/*toRow*/, Tabulator/*toTable*/> movableRowsSent;
 
 
     /**
@@ -1268,7 +1237,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The validationFailed event is triggered when the value entered into a cell during an edit fails to pass validation.
      */
-    public Callback3<CellComponent, Any, Validator[]> validationFailed;
+    public Callback3<CellComponent /*cell*/, JsObject/*value*/, Validator[]/*validators*/> validationFailed;
 
     //History Callbacks
 
@@ -1276,12 +1245,12 @@ public class TabulatorOptions extends CellEvent {
      * Undo Occurred.
      * <p>
      * action - the action that has been undone, "cellEdit", "rowAdd", "rowDelete", "rowMoved".
-     * component - the Component object afected by the action (colud be a row or cell component)
+     * component - the Component object affected by the action (could be a row or cell component)
      * data - the data being changed
      * <p>
      * The historyUndo event is triggered when the undo action is triggered.
      */
-    public Callback3<String, BaseComponent, Any> historyUndo;
+    public Callback3<String /*action*/, BaseComponent /*component*/, Any /*data*/> historyUndo;
 
     public Callback3<String, BaseComponent, Any> historyRedo;
 
@@ -1322,7 +1291,8 @@ public class TabulatorOptions extends CellEvent {
     /**
      * Mutate Data Before Download.
      * <p>
-     * If you want to make any changes to the table data before it is parsed into the download file you can pass a mutator function to the downloadDataFormatter callback.
+     * If you want to make any changes to the table data before it is parsed into the download file,
+     * you can pass a mutator function to the downloadDataFormatter callback.
      */
     public CallbackRet1<Any, Any> downloadDataFormatter;
 
@@ -1346,7 +1316,7 @@ public class TabulatorOptions extends CellEvent {
 
     /**
      * Download Complete.
-     * <p>
+     *
      * The downloadComplete callback is triggered when the user has been prompted to download the file.
      */
     public Callback downloadComplete;
@@ -1354,24 +1324,29 @@ public class TabulatorOptions extends CellEvent {
     //Data Tree Callbacks
 
     /**
-     * Row Expanded.
-     * <p>
+     * Data tree callback.
+     *
      * row - the row component for the expanded row
      * level - the depth of the row in the tree
-     * <p>
+     **
+     */
+    @JsFunction
+    @FunctionalInterface
+    public interface DataTreeCallback {
+        void handleDataTreeRow(RowComponent row, int level);
+    }
+
+    /**
+     * Row Expanded.
      * The dataTreeRowExpanded callback is triggered when a row with child rows is expanded to reveal the children.
      */
-    public Callback2<RowComponent, int> dataTreeRowExpanded;
+    public DataTreeCallback dataTreeRowExpanded;
 
 
     /**
      * Row Collapsed.
-     * <p>
-     * row - the row component for the expanded row.
-     * level - the depth of the row in the tree.
-     * <p>
      * The dataTreeRowCollapsed callback is triggered when a row with child rows is collapsed to hide its children.
      */
-    public Callback2<RowComponent, int> dataTreeRowCollapsed;
+    public DataTreeCallback dataTreeRowCollapsed;
 
 }

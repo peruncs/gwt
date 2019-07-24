@@ -491,7 +491,8 @@ public class Tabulator {
     //Scrolling
 
     /**
-     * If you want to trigger an animated scroll to a column then you can use the scrollToColumn function. The first argument should be any of the standard column component look up options for the column you want to scroll to.
+     * If you want to trigger an animated scroll to a column then you can use the scrollToColumn function.
+     * The first argument should be any of the standard column component look up options for the column you want to scroll to.
      * <p>
      * The second argument is optional, and is used to set the position of the column, it should be a string with a value of either left, middle or right, if omitted it will be set to the value of the scrollToColumnPosition option which has a default value of left.
      * <p>
@@ -615,7 +616,7 @@ public class Tabulator {
     native void setColumnLayout(Any columnLayout);
 
 
-    // Trigger Copy Programmaticallyf
+    // Trigger Copy Programmatically
 
     /**
      * Copy the currently selected rows to the clipboard - The copyToClipboard function allows you to copy the current table data to the clipboard.
@@ -645,11 +646,12 @@ public class Tabulator {
     native <C> void download(String fileType);
 
     /**
-     * If you want to create a custom file type from the table data then you can pass a function to the type argument, instead of a string value. At the end of this function you must call the setFileContents function, passing the formatted data and the mime type.
+     * If you want to create a custom file type from the table data then you can pass a function to the type argument,
+     * instead of a string value. At the end of this function you must call the setFileContents function, passing the formatted data and the mime type.
      */
-    native void download(CustomFileFormatter<?> customFileFormatter);
-
-    native void download(CustomFileFormatter<?> customFileFormatter, String fileNames);
+//    native void download(CustomFileFormatter<?> customFileFormatter);
+//
+//    native void download(CustomFileFormatter<?> customFileFormatter, String fileNames);
 
     native <O> void download(CustomFileFormatter<O> customFileFormatter, String fileName, O options);
 

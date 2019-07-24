@@ -1,5 +1,6 @@
 package com.peruncs.gwt.tabulator;
 
+import elemental2.core.JsObject;
 import elemental2.dom.Node;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
@@ -12,14 +13,14 @@ import jsinterop.base.Any;
 public interface CellComponent extends BaseComponent {
 
     /**
-     * function returns the current value for the cell.
+     * current value for the cell.
      */
-    Any getValue();
+    JsObject getValue();
 
     /**
      * returns the previous value of the cell. Very usefull in the event of cell update callbacks.
      */
-    Any getOldValue();
+    JsObject getOldValue();
 
     /**
      * The restoreOldValue reverts the value of the cell back to its previous value, without triggering any of the cell edit callbacks.
@@ -65,7 +66,7 @@ public interface CellComponent extends BaseComponent {
     /**
      * You can change the value of the cell using the setValue function. The first parameter should be the new value for the cell, the second optional parameter will apply the column mutators to the value when set to true (default = true).
      */
-    void setValue(Any value, boolean applyColumnMutators);
+    void setValue(JsObject value, boolean applyColumnMutators);
 
     /**
      * If you are making manual adjustments to elements contained withing the cell, or the cell itself, it may sometimes be necessary to recalculate the height of all the cells in the row to make sure they remain aligned. Call the checkHeight function to check if the height of the cell has changed and normalize the row if it has.
@@ -130,15 +131,13 @@ public interface CellComponent extends BaseComponent {
     }
 
 
-    /**
-     * Any function that takes a component as an argument will also attempt to find that component based on the value provided if it is not a component itself. The following values can be used for each copmonent type:
-     * Row
-     * <p>
-     * A CellComponent
-     */
-    @JsType
-    interface Lookup {
-        //todo
-    }
+//    /**
+//     * Any function that takes a component as an argument will also attempt to find that component based on the value provided
+//     * if it is not a component itself. The following values can be used for each compmonent type.
+//     */
+//    @JsType
+//    interface Lookup {
+//        //todo
+//    }
 
 }

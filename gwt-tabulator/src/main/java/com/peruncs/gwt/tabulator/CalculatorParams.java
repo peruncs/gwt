@@ -1,24 +1,26 @@
 package com.peruncs.gwt.tabulator;
 
+import jdk.nashorn.api.scripting.JSObject;
 import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 
-@JsType
+@JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
 public interface CalculatorParams {
 
     /**
      * The number of decimals to display (default is 2), setting this value to false will display however many decimals are provided with the number
      */
-    static CalculatorParams of(BooleanOr<Integer> precision) {
+    static CalculatorParams precision(BooleanOr<Integer> precision) {
         return Js.cast(JsPropertyMap.of("precision", precision));
     }
 
 
-    static CalculatorParams of(ParamLookup paramLookupFunction) {
-        return Js.cast(paramLookupFunction);
+    static CalculatorParams generate(Lookup lookupFunction) {
+        return Js.cast(lookupFunction);
     }
 
     /**
@@ -26,7 +28,7 @@ public interface CalculatorParams {
      */
     @JsFunction
     @FunctionalInterface
-    interface ParamLookup {
+    interface Lookup {
         /**
          * Lookup parameters.
          *
@@ -34,7 +36,7 @@ public interface CalculatorParams {
          * @param data   - all table data
          * @return the parameter object
          */
-        Any paramLookup(Any[] values, Any data);
+        JSObject lookup(Any[] values, Any data);
     }
 
 }

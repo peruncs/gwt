@@ -12,5 +12,5 @@ public interface DownloadReady {
      * @param blob - the blob object for the download
      * @return - must return a blob to proceed with the download, return false to abort download
      */
-    Any process(Any fileContents, Any blob);
+    Any process(byte[] fileContents, Any blob);
 }

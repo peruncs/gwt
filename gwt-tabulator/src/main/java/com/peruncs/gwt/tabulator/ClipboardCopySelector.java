@@ -1,6 +1,11 @@
 package com.peruncs.gwt.tabulator;
 
+import elemental2.core.JsObject;
+import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
+import jsinterop.base.Js;
 
 /**
  * The copy selector is a function that is used to choose which data is copied into the clipboard. Tabulator comes with a few different selectors built in:
@@ -13,10 +18,34 @@ import jsinterop.annotations.JsType;
  * <p>
  * These selectors can also be used when programatically triggering a copy event. in this case if the selector is not specified it will default to the value set in the clipboardCopySelector property (which is active by default).
  * <p>
- * You can also pass a custom selector function into the clipboardCopySelector property, it should take one argument of a boolean that if true means the column headers should be include in the data and return an array of row data objects:
+ * You can also pass a custom selector function into the clipboardCopySelector property, it should take one argument of a boolean that if true means the column headers should be included in the data and return an array of row data objects:
  */
-@JsType
-public class ClipboardCopySelector {
-    //todo
-    //Can be String or CallbackRet1<boolean showHeaders, Any[]>
+@JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
+public interface ClipboardCopySelector {
+
+    @JsOverlay
+    static ClipboardCopyFormatter active() {
+        return Js.cast("active");
+    }
+
+    @JsOverlay
+    static ClipboardCopyFormatter table() {
+        return Js.cast("table");
+    }
+
+    @JsOverlay
+    static ClipboardCopyFormatter selected() {
+        return Js.cast("selected");
+    }
+
+    @JsOverlay
+    static ClipboardCopyFormatter custom(Custom customSelector) {
+        return Js.cast(customSelector);
+    }
+
+    @JsFunction
+    @FunctionalInterface
+    interface Custom {
+        JsObject[] format(boolean includeColumnHeaders);
+    }
 }
