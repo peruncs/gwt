@@ -19,7 +19,7 @@ public interface EditorParams {
      * @return the union type.
      */
     @JsOverlay
-    static EditorParams paramLookup(CallbackRet1<JsObject, CellComponent> customParamLookup) {
+    static EditorParams of(CallbackRet1<JsObject, CellComponent> customParamLookup) {
         return Js.cast(customParamLookup);
     }
 
@@ -29,7 +29,7 @@ public interface EditorParams {
     }
 
     @JsOverlay
-    static EditorParams ofInput(Input input) {
+    static EditorParams of(Input input) {
         return Js.cast(input);
     }
 
@@ -48,7 +48,7 @@ public interface EditorParams {
     }
 
     @JsOverlay
-    static EditorParams ofNumeriRange(NumericRange numericRange) {
+    static EditorParams of(NumericRange numericRange) {
         return Js.cast(numericRange);
     }
 
@@ -66,7 +66,7 @@ public interface EditorParams {
     }
 
     @JsOverlay
-    static EditorParams ofCheckbox(Checkbox checkbox) {
+    static EditorParams of(Checkbox checkbox) {
         return Js.cast(checkbox);
     }
 
@@ -105,7 +105,7 @@ public interface EditorParams {
     }
 
     @JsOverlay
-    static EditorParams ofSelect(Select select) {
+    static EditorParams of(Select select) {
         return Js.cast(select);
     }
 
@@ -145,7 +145,7 @@ public interface EditorParams {
     }
 
     @JsOverlay
-    static EditorParams ofAutocomplete(Autocomplete autocomplete) {
+    static EditorParams of(Autocomplete autocomplete) {
         return Js.cast(autocomplete);
     }
 
