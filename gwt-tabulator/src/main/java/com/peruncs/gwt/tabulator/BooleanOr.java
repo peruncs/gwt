@@ -40,7 +40,7 @@ public interface BooleanOr<T> {
     }
 
     @JsOverlay
-    default boolean isBoolean() {
+    default boolean isBoolean() { //TODO:just  use just equals?
         return Js.typeof(this).equalsIgnoreCase("boolean");
     }
 

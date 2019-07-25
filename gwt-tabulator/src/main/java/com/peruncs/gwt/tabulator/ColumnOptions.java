@@ -9,6 +9,12 @@ import jsinterop.base.Any;
 
 @JsType
 public class ColumnOptions extends CellEvent {
+
+    /**
+     * Initial data.
+     */
+    public Any[] data;
+
     /**
      * Required. This is the title that will be displayed in the header for this column
      */

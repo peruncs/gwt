@@ -1,8 +1,9 @@
 package com.peruncs.gwt.tabulator;
 
 
-import elemental2.dom.Element;
+import elemental2.dom.Node;
 import elemental2.promise.Promise;
+import jsinterop.annotations.JsConstructor;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
@@ -11,9 +12,8 @@ import jsinterop.base.Any;
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
 public class Tabulator {
 
-    public Tabulator(Element element, TabulatorOptions options) {/* no body!*/}
-
-    public Tabulator(String element, TabulatorOptions options) {/* no body!*/}
+    @JsConstructor
+    public Tabulator(StringOr<Node> element, TabulatorOptions options) {/* no body!*/}
 
     native public void redraw();
 
