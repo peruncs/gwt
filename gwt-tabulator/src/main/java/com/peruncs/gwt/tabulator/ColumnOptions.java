@@ -113,7 +113,7 @@ public class ColumnOptions extends CellEvent {
     /**
      * Additional parameters you can pass to the formatter.
      */
-    public FormatterParamsUnion formatterParams;
+    public FormatterParams formatterParams;
 
     /**
      * By default formatters will keep their contents within the height of the current row, hiding any overflow. The only exception to this is the textarea formatter which will automatically vary its height when the column is resized so its contents does not overflow.
@@ -143,11 +143,11 @@ public class ColumnOptions extends CellEvent {
      * - "rownum" - shows an incrementing row number for each row as it is displayed.
      * - "handle" - fills the cell with hamburger bars, to be used as a row handle.
      */
-    public FormatterUnion formatter;
+    public Formatter formatter;
 
-    public FormatterUnion TitleFormatter;
+    public Formatter TitleFormatter;
 
-    public FormatterParamsUnion TitleFormatterParams;
+    public FormatterParams TitleFormatterParams;
 
     /**
      * The tooltip parameter can take three different types of value:

@@ -442,10 +442,10 @@ public class TabulatorOptions extends CellEvent {
     /**
      * You can apply formatters (see Formatting Data for more information) to any calculation cells, using the topCalcFormatter and bottomCalcFormatter options in a columns definition object. you can also pass in additional parameters to the formatter functions using the topCalcFormatterParams and bottomCalcFormatterParams options:
      */
-    public FormatterUnion topCalcFormatter;
-    public FormatterUnion bottomCalcFormatter;
-    public FormatterParamsUnion topCalcFormatterParams;
-    public FormatterParamsUnion bottomCalcFormatterParams;
+    public Formatter topCalcFormatter;
+    public Formatter bottomCalcFormatter;
+    public FormatterParams topCalcFormatterParams;
+    public FormatterParams bottomCalcFormatterParams;
 
 
     /**
