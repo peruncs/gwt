@@ -1,11 +1,13 @@
 package com.peruncs.gwt.tabulator;
 
 
+import elemental2.core.JsObject;
 import elemental2.dom.MouseEvent;
 import elemental2.dom.TouchEvent;
 import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
+import jsinterop.base.JsPropertyMap;
 
 @JsType
 public class ColumnOptions extends CellEvent {
@@ -168,84 +170,68 @@ public class ColumnOptions extends CellEvent {
     /**
      * setting a headerTooltip value on a column will override the global setting
      */
-    public HeaderTooltipUnion headerTooltip;
+    public HeaderTooltip headerTooltip;
 
-    //Mutators
-
-    //
+    // Mutators
     //      Mutators are used to alter data as it is parsed into Tabulator. For example if you wanted to convert a numeric column into a boolean based on its value, before the data is used to build the table.
-    //      <p>
     //      You can set mutators on a per column basis using the mutator option in the column definition object.
-    //      <p>
     //      You can pass an optional additional parameter with mutator, mutatorParams that should contain an object with additional information for configuring the mutator.
-    //
-    //       //value - original value of the cell
-    //      	//data - the data for the row
-    //      	//type - the type of mutation occurring  (data|edit)
-    //      	//params - the mutatorParams object from the column definition
-    //      	//component - when the "type" argument is "edit", this contains the cell component for the edited cell, otherwise it is the column component for the column
-    //
     //      Data can be mutated whenever it enters the table, either through a command or through a user editing the table. To allow you to have more control over how your data is mutated, there are a variety of different mutation options you can pass your callback to instead of just the mutator callback.
-    //
-    //      There are four options for mutator callbacks
-    //
-    //      mutatorData - only called when data is loaded via a command {eg. setData).
-    //      mutatorEdit - only called when data is changed via a user editing a cell.
-    //      mutatorClipboard - only called when data is pasted into the table.
-    //      mutator - called if the matching mutator from the above list is not set.
-    //
-
-    public CallbackRet5<Any, Any[], String, MutatorAccessorUnionType, BaseComponent, Any> mutator;
-    public MutatorAccessorUnionType mutatorParams;
-
-    public CallbackRet5<Any, Any[], String, MutatorAccessorUnionType, BaseComponent, Any> mutatorData;
-    public MutatorAccessorUnionType mutatorDataParams;
-
-    public CallbackRet5<Any, Any[], String, MutatorAccessorUnionType, BaseComponent, Any> mutatorEdit;
-    public MutatorAccessorUnionType mutatorEditParams;
 
     /**
-     * Clipboard Mutators
-     * You can use the mutatorClipboard and mutatorClipboardParams options on a column definition to alter the value of data in a column as it is pasted into the table.
-     * Note: The mutateClipboard is called before the paste action is triggered, which may result in a different mutator being triggered after mutateClipboard.
+     * Only called when data is loaded via a command {eg. setData).
      */
-    public CallbackRet5<Any, Any[], String, MutatorAccessorUnionType, BaseComponent, Any> mutatorClipboard;
-    public MutatorAccessorUnionType mutatorClipboardParams;
+    public MutatorAccessor mutatorData;
+    public MutatorAccessorParams mutatorDataParams;
+
+    /**
+     * Only called when data is changed via a user editing a cell.
+     */
+    public MutatorAccessor mutatorEdit;
+    public MutatorAccessorParams mutatorEditParams;
+
+    /**
+     * Only called when data is pasted into the table.
+     */
+    public MutatorAccessor mutatorClipboard;
+    public MutatorAccessorParams mutatorClipboardParams;
+
+    /**
+     *  Called if the matching mutator from the above list is not set.
+     */
+    public MutatorAccessor mutator;
+    public MutatorAccessorParams mutatorParams;
 
     //Accessors
-    //
     //  Accessors are used to alter data as it is extracted from the table, through commands, the clipboard, or download.
-    //
     //  You can set accessors on a per column basis using the accessor option in the column definition object.
-    //
     //  You can pass an optional additional parameter with accessor, accessorParams that should contain an object with additional information for configuring the accessor.
-    //
-    //
-    //    Data can be altered whenever it enters the table, either through a command or through a clipboard copy event or through a download of the table. To allow you to have more control over how your data is altered, there are a variety of different accessor options you can pass your callback to instead of just the accessor callback.
-    //
-    //    There are four options for accessor callbacks
-    //
-    //    accessorData - only called when data is extracted via a command {eg. getData).
-    //        accessorDownload - only called when data is being converted into a downloadable file.
-    //        accessorClipboard - only called when data is being copied into the clipboard.
-    //                accessor - called if the matching accessor from the above list is not set.
-    //        Each accessor function has its own matching params option, for example accessorDownload has accessorDownloadParams.
+    //  Data can be altered whenever it enters the table, either through a command or through a clipboard copy event or through a download of the table. To allow you to have more control over how your data is altered, there are a variety of different accessor options you can pass your callback to instead of just the accessor callback.
 
-    public CallbackRet5<Integer, Any[], String, MutatorAccessorUnionType, ColumnComponent, Any> accessor;
-    public MutatorAccessorUnionType accessorParams;
-
-    public CallbackRet5<Integer, Any[], String, MutatorAccessorUnionType, ColumnComponent, Any> accessorData;
-    public MutatorAccessorUnionType accessorDataParams;
-
-    public CallbackRet5<Integer, Any[], String, MutatorAccessorUnionType, ColumnComponent, Any> accessorDownload;
-    public MutatorAccessorUnionType accessorDownloadParams;
 
     /**
-     * Clipboard Accessors.
-     * You can use the accessorClipboard and accessorClipboardParams options on a column definition to alter the value of data in a column before it is added to the clipboard.
+     * only called when data is extracted via a command {eg. getData).
      */
-    public CallbackRet5<Integer, Any[], String, MutatorAccessorUnionType, ColumnComponent, Any> accessorClipboard;
-    public MutatorAccessorUnionType accessorClipboardParams;
+    public MutatorAccessor accessorData;
+    public MutatorAccessorParams accessorDataParams;
+
+    /**
+     * only called when data is being converted into a downloadable file.
+     */
+    public MutatorAccessor accessorDownload;
+    public MutatorAccessorParams accessorDownloadParams;
+
+    /**
+     * only called when data is being copied into the clipboard.
+     */
+    public MutatorAccessor accessorClipboard;
+    public MutatorAccessorParams accessorClipboardParams;
+
+    /**
+     * called if the matching accessor from the above list is not set.
+     */
+    public MutatorAccessor accessor;
+    public MutatorAccessorParams accessorParams;
 
 
     //Editing
@@ -285,7 +271,7 @@ public class ColumnOptions extends CellEvent {
      * <p>
      * Alternatively you can pass a string to this parameter containing any of the standard editors listed in the Manipulating Data section
      */
-    public BooleanOr<String> headerFilter;
+    public Editor headerFilter;
 
     /**
      * You can pass an optional additional parameter with the header filter, headerFilterParams that should contain an object with additional information for configuring the header filter element. This will be passed to the editor in the column header instead of the editorParams property.
@@ -293,6 +279,45 @@ public class ColumnOptions extends CellEvent {
      */
 
     public EditorParams headerFilterParams;
+
+    /**
+     * If an input element is used as the filter element, the table will be filtered in real time as the user types in the input element. To prevent exessive redrawing of the table Tabulator will wait 300 miliseconds after the user has finished typing before tirggering the filter, this ensures that the table is not redrawn for every character typed by the user.
+     * <p>
+     * Note: If the input has a type attribute value of text it will be automatically changed to search to give the user the option to clear the input text.
+     * <p>
+     * If you would prefer that the input element behave like a standard editor without live updating the table, you can set the headerFilterLiveFilter column definition property to false
+     */
+    public boolean headerFilterLiveFilter;
+
+
+    /**
+     * By default Tabulator will clear the filter when it considers the header filter value to be empty, in the case of most filters that is if the value is undefined, null, or "", or in the case of check boxes that is if the value is not either true or false.
+     * <p>
+     * If you are using a custom filter or want to alter what an existing filter considers empty, you can pass a function to the headerFilterEmptyCheck column definition property.
+     * This function will be passed in the value of the filter as an argument and should return a boolean where true represents an empty filter.
+     */
+    public Callback1RetBoolean<JsObject /*filter*/> headerFilterEmptyCheck;
+
+    /**
+     * By default Tabulator will try and match the comparison type to the type of element used for the header filter.
+     * <p>
+     * Standard input elements will use the "like" filter, this allows for the matches to be displayed as the user types.
+     * <p>
+     * For all other element types (select boxes, check boxes, input elements of type number) an "=" filter type is used.
+     * <p>
+     * If you want to specify the type of filter used you can pass it to the headerFilterFunc option in the column definition object. This will take any of the standard filters outlined above or a custom function:
+     */
+    public HeaderFilterFunc headerFilterFunct;
+
+    /**
+     * It is possible to pass additional parameters to the custom filter function by passing an object to the headerFilterFuncParams option in the column definition.
+     */
+    public JsPropertyMap<String> headerFilterFuncParams;
+
+    /**
+     * The default placeholder text used for input elements can be set using the headerFilterPlaceholder option in the table definition
+     */
+    public String headerFilterPlaceholder;
 
     /**
      * force (true) or hide(false) data in download.
@@ -308,24 +333,6 @@ public class ColumnOptions extends CellEvent {
      * If you want to make any bulk changes to the table data before it is parsed into the download file you can pass a mutator function to the downloadDataFormatter option in the table definition.
      */
     public CallbackRet1<Any, Any[]> downloadDataFormatter;
-
-    /**
-     * The downloadReady callback allows you to intercept the download file data before the users is prompted to save the file.
-     * In order for the download to proceed the downloadReady callback is expected to return a blob of file to be downloaded.
-     * If you would prefer to abort the download you can return false from this callback. This could be useful for example
-     * if you want to send the created file to a server via ajax rather than allowing the user to download the file.
-     */
-
-    @JsFunction
-    @FunctionalInterface
-    public interface DownloadReady {
-        /**
-         * @param fileContents - the unencoded contents of the file
-         * @param blob         - the blob object for the download
-         * @return - must return a blob to proceed with the download, return false to abort download
-         */
-        Any process(byte[] fileContents, Any blob);
-    }
 
     public DownloadReady downloadReady;
 

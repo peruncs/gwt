@@ -23,7 +23,7 @@ public interface FormatterParams {
          * function - a function passed into this will be called with the original value of the cell passed into its first argument
          * string/number - a string on number will be displayed instead of the cells value
          */
-        public InvalidPlaceHolderUnion invalidPlaceholder;
+        public InvalidPlaceHolder invalidPlaceholder;
     }
 
     @JsType
@@ -171,7 +171,7 @@ public interface FormatterParams {
          * - boolean - if set to true this will show the value of the cell
          * - function - a callback that is passed the value of the cell and must return the legend contents (eg function(value){return value + "%"})
          */
-        public ProgressLegendUnion legend;
+        public ProgressLegend legend;
 
         /**
          * The text colour for the legend, has the same range of value options as the color property.

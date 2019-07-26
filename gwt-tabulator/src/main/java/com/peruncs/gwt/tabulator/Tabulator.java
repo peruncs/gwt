@@ -1,6 +1,7 @@
 package com.peruncs.gwt.tabulator;
 
 
+import elemental2.core.JsObject;
 import elemental2.dom.Node;
 import elemental2.promise.Promise;
 import jsinterop.annotations.JsConstructor;
@@ -107,16 +108,16 @@ public class Tabulator {
     /**
      * You can use the setGroupBy function to change the fields that rows are grouped by. This function has one argument and takes the same values as passed to the groupBy setup option.
      *
-     * @param groupByUnion
+     * @param groupBy
      */
-    native public void setGroupBy(GroupByUnion groupByUnion);
+    native public void setGroupBy(GroupBy groupBy);
 
     /**
      * You can use the setGroupStartOpen function to change the default open state of groups. This function has one argument and takes the same values as passed to the groupStartOpen setup option.
      *
-     * @param groupStartOpenUnion
+     * @param groupStartOpen
      */
-    native public void setGroupStartOpen(GroupStartOpenUnion groupStartOpenUnion);
+    native public void setGroupStartOpen(GroupStartOpen groupStartOpen);
 
     /**
      * You can use the getGroups function to retrieve an array of all the first level Group Components in the table.
@@ -125,7 +126,7 @@ public class Tabulator {
      *
      * @param ghu
      */
-    native public void setGroupHeader(GroupHeaderUnion ghu);
+    native public void setGroupHeader(GroupHeader ghu);
 
     native public GroupComponent[] getGroups();
 
@@ -353,7 +354,10 @@ public class Tabulator {
 
     native public void setFilter(Filter[][] filters);//Or filters
 
-    native public void setFilter(CallbackRet2<Any, Any, Boolean> customFilter, Any filterParam);
+
+    native public void setFilter(CustomFilter customFilter);
+
+    native public void setFilter(CustomFilter customFilter, JsObject filterParam);
 
     native public void addFilter(String field, String operator, Any values);
 

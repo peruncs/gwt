@@ -1,9 +1,8 @@
 package com.peruncs.gwt.tabulator;
 
 import elemental2.dom.Node;
-import jsinterop.annotations.JsType;
 
-@JsType
+
 public interface BaseComponent {
 
     //todo - extract common methods

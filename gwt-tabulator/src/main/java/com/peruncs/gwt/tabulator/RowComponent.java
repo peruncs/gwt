@@ -1,6 +1,8 @@
 package com.peruncs.gwt.tabulator;
 
+import elemental2.dom.Node;
 import elemental2.promise.Promise;
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
@@ -166,15 +168,27 @@ public interface RowComponent extends BaseComponent {
 
     /**
      * Any function that takes a component as an argument will also attempt to find that component based on the value provided if it is not a component itself. The following values can be used for each component type:
-     * Row
-     * <p>
      * A RowComponent
      * The index value of the row
      * DOM node of the row
      */
-    @JsType
+    @JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
     interface Lookup {
-        //todo
+        @JsOverlay
+        static Lookup of(RowComponent row) {
+            return Js.cast(row);
+        }
+
+        @JsOverlay
+        static Lookup of(int rowIndex) {
+            return Js.cast(rowIndex);
+        }
+
+        @JsOverlay
+        static Lookup of(Node domNode) {
+            return Js.cast(domNode);
+        }
+
     }
 
 

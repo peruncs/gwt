@@ -107,7 +107,7 @@ public class TabulatorOptions extends CellEvent {
     /**
      * Enable header tooltips
      */
-    public HeaderTooltipUnion tooltipsHeader;
+    public HeaderTooltip tooltipsHeader;
     /**
      * "remote" - enable remote pagination.
      * "local"  - enable local pagination.
@@ -216,17 +216,17 @@ public class TabulatorOptions extends CellEvent {
     /**
      * Rows can be grouped by a common field value by setting the groupBy option to the name of the field to be grouped
      */
-    public GroupByUnion groupBy;
+    public GroupBy groupBy;
 
     /**
      * You can set the contents of the group headers with the groupHeader option. This should return the contents of the group header.
      */
-    public GroupHeaderUnion groupHeader;
+    public GroupHeader groupHeader;
 
     /**
      * You can set the default open state of groups using the groupStartOpen property.
      */
-    public GroupStartOpenUnion groupStartOpen;
+    public GroupStartOpen groupStartOpen;
 
     /**
      * By default Tabulator allows users to toggle a group open or closed by clicking on the arrow icon in the left of the group header. If you would prefer a different behaviour you can use the groupToggleElement option to choose a different option:
@@ -360,47 +360,6 @@ public class TabulatorOptions extends CellEvent {
 
 
     /**
-     * If an input element is used as the filter element, the table will be filtered in real time as the user types in the input element. To prevent exessive redrawing of the table Tabulator will wait 300 miliseconds after the user has finished typing before tirggering the filter, this ensures that the table is not redrawn for every character typed by the user.
-     * <p>
-     * Note: If the input has a type attribute value of text it will be automatically changed to search to give the user the option to clear the input text.
-     * <p>
-     * If you would prefer that the input element behave like a standard editor without live updating the table, you can set the headerFilterLiveFilter column definition property to false
-     */
-    public boolean headerFilterLiveFilter;
-
-
-    /**
-     * By default Tabulator will clear the filter when it considers the header filter value to be empty, in the case of most filters that is if the value is undefined, null, or "", or in the case of check boxes that is if the value is not either true or false.
-     * <p>
-     * If you are using a custom filter or want to alter what an existing filter considers empty, you can pass a function to the headerFilterEmptyCheck column definition property.
-     * This function will be passed in the value of the filter as an argument and should return a boolean where true represents an empty filter.
-     */
-    @JsFunction
-    @FunctionalInterface
-    public interface HeaderFilterEmptyCheck {
-        boolean check(JsObject filter);
-    }
-
-    public HeaderFilterEmptyCheck headerFilterEmptyCheck;
-
-
-    /**
-     * By default Tabulator will try and match the comparison type to the type of element used for the header filter.
-     * <p>
-     * Standard input elements will use the "like" filter, this allows for the matches to be displayed as the user types.
-     * <p>
-     * For all other element types (select boxes, check boxes, input elements of type number) an "=" filter type is used.
-     * <p>
-     * If you want to specify the type of filter used you can pass it to the headerFilterFunc option in the column definition object. This will take any of the standard filters outlined above or a custom function:
-     */
-    public HeaderFilterFunc headerFIlterFunct;
-
-    /**
-     * It is possible to pass additional parameters to the custom filter function by passing an object to the headerFilterFuncParams option in the column definition.
-     */
-    public JsPropertyMap<String> headerFilterFuncParams;
-
-    /**
      * The default placeholder text used for input elements can be set using the headerFilterPlaceholder option in the table definition
      */
     public String headerFilterPlaceholder;
@@ -519,17 +478,7 @@ public class TabulatorOptions extends CellEvent {
 
     /**
      * The movableRowsReceiver option should be set on the receiving tables, and sets the action that should be taken when the row is dropped into the table.
-     * <p>
-     * There are several inbuilt receiver functions:
-     * <p>
-     * insert - inserts row next to the row it was dropped on, if not dropped on a row it is added to the table (default)
-     * add - adds row to the table
-     * update - updates the row it is dropped on with the sent rows data
-     * replace - replaces the row it is dropped on with the sent row
-     * <p>
-     * You can also pass a callback to the movableRowsReceiver option for custom receiver functionality. the callback must return a boolean to indicate whether the drop should be considered successful or not (eg. you may want to reject a drop if it was not on a row)
      */
-
     public MovableRowsReceiver movableRowsReceiver;
 
 
@@ -716,13 +665,13 @@ public class TabulatorOptions extends CellEvent {
 
     /**
      * Custom paste parser.
-     *
+     * <p>
      * Tabulator has one built in paste parser, that is designed to take a table formatted text string from the clipboard and turn it into row data. it breaks the tada into rows on a newline character \n and breaks the rows down to columns on a tab character \t.
-     *
+     * <p>
      * It will then attempt to work out which columns in the data correspond to columns in the table. It tries three different ways to achieve this. First it checks the values of all columns in the first row of data to see if they match the titles of columns in the table. If any of the columns don't match it then tries the same approach but with the column fields. If either of those options match, Tabulator will map those columns to the incoming data and import it into rows. If there is no match then Tabulator will assume the columns in the data are in the same order as the visible columns in the table and import them that way.
-     *
+     * <p>
      * The inbuilt parser will reject any clipboard data that does not contain at least one row and two columns, in that case the clipboardPasteError will be triggered.
-     *
+     * <p>
      * You can also pass a custom parser function into the clipboardPasteParser property, it should take one argument of the string of clipboard data and return an array of row data objects that will be passed to the paste action. If the clipboard data isn't valid it should return false.
      */
     public CallbackRet1<BooleanOr<JsObject[]>, String> clipboardPasteParser;
@@ -1316,7 +1265,7 @@ public class TabulatorOptions extends CellEvent {
 
     /**
      * Download Complete.
-     *
+     * <p>
      * The downloadComplete callback is triggered when the user has been prompted to download the file.
      */
     public Callback downloadComplete;
@@ -1325,10 +1274,10 @@ public class TabulatorOptions extends CellEvent {
 
     /**
      * Data tree callback.
-     *
+     * <p>
      * row - the row component for the expanded row
      * level - the depth of the row in the tree
-     **
+     * *
      */
     @JsFunction
     @FunctionalInterface

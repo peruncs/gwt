@@ -28,5 +28,4 @@ public interface GroupComponent extends BaseComponent {
      */
     GroupComponent getParentGroup();
 
-
 }
