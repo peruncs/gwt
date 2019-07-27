@@ -6,6 +6,9 @@ import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Js;
 
+/**
+ * To enable row selection, set the selectable option to true.
+ */
 @JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
 public interface Selectable {
 
@@ -15,7 +18,7 @@ public interface Selectable {
      */
     @JsOverlay
     static Selectable of(boolean enabled) {
-        Js.cast(enabled);
+        return Js.cast(enabled);
     }
 
     /**
@@ -24,7 +27,7 @@ public interface Selectable {
      */
     @JsOverlay
     static Selectable of(int maxRowsSelect) {
-        Js.cast(enabled);
+        return Js.cast(maxRowsSelect);
     }
 
     /**
@@ -34,7 +37,7 @@ public interface Selectable {
      */
     @JsOverlay
     static Selectable of() {
-        Js.cast("highlight");
+        return Js.cast("highlight");
     }
 
 }

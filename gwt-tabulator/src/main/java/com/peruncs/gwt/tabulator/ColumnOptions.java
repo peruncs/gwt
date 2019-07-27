@@ -1,6 +1,5 @@
 package com.peruncs.gwt.tabulator;
 
-
 import elemental2.core.JsObject;
 import elemental2.dom.MouseEvent;
 import elemental2.dom.TouchEvent;
@@ -83,22 +82,15 @@ public class ColumnOptions extends CellEvent {
      */
     public boolean hideInHtml;
 
-    /**
-     * Additional parameters you can pass to the sorter.
-     * Additional parameters you can pass to the sorter.
-     */
-    public SorterParamsUnion sorterParams;
+    public SorterType sorter;
 
     /**
-     * Determines how to sort data in this column. Possible values:
-     * "string" - will sort columns as strings of characters. sorterParams has optional parameter in SorterParamsString.
-     * "number" - will sort column as numbers (integer or float, will also handle numbers using "," separators). sorterParams has optional parameter in NumberParamsBase.
-     * "alphanum" - will sort column as alpha numeric code. sorterParams has optional parameter in SorterParamsBase.
-     * "boolean" - will sort column as booleans.
-     * "exists" - will sort column ordering if value has a type of "undefined" or not.
-     * "date" - will sort columns as dates. sorterParams has optional parameter in SorterParamsFormat.
+     * Additional parameters you can pass to the sorter.
      */
-    public String sorter;
+    public SorterTypeParams sorterParams;
+
+
+
 
     /**
      * By default all columns in a table are sortable by clicking on the column header, if you want to disable this behaviour, set the headerSort property to false.
