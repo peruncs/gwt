@@ -13,6 +13,34 @@ import jsinterop.base.Js;
 @JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
 public interface Calculator {
 
+    static Calculator avg() {
+        return Js.cast("avg");
+    }
+
+    static Calculator max() {
+        return Js.cast("max");
+    }
+
+    static Calculator min() {
+        return Js.cast("min");
+    }
+
+    static Calculator sum() {
+        return Js.cast("sum");
+    }
+
+    static Calculator concat() {
+        return Js.cast("concat");
+    }
+
+    static Calculator count() {
+        return Js.cast("count");
+    }
+
+    static Calculator custom(Custom customFunction) {
+        return Js.cast(customFunction);
+    }
+
     /**
      * If you want to perform your own calculations on a column then you can pass a custom calculation function to either of the topCalc or bottomCalc options.
      */
@@ -28,30 +56,6 @@ public interface Calculator {
          * @return
          */
         int calculate(Any[] values, Any data, CalculatorParams calcParams);
-    }
-
-    /**
-     * @param standardFunction - "avg", "max", "min", "sum", "concat", "count".
-     * @return
-     */
-    static Calculator of(String standardFunction) {
-        return Js.cast(standardFunction);
-    }
-
-    static Calculator of(Custom customFunction) {
-        return Js.cast(customFunction);
-    }
-
-    default String asString() {
-        return Js.cast(this);
-    }
-
-    default Custom asCustom() {
-        return Js.cast(this);
-    }
-
-    default boolean isString() {
-        return (Object) this instanceof String;
     }
 
 }
