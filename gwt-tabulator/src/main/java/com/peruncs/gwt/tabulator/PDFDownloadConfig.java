@@ -1,5 +1,6 @@
 package com.peruncs.gwt.tabulator;
 
+import elemental2.core.JsObject;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 import jsinterop.base.JsPropertyMap;
@@ -23,8 +24,15 @@ public class PDFDownloadConfig {
     public String orientation;
     public String title;
     public JsPropertyMap<String> jsPDF;
+
     /**
      * advanced table styling, could be callback function
      */
     public Any autoTable;
+
+    /**
+     * Can be set on the download config object, that is passed the jsPDF document object after the auto-table creation to allow full customisation of the PDF,
+     * see the jsPDF document for a full list of methods that can be called on this object.
+     */
+    public Callback1<JsObject /*doc object*/> documentProcessing;
 }

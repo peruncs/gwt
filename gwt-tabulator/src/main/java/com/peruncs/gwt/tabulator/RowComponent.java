@@ -6,6 +6,7 @@ import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
+import jsinterop.base.Js;
 
 /**
  * The row component provides access to a specific row.

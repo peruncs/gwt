@@ -1,31 +1,71 @@
 package com.peruncs.gwt.tabulator;
 
+import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
+import jsinterop.base.Any;
+import jsinterop.base.Js;
 
-@JsType
+@JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
 public interface Validator {
-   //todo
 
-    //1.  can be string
-    //2. can be array of validators
-    //3. can be custom:
-    //validator to prevent values divisible by the provided divisor
-//    var noDivide = function(cell, value, parameters){
-//        //cell - the cell component for the edited cell
-//        //value - the new input value of the cell
-//        //parameters - the parameters passed in with the validator
-//
-//        return value % parameters.divisor; //don't allow values divisible by devisor ;
-//    }
-//
-//    //in your column definition for the column
-//    {title:"Age", field:"age", editor:"input", validator:[{
-//        type:noDivide,
-//                parameters:{
-//            divisor:5,
-//        }
-//    }]
-//    }
+    @JsOverlay
+    static Validator ofRequired() {
+        return Js.cast("required");
+    }
 
+    @JsOverlay
+    static Validator ofUnique() {
+        return Js.cast("unique");
+    }
+
+    @JsOverlay
+    static Validator ofInteger() {
+        return Js.cast("integer");
+    }
+
+    @JsOverlay
+    static Validator ofFloat() {
+        return Js.cast("float");
+    }
+
+    @JsOverlay
+    static Validator ofNumeric() {
+        return Js.cast("numeric");
+    }
+
+    @JsOverlay
+    static Validator ofString() {
+        return Js.cast("string");
+    }
+
+    @JsOverlay
+    static Validator of(Any any) {
+        return Js.cast(any);
+    }
+
+    @JsOverlay
+    static Validator of(Validator[] many) {
+        return Js.cast(many);
+    }
+
+    @JsOverlay
+    static Validator of(Custom custom) {
+        return Js.cast(custom);
+    }
+
+
+    @JsFunction
+    @FunctionalInterface
+    interface Custom {
+        /**
+         * @param cell       - the cell component for the edited cell.
+         * @param value      - the new input value of the cell.
+         * @param parameters - the parameters passed in with the validator.
+         * @return -  It should return true if the value passes validation and false if it fails.
+         */
+        boolean validate(CellComponent cell, Any value, Any parameters);
+    }
 
 }

@@ -11,6 +11,13 @@ import jsinterop.base.JsPropertyMap;
 @JsType
 public class ColumnOptions extends CellEvent {
 
+
+    /**
+     * Column groups
+     */
+    public ColumnOptions[] columns;
+
+
     /**
      * Initial data.
      */
@@ -82,15 +89,18 @@ public class ColumnOptions extends CellEvent {
      */
     public boolean hideInHtml;
 
+    /**
+     * If you don't want to show a particular column in the HTML output you can set the htmlOutput property in its column definition object to false.
+     * You can also force a hidden column to be visibile in the HTML output by setting the htmlOutput property in its column definition object to true.
+     */
+    public boolean htmlOutput;
+
     public SorterType sorter;
 
     /**
      * Additional parameters you can pass to the sorter.
      */
     public SorterTypeParams sorterParams;
-
-
-
 
     /**
      * By default all columns in a table are sortable by clicking on the column header, if you want to disable this behaviour, set the headerSort property to false.
@@ -157,7 +167,7 @@ public class ColumnOptions extends CellEvent {
      * function - a callback function that returns the string for the cell. see below:
      * The function accepts one argument, the CellComponent for the cell the tooltip is being generated for.
      */
-    public TooltipUnion tooltip;
+    public Tooltip tooltip;
 
     /**
      * setting a headerTooltip value on a column will override the global setting
@@ -318,14 +328,22 @@ public class ColumnOptions extends CellEvent {
 
     /**
      * Override column title  in download, instead of using title.
+     *
+     * The downloadTitle property is now available in the column definition property for column groups to help with customization of table downloads.
+     *
      */
     public String downloadTitle;
+
 
     /**
      * If you want to make any bulk changes to the table data before it is parsed into the download file you can pass a mutator function to the downloadDataFormatter option in the table definition.
      */
     public CallbackRet1<Any, Any[]> downloadDataFormatter;
 
+    /**
+     * custom title for use in downloads.
+     * The downloadTitle property is now available in the column definition property for column groups to help with customization of table downloads.
+     */
     public DownloadReady downloadReady;
 
     //Callbacks
@@ -392,6 +410,9 @@ public class ColumnOptions extends CellEvent {
      */
     public Callback1<ColumnComponent> columnResized;
 
+
+    //Column visibility
+
     /**
      * Column Visibility Changed.
      * <p>
@@ -407,7 +428,17 @@ public class ColumnOptions extends CellEvent {
         void chnaged(ColumnComponent column, boolean visible);
     }
 
+    /**
+     * Hide data in print data.
+     * <p>
+     * If you don't want to show a particular column in the print table you can set the print property in its column definition object to false.
+     * <p>
+     * You can also force a hidden column to be visibile in the print by setting the print property in its column definition object to true.
+     */
     public ColumnVisibilityHandler columnVisibilityChanged;
+
+    public boolean print;
+
 
 
     /**
@@ -424,4 +455,6 @@ public class ColumnOptions extends CellEvent {
     public CalculatorParams topCalcParams;
     public Calculator bottomCalc;
     public CalculatorParams bottomCalcParams;
+
+
 }

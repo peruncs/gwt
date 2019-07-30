@@ -10,7 +10,7 @@ import jsinterop.base.Js;
  * The value to be displayed if an invalid input date/time is provided (default:""), this can take three different types of value:
  */
 @JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
-interface InvalidPlaceHolder {
+public interface InvalidPlaceHolder {
 
     /**
      * a string  will be displayed instead of the cells value

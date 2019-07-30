@@ -9,6 +9,7 @@ import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
+import jsinterop.base.JsPropertyMap;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
 public class Tabulator {
@@ -168,6 +169,10 @@ public class Tabulator {
 
     native public Promise<Void> setData(String ajaxRequest);
 
+    native public Promise<Void> setData(String ajaxRequest, JsPropertyMap<String> additionalParams);
+
+    native public Promise<Void> setData(String ajaxRequest, JsPropertyMap<String> additionalParams, AjaxConfig ajaxConfig);
+
     native public Promise<Void> setData();
 
     /**
@@ -307,9 +312,33 @@ public class Tabulator {
     native public RowComponent getRowFromPosition(RowComponent.Lookup row, boolean filteredSortedOnly);
 
     /**
-     * You can retrieve the table data as a simple HTML table. This will return a HTML encoded string of the table data..
+     * You can retrieve the table data as a simple HTML table. This will return a HTML encoded string of the table data.
+     * Also @see TabulatorOptions#htmlOutputConfig.
      */
     native public String getHtml();
+
+    /**
+     * Export as html with options.
+     *
+     * @param includeAllActiveRows     - whether the output table contains all active rows (false), or just those currently visible (true). By default this is false.
+     * @param stayledToMatchTable      - output of the function should be styled to match the table (true) or be a blank html table (false), by defualt this is false
+     * @param htmlOutputConfigOverride - can be used to override the object set on the htmlOutputConfig option. @see Tabulator#htmlOutputConfig .
+     * @return
+     */
+    native public String getHtml(boolean includeAllActiveRows, boolean stayledToMatchTable, HtmlOutputConfig htmlOutputConfigOverride);
+
+
+    /**
+     * You can use the print function to trigger a full page printing of the contents of the table without any other elements from the page.
+     *
+     * @param activeOrVisible     - whether the output table contains all active rows (false), or just those currently visible (true). By default this is false.
+     * @param stayledToMatchTable - output of the function should be styled to match the table (true) or be a blank html table (false), if you leave this argument out it will take the value of the printCopyStyle option.
+     * @param printConfigOverride - override the object set on the printConfig option, @see TabulatorOptions#printConfig .
+     */
+    native public void print(boolean activeOrVisible, boolean stayledToMatchTable, HtmlOutputConfig printConfigOverride);
+
+    native public void print();
+
 
     /**
      * You can add a row to the table using the addRow function.
@@ -656,7 +685,6 @@ public class Tabulator {
 //    native void download(CustomFileFormatter<?> customFileFormatter);
 //
 //    native void download(CustomFileFormatter<?> customFileFormatter, String fileNames);
-
     native <O> void download(CustomFileFormatter<O> customFileFormatter, String fileName, O options);
 
     /**
@@ -727,5 +755,37 @@ public class Tabulator {
     public void downloadToTabPDF() {
         downloadToTab("pdf");
     }
+
+    /**
+     * Get Current Ajax URL.
+     * <p>
+     * <p>
+     * Note: This function will return the url set on the ajaxURL property or the latest url set with the setData function, it will not include any pagination, filter or sorter parameters
+     */
+    native public String getAjaxUrl();
+
+
+    /**
+     * You can let the user choose a JSON file on their local machine to load data from by using the setDataFromLocalFile function.
+     * It will present the user with a standard file open dialog where they can then choose the file to load into the table.
+     * <p>
+     * Data Format.
+     * <p>
+     * The data must be stored as a valid json string matching the the structure of an array of objects as defined in the Load Data from Array section.
+     */
+    native void setDataFromLocalFile();
+
+
+    /**
+     * Valid File Types.
+     * <p>
+     * By default Tabulator will only allow files with a .json extension to be loaded into the table.
+     * <p>
+     * You can allow any other type of file into the file picker by passing the extension or mime type into the first argument of the setDataFromLocalFile function as a comma separated list. This argument will accept any of the values valid for the accept field of an input element
+     *
+     * @param - the allowed file extension to showin the picker.
+     */
+
+    public native void setDataFromLocalFile(String ext);
 
 }

@@ -1,12 +1,12 @@
 package com.peruncs.gwt.tabulator;
 
-import elemental2.core.JSONType;
 import elemental2.core.JsMap;
 import elemental2.core.JsObject;
+import elemental2.dom.Element;
 import elemental2.dom.MouseEvent;
 import elemental2.dom.Node;
 import elemental2.dom.TouchEvent;
-import jsinterop.annotations.JsFunction;
+import elemental2.promise.Promise;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 import jsinterop.base.JsPropertyMap;
@@ -17,6 +17,91 @@ import jsinterop.base.JsPropertyMap;
  */
 @JsType
 public class TabulatorOptions extends CellEvent {
+
+    /**
+     * Initial data.
+     */
+    public Any[] data;
+
+    /**
+     * hide the column headers and present the table as a simple list if needed.
+     */
+    public boolean headerVisible;
+
+
+    /**
+     * The output getHtml function will now contain column header groups, row groups, and column calculations.
+     * <p>
+     * You can choose to remove column headers groups and row groups in the output data by setting the values in the htmlOutputConfig option in the table definition:
+     */
+    public HtmlOutputConfig htmlOutputConfig;
+
+
+    /**
+     * Copy Tabulator styling to HTML table.
+     * <p>
+     * The HTML table will contain column header groups, row groups, and column calculations.
+     * <p>
+     * You can choose to remove any of these from the output data by setting the values in the printConfig option in the table definition.
+     */
+    public HtmlOutputConfig printConfig;
+
+
+    /**
+     * If you want your printed table to be styled to match your Tabulator you can set the printCopyStyle to true, this will copy key layout styling to the printed table.
+     */
+    public boolean printCopyStyle;
+
+
+    /**
+     * By deafault, only the rows currently visible in the Tabulator will be added to the HTML table, If you want to inclued all the active data (all currently filted/sorted rows)
+     * in the table you can set the printVisibleRows option to false.
+     * <p>
+     * Render Time
+     * Because generating a table containing a lot of rows takes a lot of time and consumes a lot of memory, it is not advised to show all rows in your table if there are more than 1000 rows.
+     */
+    public boolean printVisibleRows;
+
+
+    /**
+     * You can use the printHeader table setup option to define a header to be displayed when the table is printed.
+     * <p>
+     * This option can take one of three types of value:
+     * <p>
+     * string - you can pass an HTML string to be set as the contents header
+     * DOM Node - you can pass DOM Node to be used as the header
+     * function - a function that will be called when the table is printed, it should return either a string or DOM Node
+     * The header contents will be placed inside a div with a class of tabulator-print-header to allow you to style your header with CSS
+     * <p>
+     * Print Header Placement
+     * The print header will be inserted above the table on the printout, this will only occur on the first page of the print out, this should not be used as a page header.
+     */
+    public StringOrNodeOr<CallbackRet<StringOr<Node>>> printHeader;
+
+    /**
+     * You can use the printFooter table setup option to define a footer to be displayed when the table is printed.
+     * <p>
+     * This option can take one of three types of value:
+     * <p>
+     * string - you can pass an HTML string to be set as the contents footer
+     * DOM Node - you can pass DOM Node to be used as the footer
+     * function - a function that will be called when the table is printed, it should return either a string or DOM Node
+     * The footer contents will be placed inside a div with a class of tabulator-print-footer to allow you to style your footer with CSS
+     * <p>
+     * Print Footer Placement
+     * The print footer will be inserted below the table on the printout, this will only occur on the last page of the print out, this should not be used as a page footer.
+     */
+    public StringOrNodeOr<CallbackRet<StringOr<Node>>> printFooter;
+
+    /**
+     * The printFormatter table setup option allows you to carry out any manipulation of the print output before it is
+     * displayed to the user for printing.
+     * <p>
+     * Callback arguments:
+     * - tableHolderElement - The element that holds the header, footer and table elements
+     * - tableElement - The table
+     */
+    public Callback2<Element /*tableHolderElement*/, Element /*tableElement */> printFormatter;
 
     /**
      * See Table Layout documentation. Possible values:
@@ -115,6 +200,9 @@ public class TabulatorOptions extends CellEvent {
     public String pagination;
 
 
+    /**
+     * Column definitions
+     */
     public ColumnOptions[] columns;
 
     public boolean sortOrderReverse;
@@ -143,7 +231,7 @@ public class TabulatorOptions extends CellEvent {
     public Callback1<RowComponent> rowFormatter;
 
 
-    public TooltipUnion tooltips;
+    public Tooltip tooltips;
 
     /**
      * By default Tabulator regenerates tooltips whenever data in a cell changes, however if you use a tooltip generation function that is dependant on values outside the cell this may mean the tooltip does not update as expected.
@@ -162,10 +250,36 @@ public class TabulatorOptions extends CellEvent {
      * set url for ajax request
      */
     public String ajaxURL;
+
+
     /**
      * set any standard parameters to pass with the request
      */
     public JsPropertyMap<Object> ajaxParams;
+
+
+    /**
+     * By default Tabulator will make all ajax requests using the HTTP GET request method. If you need to use a different request method you can pass this into the ajaxConfig option
+     */
+    public AjaxConfig ajaxConfig;
+
+    /**
+     * Response processor.
+     */
+    public AjaxResponse ajaxResponse;
+
+    /**
+     * Aborting an Ajax Request.
+     * <p>
+     * The ajaxRequesting callback is called just before an AJAX request is made, if you want to abort the request for any reason you can return a value of false from the function
+     */
+    public Callback2RetBoolean<String /*url*/, JsPropertyMap<String> /*params*/> ajaxRequesting;
+
+    /**
+     * When using a request method other than "GET" Tabulator will send any parameters with a content type of form data. You can change the content type with the ajaxContentType option. This will ensure parameters are sent in the format you expect, with the correct headers.
+     */
+
+    public AjaxContentType ajaxContentType;
 
     //Remote Pagination
     /**
@@ -253,7 +367,7 @@ public class TabulatorOptions extends CellEvent {
      * To keep the layout of the columns consistent, once the column widths have been set on the first data load (either from the data property in the constructor or the setData function) they will not be changed when new data is loaded.
      * If you would prefer that the column widths adjust to the data each time you load it into the table you can set the layoutColumnsOnNewData property to true.
      */
-    boolean layoutColumnsOnNewData;
+    public boolean layoutColumnsOnNewData;
     /**
      * Responsive layout will automatically hide/show columns to fit the width of the Tabulator element. This allows for clean rendering of tables on smaller mobile devices, showing important data while avoiding horizontal scroll bars. You can enable responsive layouts using the responsiveLayout option.
      * There are two responsive layout modes available:
@@ -262,22 +376,41 @@ public class TabulatorOptions extends CellEvent {
      * "collapse" - the values from hidden columns will be displayed in a title/value list under the row.
      * true - enable responsive layouts
      */
-    BooleanOr<String> responsiveLayout;
+    public BooleanOr<String> responsiveLayout;
+
+    public AjaxURLGenerator ajaxURLGenerator;
+
+    public CallbackRet<Promise<Any>> ajaxRequestFunc;
+
 
     /**
-     * return request url.
+     * If you are loading a lot of data from a remote source into your table in one go, it can sometimes take a long time for the server to return the request, which can slow down the user experience.
      * <p>
-     * url - the url from the ajaxURL property or setData function
-     * config - the request config object from the ajaxConfig property
-     * params - the params object from the ajaxParams property, this will also include any pagination, filter and sorting properties based on table setup
+     * To speed things up in this situation Tabulator has a progressive load mode, this uses the pagination module to make a series of requests for part of the data set, one at a time, appending it to the table as the data arrives. This mode can be enable using the ajaxProgressiveLoad option. No pagination controls will be visible on screen, it just reusues the functionality of the pagination module to sequentially load the data.
+     * <p>
+     * With this mode enabled, all of the settings outlined in the Ajax Documentation are still available
+     * <p>
+     * There are two different progressive loading modes, to give you a choice of how data is loaded into the table.
+     * <p>
+     * "load" - In load mode the table will sequentially add each page of data into the table untill all data is loaded.
+     * <p>
+     * "scroll" - In scroll mode Tabulator will initially load enough data into the table to fill the visible area of the table plus the scroll margin.
+     * <p>
+     * Whenever the user scrolls down vertically, if they are with the the scroll margin of the bottom of the table an ajax request will be triggered for the next page worth of data.
      */
-    @JsFunction
-    @FunctionalInterface
-    public interface AjaxURLGenerator {
-        String generateUrl(String url, AjaxConfig ajaxConfig, JsPropertyMap<Object> ajaxParams);
-    }
+    public String ajaxProgressiveLoad;
 
-    AjaxURLGenerator ajaxURLGenerator;
+
+    /**
+     * wait  milliseconds between each request.
+     */
+    public int ajaxProgressiveLoadDelay;
+
+    /**
+     * Trigger next ajax load when scroll bar is X pixels or less from the bottom of the table.
+     * To ensure a good user experience, you should make sure you have a reasonably large scroll margin, to give your users room to scroll while the data is being loaded from the server.
+     */
+    public int ajaxProgressiveLoadScrollMargin;
 
 
     //Tree Structure and Nested Data
@@ -299,9 +432,9 @@ public class TabulatorOptions extends CellEvent {
      * Both options can take either an html string representing the contents of the toggle element Or a DOM element representing the toggle.
      */
 
-    public StringOr<Node> dataTreeCollapseElement;
+    public StringOrNodeOr<Boolean> dataTreeCollapseElement;
 
-    public StringOr<Node> dataTreeExpandElement;
+    public StringOrNodeOr<Boolean> dataTreeExpandElement;
 
     /**
      * By default the toggle element will be inserted into the first column on the table. If you want the toggle element to be inserted in a different column you can pass the feild name of the column to the dataTreeElementColumn setup option
@@ -547,17 +680,7 @@ public class TabulatorOptions extends CellEvent {
 
     //Selection Eligibility
 
-    /**
-     * You many want to exclude certain rows from being selected. The selectableCheck options allows you to pass a function to check if the current row should be selectable, returning true will allow row selection, false will result in nothing happening. The function should accept a RowComponent as its first argument.
-     * Note: Any selectable rows will be assigned the tabulator-selectable class, any unselectable rows will be assigned the tabulator-unselectable class.
-     */
-    @FunctionalInterface
-    @JsFunction
-    public interface CanSelectRow {
-        boolean check(RowComponent rowComponent);
-    }
-
-    public CanSelectRow selectableCheck;
+    public Callback1RetBoolean<RowComponent> selectableCheck;
 
     //Interaction History
     /**
@@ -846,42 +969,6 @@ public class TabulatorOptions extends CellEvent {
 
     //Ajax Callbacks
 
-    /**
-     * Ajax Request.
-     * <p>
-     * url - the URL of the request
-     * params - the parameters passed with the request
-     * The ajaxRequesting callback is triggered when ever an ajax request is made.
-     * <p>
-     * Returning a value of false from this callback will abort the ajax request
-     */
-
-    @FunctionalInterface
-    @JsFunction
-    public interface AjaxRequestHandler {
-        boolean handle(String url, Any params);
-    }
-
-    public AjaxRequestHandler ajaxRequesting;
-
-    /**
-     * Ajax Response.
-     * <p>
-     * url - the URL of the request
-     * params - the parameters passed with the request
-     * response - the JSON object returned in the body of the response.
-     * <p>
-     * The ajaxResponse callback is triggered when a successful ajax request has been made. This callback can also be used to modify the received data before it is parsed by the table. If you use this callback it must return the data to be parsed by Tabulator, otherwise no data will be rendered.
-     */
-
-
-    @FunctionalInterface
-    @JsFunction
-    public interface AjaxResponseHandler {
-        boolean handle(String url, Any params, JSONType response);
-    }
-
-    public AjaxResponseHandler ajaxResponse;
 
     /**
      * Ajax Error.
@@ -893,13 +980,8 @@ public class TabulatorOptions extends CellEvent {
      * The ajaxError callback is triggered there is an error response to an ajax request.
      */
 
-    @FunctionalInterface
-    @JsFunction
-    public interface AjaxErrorHandler {
-        boolean handle(JsObject response);
-    }
 
-    public AjaxErrorHandler ajaxError;
+    public Callback1RetBoolean<JsObject/*response*/> ajaxError;
 
     //Filter Callbacks
 
@@ -970,19 +1052,6 @@ public class TabulatorOptions extends CellEvent {
 
     //Pagination Callbacks
 
-    /**
-     * Page Loaded.
-     * <p>
-     * pageno - the number of the loaded page.
-     * <p>
-     * Whenever a page has been loaded, the pageLoaded callback is called, passing the current page number as an argument.
-     */
-    @JsFunction
-    @FunctionalInterface
-    public interface PaginationCallback {
-        void onPage(int pageNo);
-    }
-
     public PaginationCallback pageLoaded;
 
     //Localization
@@ -1015,20 +1084,6 @@ public class TabulatorOptions extends CellEvent {
      * The dataGrouped callback is triggered whenever a data grouping event occurs, after grouping happens.
      */
     public Callback1<GroupComponent[]> dataGrouped;
-
-    /**
-     * Group Visibility Changed.
-     * <p>
-     * group - group component
-     * visible - is group visible (true = visible, false = hidden)
-     * <p>
-     * The groupVisibilityChanged callback is triggered whenever a group changes between hidden and visible states.
-     */
-    @JsFunction
-    @FunctionalInterface
-    public interface GroupedVisibilityChangedCallback {
-        void group(GroupComponent group, boolean visible);
-    }
 
     public GroupedVisibilityChangedCallback groupVisibilityChanged;
 
@@ -1245,22 +1300,6 @@ public class TabulatorOptions extends CellEvent {
      */
     public CallbackRet1<Any, Any> downloadDataFormatter;
 
-    /**
-     * The downloadReady callback allows you to intercept the download file data before the users is prompted to save the file.
-     */
-    @JsFunction
-    @FunctionalInterface
-    interface DownloadReadyCallback {
-        /**
-         * callback.
-         *
-         * @param fileContents - - the unencoded contents of the file
-         * @param blob         - the blob object for the download
-         * @return In order for the download to proceed the downloadReady callback is expected to return a blob of file to be downloaded. If you would prefer to abort the download you can return false from this callback. This could be useful for example if you want to send the created file to a server via ajax rather than allowing the user to download the file.
-         */
-        BooleanOr<Any> beforeUserSaves(Any fileContents, Any blob);
-    }
-
     public DownloadReadyCallback downloadReady;
 
     /**
@@ -1271,19 +1310,6 @@ public class TabulatorOptions extends CellEvent {
     public Callback downloadComplete;
 
     //Data Tree Callbacks
-
-    /**
-     * Data tree callback.
-     * <p>
-     * row - the row component for the expanded row
-     * level - the depth of the row in the tree
-     * *
-     */
-    @JsFunction
-    @FunctionalInterface
-    public interface DataTreeCallback {
-        void handleDataTreeRow(RowComponent row, int level);
-    }
 
     /**
      * Row Expanded.
@@ -1297,5 +1323,23 @@ public class TabulatorOptions extends CellEvent {
      * The dataTreeRowCollapsed callback is triggered when a row with child rows is collapsed to hide its children.
      */
     public DataTreeCallback dataTreeRowCollapsed;
+
+    //Printing
+
+    /**
+     * Enable html table printing.
+     * <p>
+     * By Default when a page is printed that includes a Tabulator it will be rendered on the page exactly as the table is drawn.
+     * While this ise useful in most cases, some users prefer tohave more controll over the print output, for example showing all
+     * rows of the table, instead of just those visible with the current position of the scroll bar.
+     * <p>
+     * Tabulator provides a print styling mode that will replace the Tabulator with an HTML table for the printout giving you much
+     * more control over the look and feel of the table for the print out., to enable this mode, set the printAsHtml option to true in the table constructor.
+     * This will replace the table (in print outs only) with a simple HTML table with the class tabulator-print-table that you can use to style the table in any way you like.
+     * <p>
+     * It also has the benifit that because it is an HTML table, if it corsses a page break your browser will uatomatically add the column
+     * headers in at the top of the next page.
+     */
+    public boolean printAsHtml;
 
 }
