@@ -75,7 +75,7 @@ subprojects {
         classifier = 'javadoc'
     }
 
-    //Include sources and soem manifest attributes into the default jar
+    //Include sources and some manifest attributes into the default jar
     jar {
         manifest {
             attributes(
