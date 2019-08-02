@@ -36,4 +36,4 @@ To deploy all projects into local Maven repository with:
 > gradlew publishLocal
 
 You can also build individual projects, for example:
-> gradlew -p gwt-jwt asemble
+> gradlew -p gwt-jwt assemble
