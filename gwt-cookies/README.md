@@ -1,4 +1,4 @@
-##GWT/JsInterop/JACL interface for github.com/js-cookie
+##GWT/JsInterop/JACL wrapper for [JS-Cookie](github.com/js-cookie)
 
 
 

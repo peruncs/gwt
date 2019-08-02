@@ -1,2 +1,2 @@
-##GWT Errai utils for UIKIT.
+##GWT/JsInterop/JACL wrapper for [UiKit](http://getuikit.com)
 

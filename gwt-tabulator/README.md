@@ -1,2 +1,2 @@
-##GWT JsInterop interface for github.com/olifolkerd/tabulator
+##GWT JsInterop interface for [Tabulator](http://github.com/olifolkerd/tabulator)
 

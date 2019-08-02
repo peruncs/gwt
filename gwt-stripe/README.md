@@ -1,2 +1,2 @@
-##GWT JsInterop interface to Stripe.Com.
+##GWT/JsInterop/JACL wrapper to [Stripe.Com](http://stripe.com).
 
