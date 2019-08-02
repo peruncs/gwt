@@ -1,5 +1,9 @@
 package com.peruncs.gwt.tabulator;
 
+import com.peruncs.gwt.utils.Callback1;
+import com.peruncs.gwt.utils.Callback1RetBoolean;
+import com.peruncs.gwt.utils.Callback2;
+import com.peruncs.gwt.utils.CallbackRet1;
 import elemental2.core.JsObject;
 import elemental2.dom.MouseEvent;
 import elemental2.dom.TouchEvent;

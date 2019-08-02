@@ -1,6 +1,8 @@
 package com.peruncs.gwt.tabulator;
 
 
+import com.peruncs.gwt.utils.Callback1;
+import com.peruncs.gwt.utils.Callback2;
 import elemental2.dom.MouseEvent;
 import jsinterop.annotations.JsType;
 

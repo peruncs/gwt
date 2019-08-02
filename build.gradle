@@ -1,182 +1,39 @@
-subprojects {
-
-    apply plugin: 'java'
-    apply plugin: 'maven-publish'
-    apply plugin: 'signing'
-    apply plugin: 'idea'
-
-    dependencies {
-
-//        implementation "com.google.jsinterop:base:${gwt_base_version}"
-//        implementation "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
-//        implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
-//        implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
-
-          //Newer, alternative Elemental2/Jsinterop, Provided by Peter Donald.
-//        implementation "com.google.jsinterop:base:${gwt_base_version}"
-//        implementation "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
-//        implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
-//        implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
-
-        compileOnly "com.google.jsinterop:base:${gwt_base_version}"
-        compileOnly "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
-        compileOnly "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
-        compileOnly "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
-
-    }
-
-    def dependencyOverrides = { DependencyResolveDetails details ->
-        //Override elemental2 and jsinterop
-        if (details.requested.module.group == 'com.google.jsinterop' && details.requested.module.name == 'jsinterop'){
-            details.useTarget group: 'org.realityforge.com.google.jsinterop', name: 'jsinterop', version: gwt_jsinterop_version
-        }else if (details.requested.module.group == 'com.google.jsinterop' && details.requested.module.name == 'jsinterop-annotations'){
-            details.useTarget group: 'org.realityforge.com.google.jsinterop', name: 'jsinterop-annotations', version: gwt_jsinterop_version
-        }else if (details.requested.module.group == 'com.google.jsinterop' && details.requested.module.name == 'base'){
-            details.useTarget group: 'org.realityforge.com.google.jsinterop', name: 'base', version: gwt_base_version
-        }else if (details.requested.module.group == 'com.google.elemental2' ){
-            details.useTarget group: 'org.realityforge.com.google.elemental2', name: details.requested.name, version: gwt_elemental2_version
-        }
-    }
-    configurations.all {
-        resolutionStrategy {
-            eachDependency(dependencyOverrides)
-        }
-    }
-
-    tasks.withType(JavaCompile) {
-        options.incremental = true
-    }
-
-    compileJava {
-        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xlint:deprecation"
-    }
-
-    sourceCompatibility = "${java_lang_level}"
-    targetCompatibility = "${java_lang_level}"
-
-    repositories {
-        mavenCentral()
-        mavenLocal()
-    }
-
-    javadoc {
-        if (JavaVersion.current().isJava9Compatible()) {
-            options.addBooleanOption('html4', true)
-        }
-        failOnError false
-    }
-
-    task sourcesJar(type: Jar) {
-        from sourceSets.main.allJava
-        archiveClassifier = 'sources'
-    }
-
-    task javadocJar(type: Jar) {
-        from javadoc
-        archiveClassifier = 'javadoc'
-    }
-
-    //Include sources and some manifest attributes into the default jar
-    jar {
-        manifest {
-            attributes(
-                    'Build-Timestamp': java.time.Instant.now().toString(),
-                    'Specification-Vendor': 'peruncs.com',
-                    'Implementation-Vendor': 'peruncs.com',
-                    'Build-Jdk': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
-                    'Build-With': "Gradle ${gradle.gradleVersion}",
-            )
-        }
-        from sourceSets.main.allSource
-    }
-
-    publishing {
-        afterEvaluate {
-            repositories {
-                maven {
-                    url = version.endsWith('SNAPSHOT') ?
-                            "https://oss.sonatype.org/content/repositories/snapshots/"
-                            : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-                    credentials {
-                        username sonatypeUsername
-                        password sonatypePassword
-                    }
-                }
-            }
-        }
-    }
-
+task publishCentral {
+    dependsOn gradle.includedBuild('gwt-utils').task(':publishAllPublicationToMavenRepository')
+    dependsOn gradle.includedBuild('gwt-stripe').task(':publishAllPublicationToMavenRepository')
+    dependsOn gradle.includedBuild('gwt-tabulator').task(':publishAllPublicationToMavenRepository')
+    dependsOn gradle.includedBuild('gwt-cookies').task(':publishAllPublicationToMavenRepository')
+    dependsOn gradle.includedBuild('gwt-jwt').task(':publishAllPublicationToMavenRepository')
+    dependsOn gradle.includedBuild('gwt-recaptcha').task(':publishAllPublicationToMavenRepository')
+    dependsOn gradle.includedBuild('gwt-uikit').task(':publishAllPublicationToMavenRepository')
 }
 
-//Publishing to Maven local repo
-task publishUtilsToMavenLocal {
-    dependsOn ":gwt-utils:publishToMavenLocal"
+task publishLocal{
+    dependsOn gradle.includedBuild('gwt-utils').task(':publishPublicationPublicationToMavenLocal')
+    dependsOn gradle.includedBuild('gwt-stripe').task(':publishPublicationPublicationToMavenLocal')
+    dependsOn gradle.includedBuild('gwt-tabulator').task(':publishPublicationPublicationToMavenLocal')
+    dependsOn gradle.includedBuild('gwt-cookies').task(':publishPublicationPublicationToMavenLocal')
+    dependsOn gradle.includedBuild('gwt-jwt').task(':publishPublicationPublicationToMavenLocal')
+    dependsOn gradle.includedBuild('gwt-recaptcha').task(':publishPublicationPublicationToMavenLocal')
+    dependsOn gradle.includedBuild('gwt-uikit').task(':publishPublicationPublicationToMavenLocal')
 }
 
-task publishStripeToMavenLocal {
-    dependsOn ":gwt-stripe:publishToMavenLocal"
+task assemble {
+    dependsOn gradle.includedBuild('gwt-utils').task(':assemble')
+    dependsOn gradle.includedBuild('gwt-stripe').task(':assemble')
+    dependsOn gradle.includedBuild('gwt-tabulator').task(':assemble')
+    dependsOn gradle.includedBuild('gwt-cookies').task(':assemble')
+    dependsOn gradle.includedBuild('gwt-jwt').task(':assemble')
+    dependsOn gradle.includedBuild('gwt-recaptcha').task(':assemble')
+    dependsOn gradle.includedBuild('gwt-uikit').task(':assemble')
 }
 
-task publishJwtToMavenLocal {
-    dependsOn ":gwt-jwt:publishToMavenLocal"
-}
-
-task publishUikitToMavenLocal {
-    dependsOn ":gwt-uikit:publishToMavenLocal"
-}
-
-task publishReCaptchaToMavenLocal {
-    dependsOn ":gwt-recaptcha:publishToMavenLocal"
-}
-
-
-task publishCookiesToMavenLocal {
-    dependsOn ":gwt-cookies:publishToMavenLocal"
-}
-
-task publishTabulatorToMavenLocal {
-    dependsOn ":gwt-tabulator:publishToMavenLocal"
-}
-
-publishStripeToMavenLocal.mustRunAfter publishUtilsToMavenLocal
-publishReCaptchaToMavenLocal.mustRunAfter publishUtilsToMavenLocal
-
-task publishAllToMavenLocal {
-    dependsOn publishUtilsToMavenLocal, publishStripeToMavenLocal, publishJwtToMavenLocal, publishUikitToMavenLocal, publishReCaptchaToMavenLocal, publishCookiesToMavenLocal, publishCookiesToMavenLocal
-}
-
-//Publishing to Maven central repo
-task publishUtils {
-    dependsOn ":gwt-utils:publish"
-}
-
-task publishStripe {
-    dependsOn ":gwt-stripe:publish"
-}
-
-task publishJwt {
-    dependsOn ":gwt-jwt:publish"
-}
-
-task publishUikit {
-    dependsOn ":gwt-uikit:publish"
-}
-
-task publishRecaptcha {
-    dependsOn ":gwt-recaptcha:publish"
-}
-
-task publishCookies {
-    dependsOn ":gwt-cookies:publish"
-}
-
-task publishTabulator {
-    dependsOn ":gwt-tabulator:publish"
-}
-
-publishStripe.mustRunAfter publishUtils
-publishRecaptcha.mustRunAfter publishUtils
-
-task publishAll {
-    dependsOn publishUtils, publishStripe, publishJwt, publishUikit, publishRecaptcha, publishCookies, publishTabulator
+task clean {
+    dependsOn gradle.includedBuild('gwt-utils').task(':clean')
+    dependsOn gradle.includedBuild('gwt-stripe').task(':clean')
+    dependsOn gradle.includedBuild('gwt-tabulator').task(':clean')
+    dependsOn gradle.includedBuild('gwt-cookies').task(':clean')
+    dependsOn gradle.includedBuild('gwt-jwt').task(':clean')
+    dependsOn gradle.includedBuild('gwt-recaptcha').task(':clean')
+    dependsOn gradle.includedBuild('gwt-uikit').task(':clean')
 }

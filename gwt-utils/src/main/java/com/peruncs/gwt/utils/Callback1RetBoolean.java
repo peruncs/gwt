@@ -1,4 +1,4 @@
-package com.peruncs.gwt.tabulator;
+package com.peruncs.gwt.utils;
 
 import jsinterop.annotations.JsFunction;
 
@@ -7,7 +7,6 @@ import jsinterop.annotations.JsFunction;
  */
 @JsFunction
 @FunctionalInterface
-
-public interface CallbackRet2<R, A, B> {
-    R call(A param1, B param2);
+public interface Callback1RetBoolean<A> {
+    boolean call(A param1);
 }

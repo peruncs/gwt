@@ -1,3 +1,5 @@
+apply from: '../shared.groovy'
+
 group = 'com.peruncs.gwt'
 version = gwt_uikit_version
 

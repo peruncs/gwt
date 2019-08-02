@@ -1,5 +1,6 @@
 package com.peruncs.gwt.tabulator;
 
+import com.peruncs.gwt.utils.*;
 import elemental2.core.JsMap;
 import elemental2.core.JsObject;
 import elemental2.dom.Element;

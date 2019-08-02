@@ -1,5 +1,6 @@
 package com.peruncs.gwt.tabulator;
 
+import com.peruncs.gwt.utils.CallbackRet1;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;

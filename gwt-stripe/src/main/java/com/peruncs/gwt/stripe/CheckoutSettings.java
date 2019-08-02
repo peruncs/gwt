@@ -1,5 +1,7 @@
 package com.peruncs.gwt.stripe;
 
+import com.peruncs.gwt.utils.Callback;
+import com.peruncs.gwt.utils.Callback2;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;

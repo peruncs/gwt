@@ -1,4 +1,4 @@
-package com.peruncs.gwt.tabulator;
+package com.peruncs.gwt.utils;
 
 import jsinterop.annotations.JsFunction;
 

@@ -1,5 +1,7 @@
-//include "gwt-utils", "gwt-jwt",  "gwt-stripe"
-include "gwt-utils", "gwt-jwt", "gwt-uikit", "gwt-stripe", "gwt-recaptcha", "gwt-cookies", "gwt-tabulator"
-//include "gwt-jquery"
-
-
+includeBuild "gwt-utils"
+includeBuild "gwt-jwt"
+includeBuild "gwt-uikit"
+includeBuild "gwt-stripe"
+includeBuild "gwt-recaptcha"
+includeBuild "gwt-cookies"
+includeBuild "gwt-tabulator"
