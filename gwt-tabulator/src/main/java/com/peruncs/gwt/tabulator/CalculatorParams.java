@@ -2,6 +2,7 @@ package com.peruncs.gwt.tabulator;
 
 import jdk.nashorn.api.scripting.JSObject;
 import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
@@ -13,13 +14,23 @@ public interface CalculatorParams {
 
     /**
      * The number of decimals to display (default is 2), setting this value to false will display however many decimals are provided with the number
+     *
+     * @param precision  the desired precision.
+     * @return CalculatorParams
      */
+    @JsOverlay
     static CalculatorParams precision(BooleanOr<Integer> precision) {
         return Js.cast(JsPropertyMap.of("precision", precision));
     }
 
-
-    static CalculatorParams generate(Lookup lookupFunction) {
+    /**
+     * Custome lookup.
+     *
+     * @param lookupFunction custom lookup function.
+     * @return CalculatorParams
+     */
+    @JsOverlay
+    static CalculatorParams lookup(Lookup lookupFunction) {
         return Js.cast(lookupFunction);
     }
 

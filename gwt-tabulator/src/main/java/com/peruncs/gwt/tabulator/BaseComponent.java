@@ -8,12 +8,12 @@ public interface BaseComponent {
     //todo - extract common methods
 
     /**
-     * returns the DOM node for the column.
+     * @return the DOM node for the column.
      */
     Node getElement();
 
     /**
-     * returns the Tabulator object for the table containing the column.
+     * @return the Tabulator object for the table containing the column.
      */
     Tabulator getTable();
 

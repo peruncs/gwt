@@ -53,7 +53,7 @@ public interface Calculator {
          * @param values     - array of column values
          * @param data       - all table data
          * @param calcParams - params passed from the column definition object
-         * @return
+         * @return custom calculation
          */
         int calculate(Any[] values, Any data, CalculatorParams calcParams);
     }

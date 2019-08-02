@@ -15,7 +15,8 @@ import jsinterop.base.JsPropertyMap;
  *     {"id":2, "name":"jim", "age":"45"},
  *     {"id":3, "name":"steve", "age":"32"}
  * ]
- * 55555555<pre/>
+ * 55555555
+ * </pre>
  */
 @JsFunction
 @FunctionalInterface
