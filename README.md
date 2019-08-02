@@ -25,8 +25,15 @@ All projects are Apache 2.0 licensed and provided "AS-IS".
 
 
 ## How to build
-You can deploy these project into local Maven repository with:
-> gradlew PTML
+
+To build all projects:
+> gradlew assemble
+
+To build all projects:
+> gradlew clean
+
+To deploy all projects into local Maven repository with:
+> gradlew publishLocal
 
 You can also build individual projects, for example:
-> gradlew -p gwt-jwt PTML
+> gradlew -p gwt-jwt asemble
