@@ -1,8 +1,8 @@
-apply plugin: 'java'
-apply plugin: 'maven-publish'
-apply plugin: 'signing'
-apply plugin: 'idea'
+//This script is included into and shared by all modules
+//------------------------------------------------------
 
+
+//Shared properties
 ext {
     // Compilers
     java_lang_level='1.8'
@@ -27,6 +27,12 @@ ext {
     gwt_tabulator_version='0.0.2-SNAPSHOT'
 }
 
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+apply plugin: 'idea'
+
+//Shared dependencies
 dependencies {
 
 //        implementation "com.google.jsinterop:base:${gwt_base_version}"

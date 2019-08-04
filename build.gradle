@@ -1,25 +1,34 @@
-def modules = ['gwt-utils', 'gwt-stripe', 'gwt-tabulator', 'gwt-cookies', 'gwt-jwt', 'gwt-recaptcha', 'gwt-uikit']
+//This build defines a few tasks that apply to all modules listed below.
 
+//A list of all gwt modules.
+def gwtmodules = ['gwt-utils', 'gwt-stripe', 'gwt-tabulator', 'gwt-cookies', 'gwt-jwt', 'gwt-recaptcha', 'gwt-uikit']
+
+
+//Publish all gwt modules to Maven Central Repository.
 task publishCentral {
-    for (item in modules) {
+    for (item in gwtmodules) {
         dependsOn gradle.includedBuild(item).task(':publishAllPublicationToMavenRepository')
     }
 }
 
+//Publish all gwt modules to you local Maven  Repository
 task publishLocal {
-    for (item in modules) {
+    for (item in gwtmodules) {
         dependsOn gradle.includedBuild(item).task(':publishPublicationPublicationToMavenLocal')
     }
 }
 
+
+//Build packages for all gwt modules.
 task assemble {
-    for (item in modules) {
+    for (item in gwtmodules) {
         dependsOn gradle.includedBuild(item).task(':assemble')
     }
 }
 
+//Clean up all gwt modules.
 task clean {
-    for (item in modules) {
+    for (item in gwtmodules) {
         dependsOn gradle.includedBuild(item).task(':clean')
     }
 }
