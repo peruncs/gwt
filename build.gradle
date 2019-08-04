@@ -1,39 +1,25 @@
+def modules = ['gwt-utils', 'gwt-stripe', 'gwt-tabulator', 'gwt-cookies', 'gwt-jwt', 'gwt-recaptcha', 'gwt-uikit']
+
 task publishCentral {
-    dependsOn gradle.includedBuild('gwt-utils').task(':publishAllPublicationToMavenRepository')
-    dependsOn gradle.includedBuild('gwt-stripe').task(':publishAllPublicationToMavenRepository')
-    dependsOn gradle.includedBuild('gwt-tabulator').task(':publishAllPublicationToMavenRepository')
-    dependsOn gradle.includedBuild('gwt-cookies').task(':publishAllPublicationToMavenRepository')
-    dependsOn gradle.includedBuild('gwt-jwt').task(':publishAllPublicationToMavenRepository')
-    dependsOn gradle.includedBuild('gwt-recaptcha').task(':publishAllPublicationToMavenRepository')
-    dependsOn gradle.includedBuild('gwt-uikit').task(':publishAllPublicationToMavenRepository')
+    for (item in modules) {
+        dependsOn gradle.includedBuild(item).task(':publishAllPublicationToMavenRepository')
+    }
 }
 
-task publishLocal{
-    dependsOn gradle.includedBuild('gwt-utils').task(':publishPublicationPublicationToMavenLocal')
-    dependsOn gradle.includedBuild('gwt-stripe').task(':publishPublicationPublicationToMavenLocal')
-    dependsOn gradle.includedBuild('gwt-tabulator').task(':publishPublicationPublicationToMavenLocal')
-    dependsOn gradle.includedBuild('gwt-cookies').task(':publishPublicationPublicationToMavenLocal')
-    dependsOn gradle.includedBuild('gwt-jwt').task(':publishPublicationPublicationToMavenLocal')
-    dependsOn gradle.includedBuild('gwt-recaptcha').task(':publishPublicationPublicationToMavenLocal')
-    dependsOn gradle.includedBuild('gwt-uikit').task(':publishPublicationPublicationToMavenLocal')
+task publishLocal {
+    for (item in modules) {
+        dependsOn gradle.includedBuild(item).task(':publishPublicationPublicationToMavenLocal')
+    }
 }
 
 task assemble {
-    dependsOn gradle.includedBuild('gwt-utils').task(':assemble')
-    dependsOn gradle.includedBuild('gwt-stripe').task(':assemble')
-    dependsOn gradle.includedBuild('gwt-tabulator').task(':assemble')
-    dependsOn gradle.includedBuild('gwt-cookies').task(':assemble')
-    dependsOn gradle.includedBuild('gwt-jwt').task(':assemble')
-    dependsOn gradle.includedBuild('gwt-recaptcha').task(':assemble')
-    dependsOn gradle.includedBuild('gwt-uikit').task(':assemble')
+    for (item in modules) {
+        dependsOn gradle.includedBuild(item).task(':assemble')
+    }
 }
 
 task clean {
-    dependsOn gradle.includedBuild('gwt-utils').task(':clean')
-    dependsOn gradle.includedBuild('gwt-stripe').task(':clean')
-    dependsOn gradle.includedBuild('gwt-tabulator').task(':clean')
-    dependsOn gradle.includedBuild('gwt-cookies').task(':clean')
-    dependsOn gradle.includedBuild('gwt-jwt').task(':clean')
-    dependsOn gradle.includedBuild('gwt-recaptcha').task(':clean')
-    dependsOn gradle.includedBuild('gwt-uikit').task(':clean')
+    for (item in modules) {
+        dependsOn gradle.includedBuild(item).task(':clean')
+    }
 }
