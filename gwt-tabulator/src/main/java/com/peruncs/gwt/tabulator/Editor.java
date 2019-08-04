@@ -57,7 +57,7 @@ public interface Editor {
     /**
      * allows users to search a list of predefined options passed into the values property of the editorParams option.
      *
-     * @return the union type
+     * @return editor
      */
     @JsOverlay
     static Editor autocomplete() {
@@ -65,10 +65,8 @@ public interface Editor {
     }
 
     /**
-     * Passing a value of true to this option will result in Tabulator applying the editor that best matches the columns formatter, if present.
-     *
-     * @param bestMatchAttempt
-     * @return the union type
+     * @param bestMatchAttempt - Passing a value of true to this option will result in Tabulator applying the editor that best matches the columns formatter, if present.
+     * @return editor
      */
     @JsOverlay
     static Editor of(boolean bestMatchAttempt) {

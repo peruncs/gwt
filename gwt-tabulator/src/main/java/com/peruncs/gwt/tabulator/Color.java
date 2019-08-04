@@ -22,7 +22,7 @@ public interface Color {
      * Produce traffic bar from an array of strings.
      *
      * @param colors -an array of color strings, that will divide the background colour across the min-max range of values(eg ["green", "orange", "#ff0000"])
-     * @return
+     * @return color
      */
     static Color of(String... colors) {
         return Js.cast(colors);
@@ -32,7 +32,7 @@ public interface Color {
      * Custom the color.
      *
      * @param customCustom - a callback that is passed the value of the cell and must return the color (eg function(value){return "red"}).
-     * @return
+     * @return color
      */
     static Color of(Custom customCustom) {
         return Js.cast(customCustom);

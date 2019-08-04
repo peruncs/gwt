@@ -18,7 +18,7 @@ public interface Showable {
     void toggle();
 
     /**
-     * returns a boolean to show if the group is visible, a value of true means it is visible.
+     * @return a boolean to show if the group is visible, a value of true means it is visible.
      */
     boolean getVisibility();
 

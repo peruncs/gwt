@@ -94,8 +94,8 @@ public interface EditorParams {
             /**
              * return the HTML contents for each item in the value list.
              *
-             * @param value
-             * @param title
+             * @param value - value to display
+             * @param title - a column title
              * @return html content
              */
             String format(JsObject value, String title);

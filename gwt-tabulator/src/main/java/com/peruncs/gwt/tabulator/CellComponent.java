@@ -13,12 +13,12 @@ import jsinterop.base.Any;
 public interface CellComponent extends BaseComponent {
 
     /**
-     * current value for the cell.
+     * @return current value for the cell.
      */
     JsObject getValue();
 
     /**
-     * returns the previous value of the cell. Very usefull in the event of cell update callbacks.
+     * @return the previous value of the cell. Very usefull in the event of cell update callbacks.
      */
     JsObject getOldValue();
 
@@ -40,31 +40,41 @@ public interface CellComponent extends BaseComponent {
 
 
     /**
-     * returns the RowComponent for the row that contains the cell.
+     * @return the RowComponent for the row that contains the cell.
      */
     RowComponent getRow();
 
 
     /**
-     * returns the ColumnComponent for the column that contains the cell.
+     * @return the ColumnComponent for the column that contains the cell.
      */
     ColumnComponent getColumn();
 
 
     /**
-     * returns the data for the row that contains the cell.
+     * @return the data for the row that contains the cell.
      */
     Any getData();
 
 
     /**
-     * returns the field name for the column that contains the cell.
+     * @return the field name for the column that contains the cell.
      */
     String getField();
 
+    /**
+     * You can change the value of the cell using the setValue function.
+     *
+     * @param value -the new value for the cell
+     */
+    void setValue(JsObject value);
+
 
     /**
-     * You can change the value of the cell using the setValue function. The first parameter should be the new value for the cell, the second optional parameter will apply the column mutators to the value when set to true (default = true).
+     * You can change the value of the cell using the setValue function.
+     *
+     * @param value               -the new value for the cell
+     * @param applyColumnMutators - apply the column mutators to the value when set to true (default = true).
      */
     void setValue(JsObject value, boolean applyColumnMutators);
 
@@ -80,7 +90,7 @@ public interface CellComponent extends BaseComponent {
     void edit();
 
     /**
-     * force the editor to open even if editable is set to false.
+     * @param forceEditor - force the editor to open even if editable is set to false.
      */
     void edit(boolean forceEditor);
 
@@ -100,21 +110,29 @@ public interface CellComponent extends BaseComponent {
 
         /**
          * next editable cell on the left, if none available move to the right most editable cell on the row above.
+         *
+         * @return return false if none available.
          */
         boolean prev();
 
         /**
          * next editable cell on the right, if none available move to left most editable cell on the row below
+         *
+         * @return return false if none available.
          */
         boolean next();
 
         /**
          * next editable cell on the left, return false if none available on row)
+         *
+         * @return return false if none available.
          */
         boolean left();
 
         /**
-         * next editable cell on the right, return false if none available on row
+         * next editable cell on the right, return false if none available on row.
+         *
+         * @return return false if none available.
          */
         boolean right();
 

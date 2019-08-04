@@ -15,30 +15,30 @@ public interface ColumnComponent extends BaseComponent, Showable {
 
 
     /**
-     * returns the column definition object for the column.
+     * @return the column definition object for the column.
      */
     ColumnOptions getDefinition();
 
 
     /**
-     * returns the field name for the column.
+     * @return the field name for the column.
      */
     String getField();
 
     /**
-     * returns an array of CellComponent objects, one for each cell in the column.
+     * @return an array of CellComponent objects, one for each cell in the column.
      */
     CellComponent[] getCells();
 
 
     /**
-     * returns the Column Component for the next visible column in the table, if there is no next column it will return a value of false.
+     * @return the Column Component for the next visible column in the table, if there is no next column it will return a value of false.
      */
     BooleanOr<ColumnComponent> getNextColumn();
 
 
     /**
-     * returns the Column Component for the previous visible column in the table, if there is no previous column it will return a value of false.
+     * @return the Column Component for the previous visible column in the table, if there is no previous column it will return a value of false.
      */
     BooleanOr<ColumnComponent> getPrevColumn();
 
@@ -51,18 +51,19 @@ public interface ColumnComponent extends BaseComponent, Showable {
 
     /**
      * scroll the table to the column if it is visible. By running them in the promise you ensure they are only run after the column has been scrolled to.
+     * @return a promise
      */
-    <T> Promise<T> scrollTo();
+    Promise<Void> scrollTo();
 
 
     /**
-     * returns an array of ColumnComponent objects, one for each sub column of this column.
+     * @return an array of ColumnComponent objects, one for each sub column of this column.
      */
     ColumnComponent[] getSubColumns();
 
 
     /**
-     * returns the ColumnComponent for the parent column of this column. if no parent exists, this function will return false.
+     * @return the ColumnComponent for the parent column of this column. if no parent exists, this function will return false.
      */
 
     ColumnComponent getParentColumn();
@@ -76,6 +77,7 @@ public interface ColumnComponent extends BaseComponent, Showable {
 
     /**
      * set the value of the columns header filter element to the value provided in the first argument.
+     * @param value header filter
      */
     void setHeaderFilterValue(String value);
 
