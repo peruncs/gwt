@@ -1,6 +1,7 @@
 package com.peruncs.gwt.tabulator;
 
 import com.peruncs.gwt.utils.Callback;
+import com.peruncs.gwt.utils.StringOr;
 import elemental2.dom.Node;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
@@ -68,6 +69,7 @@ public interface Formatter {
 
     /**
      * Renders data as an anchor with a link to the given value (by default the value will be used as both the url and the label of the tag). has optional properties for the formatterParams object, see FormatterParamsLink. @return the union type.
+     *
      * @return formatter
      */
     @JsOverlay
@@ -77,6 +79,7 @@ public interface Formatter {
 
     /**
      * Transforms on format of date or time into another. You will need to include the moment.js library to use this. has optional properties for the formatterParams object, see FormatterParamsDateTime.
+     *
      * @return formatter
      */
     @JsOverlay
@@ -86,6 +89,7 @@ public interface Formatter {
 
     /**
      * Show difference between two datetimes. You will need to include the moment.js library to use this. has optional properties for the formatterParams object, see FormatterParamsDateTimeDiff.
+     *
      * @return formatter
      */
     @JsOverlay
@@ -95,6 +99,7 @@ public interface Formatter {
 
     /**
      * Displays a green tick if the value is (true|'true'|'True'|1) and a red cross if not. has optional properties for the formatterParams object, see FormatterParamsTickCross.
+     *
      * @return formatter
      */
     @JsOverlay
@@ -104,6 +109,7 @@ public interface Formatter {
 
     /**
      * sets the background colour of the cell to the value. The cell's value can be any valid CSS color eg. #ff0000, #f00, rgb(255,0,0), red, rgba(255,0,0,0), hsl(0, 100%, 50%).
+     *
      * @return formatter
      */
     @JsOverlay
@@ -113,6 +119,7 @@ public interface Formatter {
 
     /**
      * Displays a graphical star rating based on integer values. has optional properties for the formatterParams object, see FormatterParamsStar.
+     *
      * @return formatter
      */
     @JsOverlay
@@ -122,6 +129,7 @@ public interface Formatter {
 
     /**
      * Displays a coloured circle that changes colour depending on the numeric value of the cell. No image will be displayed if the cells value is undefined or not a valid number. has optional properties for the formatterParams object, see FormatterParamsTraffic.
+     *
      * @return formatter
      */
     @JsOverlay
@@ -131,6 +139,7 @@ public interface Formatter {
 
     /**
      * Displays a progress bar that fills the cell from left to right, using values 0-100 as a percentage of width. has optional properties for the formatterParams object, see FormatterParamsProgress.
+     *
      * @return formatter
      */
     @JsOverlay
@@ -141,6 +150,7 @@ public interface Formatter {
 
     /**
      * Looks up the value to display from a object passed into the formatterParams property, if not present it displays the current cell value. To use this formatter you need to pass an object to formatterParams where the initial value of the cell is the property key and the value to be displayed is the property value (eg {"blue":"black", "red":"green"}, would change the value "blue" to "black", and the value "red" to green).
+     *
      * @return formatter
      */
     @JsOverlay
@@ -150,6 +160,7 @@ public interface Formatter {
 
     /**
      * Displays a tick icon on each row (for use as a button).
+     *
      * @return formatter
      */
     @JsOverlay
@@ -160,6 +171,7 @@ public interface Formatter {
 
     /**
      * Displays a cross icon on each row (for use as a button).
+     *
      * @return formatter
      */
     @JsOverlay
@@ -169,6 +181,7 @@ public interface Formatter {
 
     /**
      * Shows an incrementing row number for each row as it is displayed.
+     *
      * @return formatter
      */
     @JsOverlay
@@ -179,6 +192,7 @@ public interface Formatter {
 
     /**
      * Fills the cell with hamburger bars, to be used as a row handle.
+     *
      * @return formatter
      */
     @JsOverlay

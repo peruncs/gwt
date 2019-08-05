@@ -1,9 +1,6 @@
 package com.peruncs.gwt.tabulator;
 
-import com.peruncs.gwt.utils.Callback1;
-import com.peruncs.gwt.utils.Callback1RetBoolean;
-import com.peruncs.gwt.utils.Callback2;
-import com.peruncs.gwt.utils.CallbackRet1;
+import com.peruncs.gwt.utils.*;
 import elemental2.core.JsObject;
 import elemental2.dom.MouseEvent;
 import elemental2.dom.TouchEvent;
@@ -203,7 +200,7 @@ public class ColumnOptions extends CellEvent {
     public MutatorAccessorParams mutatorClipboardParams;
 
     /**
-     *  Called if the matching mutator from the above list is not set.
+     * Called if the matching mutator from the above list is not set.
      */
     public MutatorAccessor mutator;
     public MutatorAccessorParams mutatorParams;
@@ -332,9 +329,8 @@ public class ColumnOptions extends CellEvent {
 
     /**
      * Override column title  in download, instead of using title.
-     *
+     * <p>
      * The downloadTitle property is now available in the column definition property for column groups to help with customization of table downloads.
-     *
      */
     public String downloadTitle;
 
@@ -442,7 +438,6 @@ public class ColumnOptions extends CellEvent {
     public ColumnVisibilityHandler columnVisibilityChanged;
 
     public boolean print;
-
 
 
     /**

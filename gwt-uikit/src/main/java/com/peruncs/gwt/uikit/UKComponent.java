@@ -3,6 +3,7 @@ package com.peruncs.gwt.uikit;
 
 import elemental2.dom.Element;
 import jsinterop.annotations.JsMethod;
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsType;
 
 /**
@@ -12,11 +13,11 @@ import jsinterop.annotations.JsType;
 public abstract class UKComponent {
 
     /**
-     * UIkit namespace for JsInterop.
+     * UIKit namespace for JsInterop.
      */
-    interface UIKitNamespace {
-        String value = "UIkit";
-    }
+    @JsOverlay
+    final static String UIKitNamespace = "test";
+
 
     /**
      * Calls the update hook on components registered on the element itself, it's parents and children.
@@ -24,7 +25,7 @@ public abstract class UKComponent {
      * @param element - the element
      * @param event   - the event
      */
-    @JsMethod(namespace = UIKitNamespace.value)
+    @JsMethod(namespace = UIKitNamespace)
     public native static void update(Element element, String event);
 
 

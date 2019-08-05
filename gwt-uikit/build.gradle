@@ -3,6 +3,9 @@ apply from: '../shared.groovy'
 group = 'com.peruncs.gwt'
 version = gwt_uikit_version
 
+dependencies {
+    implementation "com.peruncs.gwt:gwt-utils:${gwt_utils_version}"
+}
 
 jar {
     manifest.attributes['Automatic-Module-Name'] = 'com.peruncs.gwt.uikit'

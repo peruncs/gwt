@@ -1,15 +1,16 @@
 package com.peruncs.gwt.uikit;
 
+import com.peruncs.gwt.utils.StringOr;
 import elemental2.dom.Element;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsType;
 
 
 /**
- * UIKit Alert component wrapper.
+ * UIKit Form component wrapper.
  */
 @JsType(isNative = true)
-public abstract class UKAlert extends UKComponent {
+public abstract class UKForm extends UKComponent {
 
     /**
      * Alert creation.
@@ -19,18 +20,18 @@ public abstract class UKAlert extends UKComponent {
      * @return a modal component
      */
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKAlert alert(String element, Options options);
+    public native static UKForm formCustom(String element, Options options);
 
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKAlert alert(Element element, Options options);
+    public native static UKForm formCustom(Element element, Options options);
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKAlert alert(String element);
+    public native static UKForm formCustom(String element);
 
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKAlert alert(Element element);
+    public native static UKForm formCustom(Element element);
 
 
     /**
@@ -45,21 +46,9 @@ public abstract class UKAlert extends UKComponent {
     public static class Options {
 
         /**
-         * Fade out or use the Animation component.
+         * Value display target.
          */
-        public boolean animation = true;
+        public StringOr<Boolean> target;
 
-
-        /**
-         * Animation duration in milliseconds.
-         */
-
-        public int duration = 150;
-
-
-        /**
-         * CSS selector for all elements that should trigger the closing of the modal.
-         */
-        public String selClose = "uk-alert-close";
     }
 }

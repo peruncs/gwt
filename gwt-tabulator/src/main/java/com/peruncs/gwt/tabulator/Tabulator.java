@@ -3,6 +3,7 @@ package com.peruncs.gwt.tabulator;
 
 import com.peruncs.gwt.utils.CallbackRet;
 import com.peruncs.gwt.utils.CallbackRet1;
+import com.peruncs.gwt.utils.StringOr;
 import elemental2.core.JsObject;
 import elemental2.dom.Node;
 import elemental2.promise.Promise;

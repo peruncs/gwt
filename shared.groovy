@@ -14,7 +14,7 @@ ext {
     gwt_elemental2_version='2.24'
     gwt_base_version='1.0.0-b2-e6d791f'
     gwt_jsinterop_version='1.0.2-p1'
-    gwt_uikit_version='0.0.2'
+    gwt_uikit_version='0.0.3-SNAPSHOT'
     gwt_recaptcha_version='0.0.2'
     gwt_dragula_version='0.0.2'
     //gwt_ga_version='0.0.1.Final'

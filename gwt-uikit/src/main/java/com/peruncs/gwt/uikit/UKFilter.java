@@ -1,15 +1,16 @@
 package com.peruncs.gwt.uikit;
 
+import com.peruncs.gwt.utils.StringOr;
 import elemental2.dom.Element;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsType;
 
 
 /**
- * UIKit Alert component wrapper.
+ * UIKit Filter component wrapper.
  */
 @JsType(isNative = true)
-public abstract class UKAlert extends UKComponent {
+public abstract class UKFilter extends UKComponent {
 
     /**
      * Alert creation.
@@ -19,18 +20,18 @@ public abstract class UKAlert extends UKComponent {
      * @return a modal component
      */
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKAlert alert(String element, Options options);
+    public native static UKFilter filter(String element, Options options);
 
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKAlert alert(Element element, Options options);
+    public native static UKFilter filter(Element element, Options options);
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKAlert alert(String element);
+    public native static UKFilter filter(String element);
 
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKAlert alert(Element element);
+    public native static UKFilter filter(Element element);
 
 
     /**
@@ -45,21 +46,16 @@ public abstract class UKAlert extends UKComponent {
     public static class Options {
 
         /**
-         * Fade out or use the Animation component.
+         * The targeted list on which to apply the filter to. target is the Primary option and its key may be omitted, if it's the only option in the attribute value.
          */
-        public boolean animation = true;
+        public String target = "";
 
 
         /**
          * Animation duration in milliseconds.
          */
 
-        public int duration = 150;
+        public StringOr<Boolean> selActive;
 
-
-        /**
-         * CSS selector for all elements that should trigger the closing of the modal.
-         */
-        public String selClose = "uk-alert-close";
     }
 }

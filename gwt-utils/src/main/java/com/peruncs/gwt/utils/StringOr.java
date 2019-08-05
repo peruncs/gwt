@@ -1,4 +1,4 @@
-package com.peruncs.gwt.tabulator;
+package com.peruncs.gwt.utils;
 
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
@@ -25,6 +25,11 @@ public interface StringOr<T> {
     }
 
     @JsOverlay
+    static StringOr<Boolean> of(boolean t) {
+        return Js.cast(t);
+    }
+
+    @JsOverlay
     static <T> StringOr<T> of(T t) {
         return Js.cast(t);
     }
@@ -42,6 +47,11 @@ public interface StringOr<T> {
     @JsOverlay
     default int asInteger() {
         return Js.asInt(this);
+    }
+
+    @JsOverlay
+    default boolean asBoolean() {
+        return Js.asBoolean(this);
     }
 
     @JsOverlay
