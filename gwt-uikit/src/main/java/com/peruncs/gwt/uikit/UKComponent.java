@@ -16,7 +16,7 @@ public abstract class UKComponent {
      * UIKit namespace for JsInterop.
      */
     @JsOverlay
-    final static String UIKitNamespace = "test";
+    public final static String UIKitNamespace = "test";
 
 
     /**

@@ -78,4 +78,19 @@ public interface Events {
      */
     String DROP_STACK_EVENT = "stack";
 
+    /**
+     * Fires after an item moves into the viewport.
+     */
+    String ITEM_INVIEW = "inview";
+
+    /**
+     * Fires after an item moves into out of viewport.
+     */
+    String ITEM_OUTVIEW = "outview";
+
+    /**
+     * Fires after an item becomes active.
+     */
+    String ACTIVE = "active";
+
 }

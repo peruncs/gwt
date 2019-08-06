@@ -19,11 +19,11 @@ public abstract class UKDropdown extends UKComponent {
      * @return a modal component
      */
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKDropdown dropdown(String element, DropDownOptions.Options options);
+    public native static UKDropdown dropdown(String element, DropDownOptions options);
 
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKDropdown dropdown(Element element, DropDownOptions.Options options);
+    public native static UKDropdown dropdown(Element element, DropDownOptions options);
 
     @JsMethod(namespace = UIKitNamespace)
     public native static UKDropdown dropdown(String element);

@@ -2,6 +2,7 @@ package com.peruncs.gwt.uikit;
 
 import elemental2.dom.Element;
 import jsinterop.annotations.JsMethod;
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsType;
 
 
@@ -14,9 +15,9 @@ public abstract class UKNotification extends UKComponent {
     /**
      * Notification namespace for JsInterop.
      */
-    interface UKNotificationNamespace {
-        String value = "UIkit.notification";
-    }
+    @JsOverlay
+    public final static String UKNotificationNamespace = "UIkit.notification";
+
 
     /**
      * Create a notification component.
@@ -24,7 +25,7 @@ public abstract class UKNotification extends UKComponent {
      * @param message - the notification message.
      * @return a notification component.
      */
-    @JsMethod(namespace = UIKitNamespace.value)
+    @JsMethod(namespace = UIKitNamespace)
     public native static UKNotification notification(String message);
 
     /**
@@ -34,7 +35,7 @@ public abstract class UKNotification extends UKComponent {
      * @param style   - the notification message style. @see UKNotificationOptions.Style
      * @return a notification component.
      */
-    @JsMethod(namespace = UIKitNamespace.value)
+    @JsMethod(namespace = UIKitNamespace)
     public native static UKNotification notification(String message, String style);
 
     /**
@@ -44,7 +45,7 @@ public abstract class UKNotification extends UKComponent {
      * @param options - the notification options. @see #UKNotificationOptions
      * @return a notification component.
      */
-    @JsMethod(namespace = UIKitNamespace.value)
+    @JsMethod(namespace = UIKitNamespace)
     public native static UKNotification notification(String message, Options options);
 
     /**
@@ -53,7 +54,7 @@ public abstract class UKNotification extends UKComponent {
      * @param options - the notification options. @see #UKNotificationOptions.
      * @return a notification component.
      */
-    @JsMethod(namespace = UIKitNamespace.value)
+    @JsMethod(namespace = UIKitNamespace)
     public native static UKNotification notification(Options options);
 
     /**
@@ -63,13 +64,13 @@ public abstract class UKNotification extends UKComponent {
      * @param options - the notification options. @see #UKNotificationOptions.
      * @return a notification component.
      */
-    @JsMethod(namespace = UIKitNamespace.value)
+    @JsMethod(namespace = UIKitNamespace)
     public native static UKNotification notification(Element node, Options options);
 
     /**
      * Closes all currently open notifications.
      */
-    @JsMethod(namespace = UKNotificationNamespace.value)
+    @JsMethod(namespace = UKNotificationNamespace)
     public static native void closeAll();
 
     /**
