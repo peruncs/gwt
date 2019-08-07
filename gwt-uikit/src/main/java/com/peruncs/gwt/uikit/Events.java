@@ -27,4 +27,5 @@ public interface Events {
     String MOVED = "moved";
     String ADDED = "added";
     String REMOVED = "removed";
+    String UPLOAD = "upload";
 }
