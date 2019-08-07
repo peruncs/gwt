@@ -1,15 +1,22 @@
 package com.peruncs.gwt.uikit;
 
 import elemental2.dom.Element;
+import elemental2.dom.Node;
+import elemental2.promise.Promise;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsType;
 
 
 /**
- * UIKit Margin component wrapper.
+ * UIKit SVG component wrapper.
  */
 @JsType(isNative = true)
-public abstract class UKMargin extends UKComponent {
+public abstract class UKSvg extends UKComponent {
+
+    /**
+     * A JavaScript Promise that will resolve with the added SVG Node.
+     */
+    public Promise<Node> svg;
 
     /**
      * Component creation.
@@ -19,19 +26,16 @@ public abstract class UKMargin extends UKComponent {
      * @return the component
      */
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKMargin margin(String element, Options options);
-
-
-    @JsMethod(namespace = UIKitNamespace)
-    public native static UKMargin margin(Element element, Options options);
+    public native static UKSvg svg(String element, Options options);
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKMargin margin(String element);
-
+    public native static UKSvg svg(Element element, Options options);
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKMargin margin(Element element);
+    public native static UKSvg svg(String element);
 
+    @JsMethod(namespace = UIKitNamespace)
+    public native static UKSvg svg(Element element);
 
     /**
      * Options for component initialization.
@@ -40,15 +44,14 @@ public abstract class UKMargin extends UKComponent {
     public static class Options {
 
         /**
-         * This class is added to items that break into the next row, typically to create margin to the previous row.
+         * The icon to display.
          */
-        public String margin;
-
+        public String src;
 
         /**
-         * This class is added to the first element in each row.
+         * The icon size ratio.
          */
-        public String firstColumn;
+        public boolean strokeAnimation;
 
     }
 }

@@ -13,11 +13,11 @@ import jsinterop.annotations.JsType;
 public abstract class UKGrid extends UKComponent {
 
     /**
-     * Alert creation.
+     * Component creation.
      *
-     * @param element - the element for this alert component.
+     * @param element - the element for this component.
      * @param options - the initialization options for this component.
-     * @return a modal component
+     * @return the component
      */
     @JsMethod(namespace = UIKitNamespace)
     public native static UKGrid grid(String element, Options options);

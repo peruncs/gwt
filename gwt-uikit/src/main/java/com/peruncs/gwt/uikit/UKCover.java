@@ -14,9 +14,9 @@ public abstract class UKCover extends UKComponent {
     /**
      * Component creation.
      *
-     * @param element - the element for the  component.
+     * @param element - the element for the component.
      * @param options - the initialization options for the  component.
-     * @return a component
+     * @return the component
      */
     @JsMethod(namespace = UIKitNamespace)
     public native static UKCover cover(String element, UKCover.Options options);

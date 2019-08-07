@@ -17,7 +17,7 @@ public abstract class UKLightbox extends UKComponent {
      *
      * @param element - the element for the component.
      * @param options - the initialization options for the component.
-     * @return a modal component
+     * @return the component
      */
     @JsMethod(namespace = UIKitNamespace)
     public native static UKLightbox lightboxPanel(String element, UKLightbox.Options options);

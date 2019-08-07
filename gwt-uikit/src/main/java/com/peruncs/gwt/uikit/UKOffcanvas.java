@@ -15,41 +15,21 @@ public abstract class UKOffcanvas extends UKComponent {
      * Offcanvas creation.
      *
      * @param element - the element for this component.
-     * @return a modal component
-     */
-    @JsMethod(namespace = UIKitNamespace)
-    public native static UKOffcanvas offcanvas(String element);
-
-
-    /**
-     * Offcanvas creation.
-     *
-     * @param element - the element for this  component.
-     * @return a modal component
-     */
-    @JsMethod(namespace = UIKitNamespace)
-    public native static UKOffcanvas offcanvas(Element element);
-
-    /**
-     * Offcanvas creation.
-     *
-     * @param element - the element for this component.
      * @param options - the initialization options for this component.
-     * @return a modal component
+     * @return the component
      */
     @JsMethod(namespace = UIKitNamespace)
     public native static UKOffcanvas offcanvas(String element, UKOffcanvas.Options options);
 
 
-    /**
-     * Offcanvas creation.
-     *
-     * @param element - the element for this  component.
-     * @param options - the initialization options for this component.
-     * @return a modal component
-     */
     @JsMethod(namespace = UIKitNamespace)
     public native static UKOffcanvas offcanvas(Element element, UKOffcanvas.Options options);
+
+    @JsMethod(namespace = UIKitNamespace)
+    public native static UKOffcanvas offcanvas(String element);
+
+    @JsMethod(namespace = UIKitNamespace)
+    public native static UKOffcanvas offcanvas(Element element);
 
     /**
      * Show this component.

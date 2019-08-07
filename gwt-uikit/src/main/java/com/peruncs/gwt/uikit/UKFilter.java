@@ -13,11 +13,11 @@ import jsinterop.annotations.JsType;
 public abstract class UKFilter extends UKComponent {
 
     /**
-     * Alert creation.
+     * Component creation.
      *
-     * @param element - the element for this alert component.
+     * @param element - the element for this component.
      * @param options - the initialization options for this component.
-     * @return a modal component
+     * @return the component
      */
     @JsMethod(namespace = UIKitNamespace)
     public native static UKFilter filter(String element, Options options);

@@ -12,7 +12,7 @@ import jsinterop.annotations.JsType;
 public abstract class UKDropdown extends UKComponent {
 
     /**
-     * Alert creation.
+     * Component creation.
      *
      * @param element - the element for this alert component.
      * @param options - the initialization options for this component.

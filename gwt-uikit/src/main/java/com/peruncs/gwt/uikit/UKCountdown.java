@@ -16,7 +16,7 @@ public abstract class UKCountdown extends UKComponent {
      *
      * @param element - the element for the  component.
      * @param options - the initialization options for the  component.
-     * @return a component
+     * @return the component
      */
     @JsMethod(namespace = UIKitNamespace)
     public native static UKCountdown countdown(String element, UKCountdown.Options options);

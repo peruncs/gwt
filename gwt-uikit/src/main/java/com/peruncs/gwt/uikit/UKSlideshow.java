@@ -6,47 +6,46 @@ import jsinterop.annotations.JsType;
 
 
 /**
- * UIKit Slider component wrapper.
+ * UIKit Slideshow component wrapper.
  */
 @JsType(isNative = true)
-public abstract class UKSlider extends UKComponent {
+public abstract class UKSlideshow extends UKComponent {
 
     /**
      * Component creation.
      *
-     * @param element - the element for this component.
+     * @param element - the element for this  component.
      * @param options - the initialization options for this component.
-     * @return athe component
+     * @return the component
      */
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKSlider slider(String element, Options options);
+    public native static UKSlideshow slideshow(String element, Options options);
 
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKSlider slider(Element element, Options options);
+    public native static UKSlideshow slideshow(Element element, Options options);
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKSlider slider(String element);
-
+    public native static UKSlideshow slideshow(String element);
 
     @JsMethod(namespace = UIKitNamespace)
-    public native static UKSlider slider(Element element);
+    public native static UKSlideshow slideshow(Element element);
 
     /**
-     * Shows the slider item.
+     * Shows the component.
      *
      * @param index slider item index.
      */
     public native void show(int index);
 
     /**
-     * Starts the slider autoplay.
+     * Starts the autoplay.
      */
     public native void startAutoplay();
 
 
     /**
-     * Stops the slider autoplay.
+     * Stops the autoplay.
      */
     public native void stopAutoplay();
 
@@ -57,7 +56,12 @@ public abstract class UKSlider extends UKComponent {
     public static class Options {
 
         /**
-         * Slider autoplays.
+         * Slideshow animation mode: slide, fade, scale, pull or push.
+         */
+        public String animation;
+
+        /**
+         * Slideshow  autoplays.
          */
         public boolean autoplay;
 
@@ -66,10 +70,6 @@ public abstract class UKSlider extends UKComponent {
          */
         public int autoplayInterval = 7000;
 
-        /**
-         * Center the active slide.
-         */
-        public boolean center;
 
         /**
          * Enable pointer dragging.
@@ -87,9 +87,19 @@ public abstract class UKSlider extends UKComponent {
         public boolean finite;
 
         /**
-         * Slider item to show. 0 based index.
+         * Slideshow item to show. 0 based index.
          */
         public int index;
+
+        /**
+         * The animation velocity (pixel/ms).
+         */
+        public int velocity = 1;
+
+        /**
+         * The ratio. (false prevents height adjustment).
+         */
+        public String ratio;
 
         /**
          * Pause autoplay mode on hover.
@@ -97,14 +107,14 @@ public abstract class UKSlider extends UKComponent {
         public boolean pauseOnHover = true;
 
         /**
-         * Slide in sets.
+         * The minimum height.
          */
-        public boolean sets;
+        Integer minHeight;
 
         /**
-         * The animation velocity (pixel/ms).
+         * The maximum  height.
          */
-        public int velocity = 1;
+        Integer maxHeight;
 
     }
 

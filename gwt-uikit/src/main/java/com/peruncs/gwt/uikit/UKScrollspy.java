@@ -14,9 +14,9 @@ public abstract class UKScrollspy extends UKComponent {
     /**
      * Component creation.
      *
-     * @param element - the element for this  component.
+     * @param element - the element for this component.
      * @param options - the initialization options for this component.
-     * @return a modal component
+     * @return the component
      */
     @JsMethod(namespace = UIKitNamespace)
     public native static UKScrollspy scrollspy(String element, Options options);

@@ -15,11 +15,11 @@ public abstract class UKIcon extends UKComponent {
     public Node svg;
 
     /**
-     * Alert creation.
+     * Component creation.
      *
-     * @param element - the element for this alert component.
+     * @param element - the element for this component.
      * @param options - the initialization options for this component.
-     * @return a modal component
+     * @return the component
      */
     @JsMethod(namespace = UIKitNamespace)
     public native static UKIcon icon(String element, Options options);

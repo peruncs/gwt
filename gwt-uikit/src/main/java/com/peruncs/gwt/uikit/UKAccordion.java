@@ -14,7 +14,7 @@ public abstract class UKAccordion extends UKComponent {
     /**
      * Component creation.
      *
-     * @param element - the element for the  component.
+     * @param element - the element for the component.
      * @param options - the initialization options for the  component.
      * @return a component
      */
