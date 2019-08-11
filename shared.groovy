@@ -8,12 +8,11 @@ ext {
     java_lang_level='1.8'
     // Software packages
     gwt_version='2.8.2'
-    //gwt_elemental2_version='1.0.0-RC1'
-    //gwt_base_version='1.0.0-RC1'
-    //gwt_jsinterop_version='1.0.2'
+
     gwt_elemental2_version='2.25'
     gwt_base_version='1.0.0-b2-e6d791f'
     gwt_jsinterop_version='1.0.2-p1'
+
     gwt_uikit_version='0.0.3-SNAPSHOT'
     gwt_recaptcha_version='0.0.3'
 
@@ -32,21 +31,11 @@ apply plugin: 'idea'
 //Shared dependencies
 dependencies {
 
-//        implementation "com.google.jsinterop:base:${gwt_base_version}"
-//        implementation "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
-//        implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
-//        implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
-
     //Newer, alternative Elemental2/Jsinterop, Provided by Peter Donald.
-//        implementation "com.google.jsinterop:base:${gwt_base_version}"
-//        implementation "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
-//        implementation "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
-//        implementation "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
-
-    compileOnly "com.google.jsinterop:base:${gwt_base_version}"
-    compileOnly "com.google.jsinterop:jsinterop:${gwt_jsinterop_version}"
-    compileOnly "com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
-    compileOnly "com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
+    compileOnly "org.realityforge.com.google.jsinterop:base:${gwt_base_version}"
+    compileOnly "org.realityforge.com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
+    compileOnly "org.realityforge.com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
+    compileOnly "org.realityforge.com.google.elemental2:elemental2-webstorage:${gwt_elemental2_version}"
 
 }
 
