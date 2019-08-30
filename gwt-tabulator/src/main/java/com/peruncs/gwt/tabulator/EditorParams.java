@@ -9,6 +9,7 @@ import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 import jsinterop.base.Js;
+import jsinterop.base.JsPropertyMap;
 
 @JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
 public interface EditorParams {
@@ -27,6 +28,7 @@ public interface EditorParams {
     @JsType
     class Input {
         public boolean search;
+        public JsPropertyMap<String> elementAttributes;
     }
 
     @JsOverlay
@@ -46,6 +48,7 @@ public interface EditorParams {
         public int min = 0;
         public int max = 100;
         public int step = 1;
+        public JsPropertyMap<String> elementAttributes
     }
 
     @JsOverlay
@@ -64,6 +67,7 @@ public interface EditorParams {
     class Checkbox {
         public boolean tristate;
         public String indeterminateValue;
+        public JsPropertyMap<String> elementAttributes
     }
 
     @JsOverlay
@@ -103,6 +107,8 @@ public interface EditorParams {
 
         public String sortValuesList;
         public Any values;
+        public JsPropertyMap<String> elementAttributes;
+        public Any defaultValue;
     }
 
     @JsOverlay
@@ -132,6 +138,9 @@ public interface EditorParams {
         public boolean showListOnEmpty;
         public boolean freetext;
         public boolean allowEmpty;
+        public JsPropertyMap<String> elementAttributes;
+        public Any defaultValue;
+        public Any values;
 
         /**
          * function to search through array of value objects and return those that match the search term (by default this does a loose string comparison between values)

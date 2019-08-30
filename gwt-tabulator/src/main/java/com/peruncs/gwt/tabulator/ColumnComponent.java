@@ -87,6 +87,13 @@ public interface ColumnComponent extends BaseComponent, Showable {
      */
     void reloadHeaderFilter();
 
+    /**
+     * Move xolumn.
+     *
+     * @param targetColumn           - the target column that you want to move to
+     * @param placeAfterTargetColumn - A value of false will cause to the column to be placed before the target column, a value of true will result in the column being placed after the target.
+     */
+    void move(Lookup targetColumn, boolean placeAfterTargetColumn);
 
     /**
      * Any function that takes a component as an argument will also attempt to find that component based on the value provided if it is not a component itself.

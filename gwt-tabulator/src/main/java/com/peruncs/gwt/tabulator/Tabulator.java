@@ -791,4 +791,14 @@ public class Tabulator {
 
     public native void setDataFromLocalFile(String ext);
 
+
+    /**
+     * Move column to a new position.
+     *
+     * @param columnToMove      the column you want to move.
+     * @param targetColumn      the target column that you want to move to
+     * @param placeBeforeTarget - A value of false will cause to the column to be placed after the target column, a value of true will result in the column being placed before the target.
+     */
+    public native void moeColumn(ColumnComponent.Lookup columnToMove, ColumnComponent.Lookup targetColumn, boolean placeBeforeTarget);
+
 }

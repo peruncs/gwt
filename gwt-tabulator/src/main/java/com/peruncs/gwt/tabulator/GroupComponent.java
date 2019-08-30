@@ -28,4 +28,9 @@ public interface GroupComponent extends BaseComponent {
      */
     GroupComponent getParentGroup();
 
+    /**
+     * @return the string of the field that all rows in this group have been grouped by. (if a function is used to group the rows rather than a field, this function will return false)
+     */
+    String getField();
+
 }

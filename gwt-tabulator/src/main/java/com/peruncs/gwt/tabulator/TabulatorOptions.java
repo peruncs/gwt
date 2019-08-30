@@ -1343,4 +1343,25 @@ public class TabulatorOptions extends CellEvent {
      */
     public boolean printAsHtml;
 
+
+    /**
+     * Applies to all columns.
+     * By default all columns in a table are sortable by clicking on the column header, if you want to disable this behaviour, set the headerSort property to false.
+     */
+    boolean headerSort;
+
+
+    /**
+     * Applies to all columns.
+     * By default once you click on a header to sort it the header will then toggle between sorting in ascending and descending order.
+     * If you would prefer a third option of returing the column to its original unsorted order, the you can set the headerSortTristate option to true in the column definition. The sort will the toggle beween the original order, ascending and descending order
+     */
+    public boolean headerSortTristate;
+
+
+    /**
+     * Disable console warnings for invalid table properties in the constructor and column definition objects.
+     */
+    public boolean invalidOptionWarnings;
+
 }

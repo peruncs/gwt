@@ -26,6 +26,16 @@ public interface Formatter {
 
 
     /**
+     * allows you to add a column of tickboxes down one side of your table to handle row selection.
+     *
+     * @return the union type
+     */
+    @JsOverlay
+    static Formatter rowSelection() {
+        return Js.cast("rowSelection");
+    }
+
+    /**
      * Shows text with carriage returns intact (great for multiline text), this formatter will also adjust the height of rows to fit the cells contents when columns are resized.
      *
      * @return the union type

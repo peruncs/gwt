@@ -193,6 +193,12 @@ public class ColumnOptions extends CellEvent {
     public MutatorAccessor mutatorEdit;
     public MutatorAccessorParams mutatorEditParams;
 
+
+    /**
+     * Show the column in the clipboard output (true)
+     */
+    public boolean clipboard;
+
     /**
      * Only called when data is pasted into the table.
      */
