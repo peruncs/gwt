@@ -48,7 +48,7 @@ public interface EditorParams {
         public int min = 0;
         public int max = 100;
         public int step = 1;
-        public JsPropertyMap<String> elementAttributes
+        public JsPropertyMap<String> elementAttributes;
     }
 
     @JsOverlay
@@ -67,7 +67,7 @@ public interface EditorParams {
     class Checkbox {
         public boolean tristate;
         public String indeterminateValue;
-        public JsPropertyMap<String> elementAttributes
+        public JsPropertyMap<String> elementAttributes;
     }
 
     @JsOverlay

@@ -505,10 +505,14 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The array of filter objects will take the same form as those returned from the getFilters function:
      * <p>
-     * [
-     * {field:"age", type:">", value:52}, //filter by age greater than 52
-     * {field:"height", type:"<", value:142}, //and by height less than 142
-     * ]
+     *
+     * {@literal
+     *  [
+     *      {field:"age", type:">", value:52}, //filter by age greater than 52
+     *      {field:"height", type:"<", value:142}, //and by height less than 142
+     *  ]
+     * }
+     *
      * <p>
      * If a custom filter function is being used then the type parameter will have a value of "function".
      * If the table is not currently filtered then the array will be empty.

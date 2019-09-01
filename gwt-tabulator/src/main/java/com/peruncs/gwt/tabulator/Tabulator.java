@@ -786,7 +786,7 @@ public class Tabulator {
      * <p>
      * You can allow any other type of file into the file picker by passing the extension or mime type into the first argument of the setDataFromLocalFile function as a comma separated list. This argument will accept any of the values valid for the accept field of an input element
      *
-     * @param - the allowed file extension to showin the picker.
+     * @param ext - the allowed file extension to showin the picker.
      */
 
     public native void setDataFromLocalFile(String ext);
