@@ -9,7 +9,7 @@ ext {
     // Software packages
     gwt_version='2.8.2'
 
-    gwt_elemental2_version='2.25'
+    gwt_elemental2_version='2.26'
     gwt_base_version='1.0.0-b2-e6d791f'
     gwt_jsinterop_version='1.0.2-p1'
 
