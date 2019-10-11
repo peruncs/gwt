@@ -13,7 +13,7 @@ ext {
     gwt_base_version='1.0.0-b2-e6d791f'
     gwt_jsinterop_version='1.0.2-p1'
 
-    gwt_uikit_version='0.0.3-SNAPSHOT'
+    gwt_uikit_version='0.0.4-SNAPSHOT'
     gwt_recaptcha_version='0.0.3'
 
     gwt_stripe_version='0.0.3'

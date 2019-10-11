@@ -106,6 +106,8 @@ public abstract class UKSlider extends UKComponent {
          */
         public int velocity = 1;
 
+        public String selSlides;
+
     }
 
 }

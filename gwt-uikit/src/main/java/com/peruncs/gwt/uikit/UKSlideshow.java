@@ -109,12 +109,14 @@ public abstract class UKSlideshow extends UKComponent {
         /**
          * The minimum height.
          */
-        Integer minHeight;
+        public Integer minHeight;
 
         /**
          * The maximum  height.
          */
-        Integer maxHeight;
+        public Integer maxHeight;
+
+        public String selSlides;
 
     }
 
