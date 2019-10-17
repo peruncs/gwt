@@ -87,7 +87,7 @@ public abstract class UKSticky extends UKComponent {
         /**
          * Initially make sure that the Sticky is not over a targeted element via location hash.
          */
-        public Integer targetOffset;
+        public int targetOffset;
 
     }
 

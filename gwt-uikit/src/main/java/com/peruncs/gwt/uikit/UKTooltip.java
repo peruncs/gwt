@@ -49,7 +49,7 @@ public abstract class UKTooltip extends UKComponent {
         /**
          * Tooltip offset.
          */
-        public Integer offset;
+        public int offset;
 
         /**
          * The space separated names of animations to use. Comma separate for animation out.
