@@ -37,6 +37,7 @@ public abstract class UKLightbox extends UKComponent {
 
     /**
      * Lightbox item to show. 0 based index.
+     * @param index the index
      */
     public native void show(int index);
 
