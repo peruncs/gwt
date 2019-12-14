@@ -238,10 +238,12 @@ public class Tabulator {
     /**
      * By default getData will return an array containing all the data held in the Tabulator. If you only want to access the currently filtered/sorted elements, you can pass a value of true to the first argument of the function.
      *
-     * @param filteredSortedOnly
+     * @param restricted "active" - only return rows that pass the current filters
+     *                   "visible" - only return rows currently visible in the table viewport
      * @return
      */
-    native public Any[] getData(boolean filteredSortedOnly);
+    native public Any[] getData(String restricted);
+
 
     /**
      * You can retrieve the a count of the number of rows stored in the table using the getDataCount function.
@@ -251,8 +253,10 @@ public class Tabulator {
 
     /**
      * If you only want to count the currently filtered/sorted elements, you can pass a value of true to the first argument of the function.
+     *
+     * @return count.
      */
-    native public int getDataCount(boolean filteredSortedOnly);
+    native public int getDataCount(String restricted);
 
 
     //Row Manipulation
@@ -267,12 +271,19 @@ public class Tabulator {
      */
     native public Promise<Void> deleteRow(RowComponent.Lookup row);
 
+    native public Promise<Void> deleteRow(RowComponent.Lookup[] rows);
+
     /**
      * You can retrieve all the row components in the table using the getRows function. This will return an array containing the Row Component for each row in the table.
      */
     native public RowComponent[] getRows();
 
-    native public RowComponent[] getRows(boolean filteredSortedOnly);
+    /**
+     * @param restricted "active" - only return rows that pass the current filters
+     *                   "visible" - only return rows currently visible in the table viewport
+     * @return
+     */
+    native public RowComponent[] getRows(String restricted);
 
     /**
      * The searchRows function allows you to retreive an array of row components that match any filters you pass in. it accepts the same arguments as the setFilter function.
@@ -800,5 +811,28 @@ public class Tabulator {
      * @param placeBeforeTarget - A value of false will cause to the column to be placed after the target column, a value of true will result in the column being placed before the target.
      */
     public native void moeColumn(ColumnComponent.Lookup columnToMove, ColumnComponent.Lookup targetColumn, boolean placeBeforeTarget);
+
+    /**
+     * Block table redrawing
+     */
+    public native void blockRedraw();
+
+    /**
+     * Restore table redrawing.
+     */
+    public native void restoreRedraw();
+
+
+    /**
+     * Tabulator keeps track of all tables that it creates and you can use the findTable function on the Tabulator prototype
+     * to lookup the table object for any existing table using the element they were created on.
+     *
+     * @param element - The findTable function will accept a valid CSS selector string or a DOM node for the table as its first argument.
+     * @return - If no match is found it will return false, if one table is found it will return the Tabulator object for that table. If multiple tables are found it will return an array of all matching Tabulator objects.
+     */
+
+
+    native static public BooleanOr<Tabulator> findTable(StringOr<Node> element);
+
 
 }

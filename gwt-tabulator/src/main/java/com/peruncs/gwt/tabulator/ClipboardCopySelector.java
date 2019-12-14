@@ -1,7 +1,5 @@
 package com.peruncs.gwt.tabulator;
 
-import elemental2.core.JsObject;
-import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
@@ -13,6 +11,7 @@ import jsinterop.base.Js;
  * active - Copy all table data currently displayed in the table to the clipboard (default)
  * table - Copy all table data to the clipboard, including data that is currently filtered out
  * selected - Copy the currently selected rows to the clipboard, including data that is currently filtered out
+ * visible - Copy only the rows currently visible in the tables viewport to the clipboard.
  * <p>
  * Tabulator will try to use the best selector to match your table setup. If any text is selected on the table, then it will be that text which is copied. If the table has selectable rows enabled, the it will be the currently selected rows copied to the clipboard in the order in which they were selected. Otherwise the currently visible data in the table will be copied.
  * <p>
@@ -24,28 +23,23 @@ import jsinterop.base.Js;
 public interface ClipboardCopySelector {
 
     @JsOverlay
-    static ClipboardCopyFormatter active() {
+    static ClipboardCopySelector active() {
         return Js.cast("active");
     }
 
     @JsOverlay
-    static ClipboardCopyFormatter table() {
+    static ClipboardCopySelector table() {
         return Js.cast("table");
     }
 
     @JsOverlay
-    static ClipboardCopyFormatter selected() {
+    static ClipboardCopySelector selected() {
         return Js.cast("selected");
     }
 
     @JsOverlay
-    static ClipboardCopyFormatter custom(Custom customSelector) {
-        return Js.cast(customSelector);
+    static ClipboardCopySelector visible() {
+        return Js.cast("visible");
     }
 
-    @JsFunction
-    @FunctionalInterface
-    interface Custom {
-        JsObject[] format(boolean includeColumnHeaders);
-    }
 }

@@ -106,9 +106,11 @@ public class TabulatorOptions extends CellEvent {
 
     /**
      * See Table Layout documentation. Possible values:
+     * <p>
      * "fitData"
      * "fitDataFill"
      * "fitColumns"
+     * "fitDataStrech"
      */
     public String layout;
     /**
@@ -199,6 +201,12 @@ public class TabulatorOptions extends CellEvent {
      * "local"  - enable local pagination.
      */
     public String pagination;
+
+    /**
+     * By default, Tabulator will load the first page of data when the table is initially loaded. You can use the paginationInitialPage option to specify that a specific page should be loaded when the table first loads.
+     * This option can take any positive integer value (default = 1)
+     */
+    public int paginationInitialPage;
 
 
     /**
@@ -505,12 +513,12 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * The array of filter objects will take the same form as those returned from the getFilters function:
      * <p>
-     *
+     * <p>
      * {@literal
-     *  [
-     *      {field:"age", type:">", value:52}, //filter by age greater than 52
-     *      {field:"height", type:"<", value:142}, //and by height less than 142
-     *  ]
+     * [
+     * {field:"age", type:">", value:52}, //filter by age greater than 52
+     * {field:"height", type:"<", value:142}, //and by height less than 142
+     * ]
      * }
      *
      * <p>
@@ -723,32 +731,21 @@ public class TabulatorOptions extends CellEvent {
      */
     public String persistenceID;
 
+    /**
+     * Persitence configuration.
+     */
+    public BooleanOr<Persitence> persitence;
+
 
     /**
-     * Enable column layout persistence - You can ensure the layout of columns is stored for the next page load by setting the persistentLayout option to true
-     * <p>
-     * Note: If you update the column definition array after the the column layout has been stored, Tabulator will attempt to match the stored columns against the new definition. If you have any issues with column definitions updating then you will have to change the persistenceID or delete your cookies/local storage to clear out the old column layout information.
+     * A custom persistence reader.
      */
-    public boolean persistentLayout;
+    public Persitence.ReaderFunc persistenceReaderFunc;
 
-
-    //Persistent Sort
     /**
-     * Enable sort persistence - You can ensure the data sorting is stored for the next page load by setting the persistentSort option to true.
+     * A custom persitence writer.
      */
-    public boolean persistentSort;
-
-
-    //Persistent Filter
-    /**
-     * Enable filter persistence - You can ensure the data filtering is stored for the next page load by setting the persistentFilter option to true
-     * <p>
-     * Note: Only built-in filters can be stored (including module), custom filter functions cannot be persistently stored.
-     * <p>
-     * Note: Header filters are not currently stored persistently, this feature will be coming in a future release.
-     */
-    public boolean persistentFilter;
-
+    public Persitence.WriterFunc persistenceWriterFunc;
 
     //Clipboard
     /**

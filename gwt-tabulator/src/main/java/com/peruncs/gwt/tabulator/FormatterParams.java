@@ -113,6 +113,54 @@ public interface FormatterParams {
          */
         public String target;
 
+
+        /**
+         * Download.
+         */
+        @JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
+        public interface Download {
+
+            /**
+             * @param markLinkAsDownloaded - a boolean value of true will mark the link as a download and use the filename provided by the server.
+             * @return download
+             */
+            @JsOverlay
+            static Download of(boolean markLinkAsDownloaded) {
+                return Js.cast(markLinkAsDownloaded);
+            }
+
+
+            /**
+             * @param downloadedFileName - a string for the filename of the downloaded file
+             * @return download
+             */
+            @JsOverlay
+            static Download of(String downloadedFileName) {
+                return Js.cast(downloadedFileName);
+            }
+
+            /**
+             * Custom.
+             */
+            @JsOverlay
+            static Download of(Custom customCallback) {
+                return Js.cast(customCallback);
+            }
+
+            @FunctionalInterface
+            @JsFunction
+            interface Custom {
+                /**
+                 * @param cell - the cell component.
+                 * @return the filename of the downloaded file
+                 */
+                String call(CellComponent cell);
+            }
+
+        }
+
+        Download download;
+
     }
 
     @JsType
