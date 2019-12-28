@@ -20,7 +20,7 @@ ext {
     gwt_utils_version='0.0.3-SNAPSHOT'
     gwt_jwt_version='0.0.3'
     gwt_cookies_version='0.0.3'
-    gwt_tabulator_version='0.0.2-SNAPSHOT'
+    gwt_tabulator_version='0.0.3-SNAPSHOT'
 }
 
 apply plugin: 'java'

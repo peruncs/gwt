@@ -193,6 +193,7 @@ public interface EditorParams {
         public JsPropertyMap<String> elementAttributes;
         public Any defaultValue;
         public Any values;
+        public VerticalNavigation verticalNavigation;
 
         /**
          * function to search through array of value objects and return those that match the search term (by default this does a loose string comparison between values)

@@ -238,9 +238,8 @@ public class Tabulator {
     /**
      * By default getData will return an array containing all the data held in the Tabulator. If you only want to access the currently filtered/sorted elements, you can pass a value of true to the first argument of the function.
      *
-     * @param restricted "active" - only return rows that pass the current filters
-     *                   "visible" - only return rows currently visible in the table viewport
-     * @return
+     * @param restricted "active" - only return rows that pass the current filters. "visible" - only return rows currently visible in the table viewport.
+     * @return any
      */
     native public Any[] getData(String restricted);
 
@@ -254,6 +253,7 @@ public class Tabulator {
     /**
      * If you only want to count the currently filtered/sorted elements, you can pass a value of true to the first argument of the function.
      *
+     * @param restricted "active" - only return rows that pass the current filters. "visible" - only return rows currently visible in the table viewport.
      * @return count.
      */
     native public int getDataCount(String restricted);
@@ -822,16 +822,62 @@ public class Tabulator {
      */
     public native void restoreRedraw();
 
+    /**
+     * Update the definition of a column with the updateColumnDefinition function. The first argument can be any any of the standard column component look up options. The second argument should be an object containing the properties of the column that you want to change.
+     *
+     * @param columnId
+     * @param changedProperties
+     * @return promise
+     */
+    public native Promise<ColumnComponent> updateColumnDefinition(String columnId, JsPropertyMap changedProperties);
+
+    public native ColumnOptions[] getColumnDefinitions();
+
+    public native ColumnComponent[] getColumns();
 
     /**
-     * Tabulator keeps track of all tables that it creates and you can use the findTable function on the Tabulator prototype
+     * To get a structured array of Column Components that includes column groups, pass a value of true as an argument.
+     * @param structured
+     * @return an array . This will return an array of Column Components for the top level columns, whether they are columns or column groups. You can then use the getSubColumns and getParentColumn functions on each component to navigate through the column hierarchy.
+     */
+    public native ColumnComponent[] getColumns(boolean structured);
+
+    /**
+     *  Retrieve the Column Component using the field of the column.
+     * @param id
+     * @return column component
+     */
+    public native ColumnComponent getColumn(String id);
+
+    /**
+     *  Retrieve the Column Component using the DOM node of its header element.
+     * @param headerElement
+     * @return column component
+     */
+    public native ColumnComponent getColumn(Node headerElement);
+
+    /**
+     * Add a single column.
+     *
+     * @param columnDefinition - The column definition object for the column you want to add.
+     * @param before - Determines how to position the new column. A value of true will insert the column to the left of existing columns, a value of false will insert it to the right. If a Position argument is supplied then this will determine whether the new colum is inserted before or after this column.
+     * @param position - - The field to insert the new column next to, this can be any of the standard column component look up options.
+     *
+     * @return promise
+     */
+    public native Promise<ColumnComponent> addColumn(ColumnOptions columnDefinition, boolean before, ColumnComponent.Lookup position);
+    public native Promise<ColumnComponent> addColumn(ColumnOptions columnDefinition);
+
+
+    public native Promise<ColumnComponent> deleteColumn(ColumnComponent.Lookup lookup);
+
+    /**
+     * Tabulator keeps track of all tables that it creates, and you can use the findTable function on the Tabulator prototype
      * to lookup the table object for any existing table using the element they were created on.
      *
      * @param element - The findTable function will accept a valid CSS selector string or a DOM node for the table as its first argument.
      * @return - If no match is found it will return false, if one table is found it will return the Tabulator object for that table. If multiple tables are found it will return an array of all matching Tabulator objects.
      */
-
-
     native static public BooleanOr<Tabulator> findTable(StringOr<Node> element);
 
 

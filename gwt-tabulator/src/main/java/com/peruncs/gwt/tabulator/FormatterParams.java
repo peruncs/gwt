@@ -159,7 +159,7 @@ public interface FormatterParams {
 
         }
 
-        Download download;
+        public Download download;
 
     }
 

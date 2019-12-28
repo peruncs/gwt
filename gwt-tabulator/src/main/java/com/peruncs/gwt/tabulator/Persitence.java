@@ -28,6 +28,8 @@ public class Persitence {
 
     /**
      * Persist columns. Boolean or array of column names.
+     * true - persists title, width, visible, order.
+     * array - persist additional attributes, for example ["width", "visible", "frozen"] - persist changes to the width, visible and frozen properties.
      */
     public BooleanOr<String[]> columns;
 

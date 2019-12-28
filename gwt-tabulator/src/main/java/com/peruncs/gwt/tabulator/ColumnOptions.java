@@ -40,6 +40,11 @@ public class ColumnOptions extends CellEvent {
     boolean visible = true;
 
     /**
+     * Hide column headers.
+     */
+    boolean headerVisible = true;
+
+    /**
      * Sets the width of this column, this can be set in pixels or as a percentage of total table width (if not set the system will determine the best)
      */
     public StringOr<Integer> width;
@@ -445,13 +450,16 @@ public class ColumnOptions extends CellEvent {
 
     public boolean print;
 
-
     /**
-     * Column Title Changed
+     * Allows user to update this column's title.
+     */
+    public boolean editableTitle;
+    /**
+     * Column Title Changed callback.
      * <p>
      * The columnTitleChanged callback is triggered whenever a user edits a column title when the editableTitle parameter has been enabled in the column definition array.
      */
-    public Callback1<ColumnComponent> columnTitleChanged;
+    public ColumnTitleChanged columnTitleChanged;
 
 
     //Column calculation functions
