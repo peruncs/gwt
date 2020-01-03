@@ -1,6 +1,7 @@
 package com.peruncs.gwt.tabulator;
 
 
+import com.peruncs.gwt.utils.Callback1;
 import com.peruncs.gwt.utils.CallbackRet;
 import com.peruncs.gwt.utils.CallbackRet1;
 import com.peruncs.gwt.utils.StringOr;
@@ -538,6 +539,16 @@ public class Tabulator {
     //Scrolling
 
     /**
+     * Triggered when the table is vertically scrolled
+     */
+    public ScrollCallback scrollVertical;
+
+    /**
+     * Triggered when the table is horizontally scrolled.
+     */
+    public ScrollCallback scrollHorizontal;
+
+    /**
      * If you want to trigger an animated scroll to a column then you can use the scrollToColumn function.
      * The first argument should be any of the standard column component look up options for the column you want to scroll to.
      * <p>
@@ -589,6 +600,12 @@ public class Tabulator {
     native public void selectRow(RowComponent.Lookup row);
 
     native public void selectRow(RowComponent.Lookup[] rows);
+
+    /**
+     * select rows.
+     * @param arg - "all", "active", "visible".
+     */
+    native public void selectRow(String arg);
 
     native public void selectRow();
 
@@ -677,20 +694,29 @@ public class Tabulator {
 
     native void copyToClipboard(CallbackRet<RowComponent> copySelector);
 
+//    /**
+//     * You have a choice of four file types to choose from:
+//     * <p>
+//     * csv - Comma separated value file
+//     * json - JSON formatted text file
+//     * xlsx - Excel File (Requires the SheetJS Library)
+//     * pdf - PDF File (Requires the jsPDF Library and jsPDF-AutoTable Plugin)
+//     *
+//     *
+//     */
+
     /**
-     * You have a choice of four file types to choose from:
-     * <p>
-     * csv - Comma separated value file
-     * json - JSON formatted text file
-     * xlsx - Excel File (Requires the SheetJS Library)
-     * pdf - PDF File (Requires the jsPDF Library and jsPDF-AutoTable Plugin)
-     * To trigger a download, call the download function, passing the file type (from the above list) as the first argument, and an optional second argument of the file name for the download (if this is left out it will be "Tabulator.ext"). The optional third argument is an object containing any setup options for the formatter, such as the delimiter choice for CSV's).
+     *
+     * @param fileType - "csv","json","xlsx","pdf" or "html". PDF requires the jsPDF Library and jsPDF-AutoTable Plugin. For "html: , By default the HTML output is a simple unstyled table. if you would like to match the current table styling you can set the style property to true in the options object.
+     * @param fileName (Optional) second argument of the file name for the download (if this is left out it will be "Tabulator.ext".
+     * @param config - (Optional) third argument is an object containing any setup options for the formatter, such as the delimiter choice for CSV's.
+     * @param arg - (Optional) "active" - include the active (filtered) rows only in the download output (default). "all" - include all rows in the download output reguardless of whether they are filtered or not. "visible" - include only rows currently visible in the table viewport.
+     * @param <C>
      */
+    native <C> void download(String fileType, String fileName, C config, String arg);
     native <C> void download(String fileType, String fileName, C config);
-
-    native <C> void download(String fileType, String fileName);
-
-    native <C> void download(String fileType);
+    native  void download(String fileType, String fileName);
+    native  void download(String fileType);
 
     /**
      * If you want to create a custom file type from the table data then you can pass a function to the type argument,
