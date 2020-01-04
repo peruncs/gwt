@@ -5,9 +5,9 @@ def gwtmodules = ['gwt-utils', 'gwt-stripe', 'gwt-tabulator', 'gwt-cookies', 'gw
 
 
 //Publish all gwt modules to Maven Central Repository.
-task publishCentral {
+task publishGithub {
     for (item in gwtmodules) {
-        dependsOn gradle.includedBuild(item).task(':publishAllPublicationsToMavenRepository')
+        dependsOn gradle.includedBuild(item).task(':publishAllPublicationsToGitHubPackagesRepository')
     }
 }
 

@@ -43,6 +43,6 @@ publishing {
     }
 }
 
-signing {
-    sign publishing.publications.publication
-}
+//signing {
+//    sign publishing.publications.publication
+//}

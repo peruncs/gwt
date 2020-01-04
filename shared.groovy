@@ -13,14 +13,14 @@ ext {
     gwt_base_version='1.0.0-b2-e6d791f'
     gwt_jsinterop_version='1.0.2-p1'
 
-    gwt_uikit_version='0.0.4-SNAPSHOT'
-    gwt_recaptcha_version='0.0.3'
+    gwt_uikit_version='0.0.5'
+    gwt_recaptcha_version='0.0.5'
 
-    gwt_stripe_version='0.0.3'
-    gwt_utils_version='0.0.3-SNAPSHOT'
-    gwt_jwt_version='0.0.3'
-    gwt_cookies_version='0.0.3'
-    gwt_tabulator_version='0.0.4'
+    gwt_stripe_version='0.0.5'
+    gwt_utils_version='0.0.5'
+    gwt_jwt_version='0.0.5'
+    gwt_cookies_version='0.0.5'
+    gwt_tabulator_version='0.0.5'
 }
 
 apply plugin: 'java'
@@ -108,12 +108,11 @@ publishing {
     afterEvaluate {
         repositories {
             maven {
-                url = version.endsWith('SNAPSHOT') ?
-                        "https://oss.sonatype.org/content/repositories/snapshots/"
-                        : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/peruncs/gwt")
                 credentials {
-                    username sonatypeUsername
-                    password sonatypePassword
+                    username githubUser
+                    password githubToken
                 }
             }
         }
