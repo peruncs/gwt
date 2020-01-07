@@ -9,36 +9,30 @@ import jsinterop.annotations.JsType;
 import jsinterop.base.Js;
 
 
-@JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
+@JsType
 public interface SorterTypeParams {
 
-    @JsOverlay
-    static SorterTypeParams of(string s) {
+    static SorterTypeParams ofString(string s) {
         return Js.cast(s);
     }
 
-    @JsOverlay
-    static SorterTypeParams of(numeric n) {
+    static SorterTypeParams ofNumeric(numeric n) {
         return Js.cast(n);
     }
 
-    @JsOverlay
-    static SorterTypeParams of(alphanum an) {
+    static SorterTypeParams ofAlphaNum(alphanum an) {
         return Js.cast(an);
     }
 
-    @JsOverlay
-    static SorterTypeParams of(datetime dt) {
+    static SorterTypeParams ofDateTime(datetime dt) {
         return Js.cast(dt);
     }
 
-    @JsOverlay
-    static SorterTypeParams of(array a) {
+    static SorterTypeParams ofArray(array a) {
         return Js.cast(a);
     }
 
-    @JsOverlay
-    static SorterTypeParams of(Lookup l) {
+    static SorterTypeParams ofLookup(Lookup l) {
         return Js.cast(l);
     }
 

@@ -11,10 +11,10 @@ import jsinterop.base.Any;
 import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 
-@JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
+@JsType
 public interface EditorParams {
 
-    @JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
+    @JsType
     interface VerticalNavigation {
 
         @JsOverlay
@@ -40,8 +40,7 @@ public interface EditorParams {
      * @param customParamLookup - a param lookup function.
      * @return the union type.
      */
-    @JsOverlay
-    static EditorParams of(CallbackRet1<JsObject, CellComponent> customParamLookup) {
+    static EditorParams ofCustomLookup(CallbackRet1<JsObject, CellComponent> customParamLookup) {
         return Js.cast(customParamLookup);
     }
 
@@ -51,19 +50,17 @@ public interface EditorParams {
         public JsPropertyMap<String> elementAttributes;
     }
 
-    @JsOverlay
-    static EditorParams of(Input input) {
+    static EditorParams ofInput(Input input) {
         return Js.cast(input);
     }
 
     @JsType
-    class Textarea {
+    class TextArea {
         public JsPropertyMap<String> elementAttributes;
         public VerticalNavigation verticalNavigation;
     }
 
-    @JsOverlay
-    static EditorParams of(Textarea textarea) {
+    static EditorParams ofTextarea(TextArea textarea) {
         return Js.cast(textarea);
     }
 
@@ -83,8 +80,7 @@ public interface EditorParams {
         public JsPropertyMap<String> elementAttributes;
     }
 
-    @JsOverlay
-    static EditorParams of(Range range) {
+    static EditorParams ofRange(Range range) {
         return Js.cast(range);
     }
 
@@ -104,8 +100,7 @@ public interface EditorParams {
         public VerticalNavigation verticalNavigation;
     }
 
-    @JsOverlay
-    static EditorParams of(Numeric numeric) {
+    static EditorParams ofNumeric(Numeric numeric) {
         return Js.cast(numeric);
     }
 
@@ -122,8 +117,7 @@ public interface EditorParams {
         public JsPropertyMap<String> elementAttributes;
     }
 
-    @JsOverlay
-    static EditorParams of(Checkbox checkbox) {
+    static EditorParams ofCheckbox(Checkbox checkbox) {
         return Js.cast(checkbox);
     }
 
@@ -164,8 +158,7 @@ public interface EditorParams {
         public VerticalNavigation verticalNavigation;
     }
 
-    @JsOverlay
-    static EditorParams of(Select select) {
+    static EditorParams ofSelect(Select select) {
         return Js.cast(select);
     }
 
@@ -190,10 +183,6 @@ public interface EditorParams {
         public boolean showListOnEmpty;
         public boolean freetext;
         public boolean allowEmpty;
-        public JsPropertyMap<String> elementAttributes;
-        public Any defaultValue;
-        public Any values;
-        public VerticalNavigation verticalNavigation;
 
         /**
          * function to search through array of value objects and return those that match the search term (by default this does a loose string comparison between values)
@@ -207,8 +196,7 @@ public interface EditorParams {
         public SearchFunc searchFunc;
     }
 
-    @JsOverlay
-    static EditorParams of(Autocomplete autocomplete) {
+    static EditorParams ofAutocomplete(Autocomplete autocomplete) {
         return Js.cast(autocomplete);
     }
 

@@ -25,7 +25,7 @@ public interface AjaxContentType {
         return Js.cast(complex);
     }
 
-    @JsType
+    @JsType(namespace = JsPackage.GLOBAL)
     class Complex {
         /**
          * contain all headers that should be sent with the request
@@ -36,7 +36,6 @@ public interface AjaxContentType {
         /**
          * a function that returns the body content of the request.
          */
-        @JsType
         @JsFunction
         @FunctionalInterface
         interface Body {

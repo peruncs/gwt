@@ -1,8 +1,12 @@
 package com.peruncs.gwt.tabulator;
 
 import elemental2.dom.Node;
+import jsinterop.annotations.JsType;
 
-
+/**
+ * This is deliberately declared as native, to allow GWT to compile.
+ */
+@JsType(isNative = true)
 public interface BaseComponent {
 
     //todo - extract common methods

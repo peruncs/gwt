@@ -273,9 +273,9 @@ public class ColumnOptions extends CellEvent {
     public EditorParams editorParams;
 
     /**
-     * There are some circumstances where you may want to block editibility of a cell for one reason or another. To meet this need you can use the editable option. This lets you set a callback that is executed before the editor is built, if this callback returns true the editor is added, if it returns false the edit is aborted and the cell remains a non editable cell. The function is passed one parameter, the CellComponent of the cell about to be edited. You can also pass a boolean value instead of a function to this property.
+     * Pre-edit hook.
      */
-    public CallbackRet1<CellComponent, Boolean> editable;
+    public CanEdit  editable;
 
 
     public Validator validator;
@@ -346,10 +346,11 @@ public class ColumnOptions extends CellEvent {
     public String downloadTitle;
 
 
+
     /**
-     * If you want to make any bulk changes to the table data before it is parsed into the download file you can pass a mutator function to the downloadDataFormatter option in the table definition.
+     * Pre-download formatter hook.
      */
-    public CallbackRet1<Any, Any[]> downloadDataFormatter;
+    public DownloadFormatter downloadDataFormatter;
 
     /**
      * custom title for use in downloads.
@@ -470,4 +471,21 @@ public class ColumnOptions extends CellEvent {
     public CalculatorParams bottomCalcParams;
 
 
+    /**
+     * There are some circumstances where you may want to block editibility of a cell for one reason or another. To meet this need you can use the editable option. This lets you set a callback that is executed before the editor is built, if this callback returns true the editor is added, if it returns false the edit is aborted and the cell remains a non editable cell. The function is passed one parameter, the CellComponent of the cell about to be edited. You can also pass a boolean value instead of a function to this property.
+     */
+    @JsFunction
+    @FunctionalInterface
+    public interface CanEdit {
+        boolean canEdit(CellComponent cell);
+    }
+
+    /**
+     * If you want to make any bulk changes to the table data before it is parsed into the download file you can pass a mutator function to the downloadDataFormatter option in the table definition.
+     */
+    @JsFunction
+    @FunctionalInterface
+    public interface DownloadFormatter {
+         Any preFormat(Any[] data);
+    }
 }

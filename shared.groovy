@@ -6,21 +6,23 @@
 ext {
     // Compilers
     java_lang_level='1.8'
+
     // Software packages
     gwt_version='2.8.2'
 
-    gwt_elemental2_version='2.26'
+    gwt_elemental2_version='2.25'
     gwt_base_version='1.0.0-b2-e6d791f'
     gwt_jsinterop_version='1.0.2-p1'
 
-    gwt_uikit_version='0.0.5'
-    gwt_recaptcha_version='0.0.5'
 
-    gwt_stripe_version='0.0.5'
-    gwt_utils_version='0.0.5'
-    gwt_jwt_version='0.0.5'
-    gwt_cookies_version='0.0.5'
-    gwt_tabulator_version='0.0.5'
+    gwt_uikit_version='0.0.6'
+    gwt_recaptcha_version='0.0.6'
+
+    gwt_stripe_version='0.0.6'
+    gwt_utils_version='0.0.6'
+    gwt_jwt_version='0.0.6'
+    gwt_cookies_version='0.0.6'
+    gwt_tabulator_version='0.0.6'
 }
 
 apply plugin: 'java'

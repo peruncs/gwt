@@ -8,7 +8,7 @@ import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
 import jsinterop.base.Js;
 
-@JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
+@JsType
 public interface FormatterParams {
 
     @JsType
@@ -117,15 +117,14 @@ public interface FormatterParams {
         /**
          * Download.
          */
-        @JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
+        @JsType
         public interface Download {
 
             /**
              * @param markLinkAsDownloaded - a boolean value of true will mark the link as a download and use the filename provided by the server.
              * @return download
              */
-            @JsOverlay
-            static Download of(boolean markLinkAsDownloaded) {
+            static Download markLinkAsDownloaded(boolean markLinkAsDownloaded) {
                 return Js.cast(markLinkAsDownloaded);
             }
 
@@ -134,15 +133,13 @@ public interface FormatterParams {
              * @param downloadedFileName - a string for the filename of the downloaded file
              * @return download
              */
-            @JsOverlay
-            static Download of(String downloadedFileName) {
+            static Download downloadedFileName(String downloadedFileName) {
                 return Js.cast(downloadedFileName);
             }
 
             /**
              * Custom.
              */
-            @JsOverlay
             static Download of(Custom customCallback) {
                 return Js.cast(customCallback);
             }
@@ -291,53 +288,43 @@ public interface FormatterParams {
         F paramLookup(CellComponent cell);
     }
 
-    @JsOverlay
-    static FormatterParams of(DateTime dateTime) {
+    static FormatterParams ofDAteTime(DateTime dateTime) {
         return Js.cast(dateTime);
     }
 
-    @JsOverlay
-    static FormatterParams of(DateTimeDiff dateTimeDiff) {
+    static FormatterParams ofDateTimeDiff(DateTimeDiff dateTimeDiff) {
         return Js.cast(dateTimeDiff);
     }
 
-    @JsOverlay
-    static FormatterParams of(Image image) {
+    static FormatterParams ofImage(Image image) {
         return Js.cast(image);
     }
 
-    @JsOverlay
-    static FormatterParams of(Link link) {
+    static FormatterParams ofLink(Link link) {
         return Js.cast(link);
     }
 
-    @JsOverlay
-    static FormatterParams of(Money money) {
+    static FormatterParams ofMoney(Money money) {
         return Js.cast(money);
     }
 
-    @JsOverlay
-    static FormatterParams of(Traffic traffic) {
+    static FormatterParams ofTraffic(Traffic traffic) {
         return Js.cast(traffic);
     }
 
-    @JsOverlay
-    static FormatterParams of(Progress progress) {
+    static FormatterParams ofProgress(Progress progress) {
         return Js.cast(progress);
     }
 
-    @JsOverlay
-    static FormatterParams of(Star star) {
+    static FormatterParams ofStar(Star star) {
         return Js.cast(star);
     }
 
-    @JsOverlay
-    static FormatterParams of(TickCross tickCross) {
+    static FormatterParams ofTickCross(TickCross tickCross) {
         return Js.cast(tickCross);
     }
 
-    @JsOverlay
-    static <F> FormatterParams of(Lookup lookup) {
+    static <F> FormatterParams ofLookuo(Lookup lookup) {
         return Js.cast(lookup);
     }
 }

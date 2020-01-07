@@ -735,64 +735,64 @@ public class Tabulator {
 
     //CSV
     @JsOverlay
-    public void downloadCSV(String fileName, CSVDownloadConfig csvDownloadConfig) {
+    final public void downloadCSV(String fileName, CSVDownloadConfig csvDownloadConfig) {
         download("csv", fileName, csvDownloadConfig);
     }
 
     @JsOverlay
-    public void downloadCSV(String fileName) {
+    final public void downloadCSV(String fileName) {
         download("csv", fileName);
     }
 
     @JsOverlay
-    public void downloadCSV() {
+    final public void downloadCSV() {
         download("csv");
     }
 
     @JsOverlay
-    public void downloadToTabCSV() {
+    final public void downloadToTabCSV() {
         downloadToTab("csv");
     }
 
     //XLSX - Excel
     @JsOverlay
-    public void downloadXLSX(String fileName, XLSXDownloadConfig xlsxDownloadConfig) {
+    final public void downloadXLSX(String fileName, XLSXDownloadConfig xlsxDownloadConfig) {
         download("xlsx", fileName, xlsxDownloadConfig);
     }
 
     @JsOverlay
-    public void downloadXLSX(String fileName) {
+   final  public void downloadXLSX(String fileName) {
         download("xlsx", fileName);
     }
 
     @JsOverlay
-    public void downloadXLSX() {
+    final public void downloadXLSX() {
         download("xlsx");
     }
 
     @JsOverlay
-    public void downloadToTabXLSX() {
+   final  public void downloadToTabXLSX() {
         downloadToTab("xlsx");
     }
 
     //PDF
     @JsOverlay
-    public void downloadPDF(String fileName, PDFDownloadConfig pdfDownloadConfig) {
+    final public void downloadPDF(String fileName, PDFDownloadConfig pdfDownloadConfig) {
         download("pdf", fileName, pdfDownloadConfig);
     }
 
     @JsOverlay
-    public void downloadPDF(String fileName) {
+    final public void downloadPDF(String fileName) {
         download("pdf", fileName);
     }
 
     @JsOverlay
-    public void downloadPDF() {
+    final public void downloadPDF() {
         download("pdf");
     }
 
     @JsOverlay
-    public void downloadToTabPDF() {
+    final public void downloadToTabPDF() {
         downloadToTab("pdf");
     }
 

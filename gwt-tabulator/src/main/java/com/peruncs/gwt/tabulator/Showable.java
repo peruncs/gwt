@@ -1,5 +1,9 @@
 package com.peruncs.gwt.tabulator;
 
+import jsinterop.annotations.JsType;
+
+/** We are forced to declare this interfcae native by GWT.*/
+@JsType(isNative=true)
 public interface Showable {
 
     /**

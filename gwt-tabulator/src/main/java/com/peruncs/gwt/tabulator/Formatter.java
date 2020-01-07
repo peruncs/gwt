@@ -11,7 +11,7 @@ import jsinterop.base.Js;
 /**
  * Determines how to format data in this column.
  */
-@JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
+@JsType
 public interface Formatter {
 
     /**
@@ -19,7 +19,6 @@ public interface Formatter {
      *
      * @return the union type
      */
-    @JsOverlay
     static Formatter plaintext() {
         return Js.cast("plaintext");
     }
@@ -30,7 +29,6 @@ public interface Formatter {
      *
      * @return the union type
      */
-    @JsOverlay
     static Formatter rowSelection() {
         return Js.cast("rowSelection");
     }
@@ -40,7 +38,6 @@ public interface Formatter {
      *
      * @return the union type
      */
-    @JsOverlay
     static Formatter textarea() {
         return Js.cast("textarea");
     }
@@ -50,7 +47,6 @@ public interface Formatter {
      *
      * @return the union type
      */
-    @JsOverlay
     static Formatter html() {
         return Js.cast("html");
     }
@@ -60,7 +56,6 @@ public interface Formatter {
      *
      * @return the union type
      */
-    @JsOverlay
     static Formatter money() {
         return Js.cast("money");
     }
@@ -71,7 +66,6 @@ public interface Formatter {
      *
      * @return the union type
      */
-    @JsOverlay
     static Formatter image() {
         return Js.cast("image");
     }
@@ -82,7 +76,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter link() {
         return Js.cast("link");
     }
@@ -92,7 +85,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter datetime() {
         return Js.cast("datetime");
     }
@@ -102,7 +94,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter datetimediff() {
         return Js.cast("datetimediff");
     }
@@ -112,7 +103,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter tickCross() {
         return Js.cast("tickCross");
     }
@@ -122,7 +112,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter color() {
         return Js.cast("color");
     }
@@ -132,7 +121,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter star() {
         return Js.cast("star");
     }
@@ -142,7 +130,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter traffic() {
         return Js.cast("traffic");
     }
@@ -152,7 +139,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter progress() {
         return Js.cast("progress");
     }
@@ -163,7 +149,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter lookup() {
         return Js.cast("lookup");
     }
@@ -173,7 +158,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter buttonTick() {
         return Js.cast("buttonTick");
     }
@@ -184,7 +168,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter buttonCross() {
         return Js.cast("buttonCross");
     }
@@ -194,7 +177,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter rownum() {
         return Js.cast("rownum");
     }
@@ -205,7 +187,6 @@ public interface Formatter {
      *
      * @return formatter
      */
-    @JsOverlay
     static Formatter handle() {
         return Js.cast("handle");
     }
@@ -235,7 +216,6 @@ public interface Formatter {
     /**
      * Install a custom formatter.
      */
-    @JsOverlay
     static <F> Formatter custom(Custom<F> customFormatter) {
         return Js.cast(customFormatter);
     }

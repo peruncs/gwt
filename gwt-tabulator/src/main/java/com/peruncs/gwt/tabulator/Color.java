@@ -34,7 +34,7 @@ public interface Color {
      * @param customCustom - a callback that is passed the value of the cell and must return the color (eg function(value){return "red"}).
      * @return color
      */
-    static Color of(Custom customCustom) {
+    static Color ofCustom(Custom customCustom) {
         return Js.cast(customCustom);
     }
 }

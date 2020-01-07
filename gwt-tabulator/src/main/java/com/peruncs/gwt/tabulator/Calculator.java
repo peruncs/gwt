@@ -1,6 +1,7 @@
 package com.peruncs.gwt.tabulator;
 
 import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.Any;
@@ -13,30 +14,37 @@ import jsinterop.base.Js;
 @JsType(isNative = true, name = "?", namespace = JsPackage.GLOBAL)
 public interface Calculator {
 
+    @JsOverlay
     static Calculator avg() {
         return Js.cast("avg");
     }
 
+    @JsOverlay
     static Calculator max() {
         return Js.cast("max");
     }
 
+    @JsOverlay
     static Calculator min() {
         return Js.cast("min");
     }
 
+    @JsOverlay
     static Calculator sum() {
         return Js.cast("sum");
     }
 
+    @JsOverlay
     static Calculator concat() {
         return Js.cast("concat");
     }
 
+    @JsOverlay
     static Calculator count() {
         return Js.cast("count");
     }
 
+    @JsOverlay
     static Calculator custom(Custom customFunction) {
         return Js.cast(customFunction);
     }

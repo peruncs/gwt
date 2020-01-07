@@ -1,6 +1,6 @@
 package com.peruncs.gwt.tabulator;
 
-import jdk.nashorn.api.scripting.JSObject;
+
 import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
@@ -47,7 +47,7 @@ public interface CalculatorParams {
          * @param data   - all table data
          * @return the parameter object
          */
-        JSObject lookup(Any[] values, Any data);
+        Object lookup(Any[] values, Any data);
     }
 
 }
