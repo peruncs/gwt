@@ -298,7 +298,7 @@ public class Tabulator {
 
     native public RowComponent[] searchRows(Filter... filter);
 
-    native public <P> RowComponent[] searchRows(CallbackRet1<Boolean, P> callback, P calbackParams);
+//    native public <P> RowComponent[] searchRows(CallbackRet1<Boolean, P> callback, P calbackParams);
 
     /**
      * The searchData function allows you to retrieve an array of table row data that match any filters you pass in. it accepts the same arguments as the setFilter function.
@@ -307,7 +307,7 @@ public class Tabulator {
 
     native public Any[] searchData(Filter... filter);
 
-    native public <P> Any[] searchData(CallbackRet1<Boolean, P> callback, P calbackParams);
+//    native public <P> Any[] searchData(CallbackRet1<Boolean, P> callback, P calbackParams);
 
     /**
      * Use the getRowPosition function to retrieve the numerical position of a row in the table. By default this will return the position of the row in all data, including data currently filtered out of the table.

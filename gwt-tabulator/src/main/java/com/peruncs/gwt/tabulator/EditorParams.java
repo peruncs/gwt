@@ -34,13 +34,19 @@ public interface EditorParams {
 
     }
 
+    @JsFunction
+    @FunctionalInterface
+    interface CustomParamLookup {
+        JsObject lookup(CellComponent cell);
+    }
+
     /**
      * If you want to dynamically generate the editorParams at the time the editor is called you can pass a function into the property that should return the params object.
      *
      * @param customParamLookup - a param lookup function.
      * @return the union type.
      */
-    static EditorParams ofCustomLookup(CallbackRet1<JsObject, CellComponent> customParamLookup) {
+    static EditorParams ofCustomLookup(CustomParamLookup customParamLookup) {
         return Js.cast(customParamLookup);
     }
 

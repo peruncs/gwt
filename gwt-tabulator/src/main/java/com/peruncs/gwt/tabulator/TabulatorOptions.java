@@ -141,7 +141,7 @@ public class TabulatorOptions extends CellEvent {
      */
 
 
-    public CallbackRet1<String, ColumnTitleValue[]> responsiveLayoutCollapseFormatter;
+    public ResponsiveLayoutCollapseFormatter responsiveLayoutCollapseFormatter;
 
 
     /**
@@ -799,7 +799,7 @@ public class TabulatorOptions extends CellEvent {
      * <p>
      * You can also pass a custom parser function into the clipboardPasteParser property, it should take one argument of the string of clipboard data and return an array of row data objects that will be passed to the paste action. If the clipboard data isn't valid it should return false.
      */
-    public CallbackRet1<BooleanOr<JsObject[]>, String> clipboardPasteParser;
+    public ClipboardPasteParser clipboardPasteParser;
 
     public ClipboardPasteAction clipboardPasteAction;
 
@@ -1300,7 +1300,7 @@ public class TabulatorOptions extends CellEvent {
      * If you want to make any changes to the table data before it is parsed into the download file,
      * you can pass a mutator function to the downloadDataFormatter callback.
      */
-    public CallbackRet1<Any, Any> downloadDataFormatter;
+    public DownloadDataFormatter downloadDataFormatter;
 
     public DownloadReadyCallback downloadReady;
 
