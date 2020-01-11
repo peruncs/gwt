@@ -47,7 +47,3 @@ publishing {
         }
     }
 }
-
-//signing {
-//    sign publishing.publications.publication
-//}

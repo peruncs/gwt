@@ -8,11 +8,10 @@ ext {
     java_lang_level='1.8'
 
     // Software packages
-    gwt_version='2.8.2'
-
-    gwt_elemental2_version='2.25'
-    gwt_base_version='1.0.0-b2-e6d791f'
-    gwt_jsinterop_version='1.0.2-p1'
+    gwt_version='2.8.2-v20191108'
+    gwt_elemental2_version='2.27'
+    gwt_base_version='1.0.0'
+    gwt_jsinterop_version='2.8.2-v20191108'
 
 
     gwt_uikit_version='0.0.6'
@@ -27,14 +26,13 @@ ext {
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
-apply plugin: 'signing'
-apply plugin: 'idea'
+
 
 //Shared dependencies
 dependencies {
 
     //Newer, alternative Elemental2/Jsinterop, Provided by Peter Donald.
-    compileOnly "org.realityforge.com.google.jsinterop:base:${gwt_base_version}"
+    //compileOnly "org.realityforge.com.google.jsinterop:base:${gwt_base_version}"
     compileOnly "org.realityforge.com.google.elemental2:elemental2-core:${gwt_elemental2_version}"
     compileOnly "org.realityforge.com.google.elemental2:elemental2-dom:${gwt_elemental2_version}"
     compileOnly "org.realityforge.com.google.elemental2:elemental2-webstorage:${gwt_elemental2_version}"
