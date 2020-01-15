@@ -8,10 +8,9 @@ ext {
     java_lang_level='1.8'
 
     // Software packages
-    gwt_version='2.8.2-v20191108'
-    gwt_elemental2_version='2.27'
-    gwt_base_version='1.0.0'
-    gwt_jsinterop_version='2.8.2-v20191108'
+    gwt_elemental2_version='2.26'
+    gwt_base_version='1.0.0-b2-e6d791f'
+    gwt_jsinterop_version='1.0.2-p1'
 
 
     gwt_uikit_version='0.0.6'
